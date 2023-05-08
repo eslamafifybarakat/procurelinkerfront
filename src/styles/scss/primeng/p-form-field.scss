@@ -1,0 +1,21 @@
+.p-password,
+.p-inputtext,
+.p-treeselect,
+.p-multiselect,
+.p-inputgroup > .p-element,
+p-inputnumber,
+.p-inputnumber,
+.p-dropdown,
+.p-input-icon-right > .p-inputtext {
+  width: 100% !important;
+}
+
+// switch
+#modal{
+  .p-inputswitch {
+    transform: scale(.85) !important;
+  }
+}
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+  background-color: var(--bg-main-color) !important;
+}
