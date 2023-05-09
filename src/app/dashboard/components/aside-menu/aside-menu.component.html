@@ -101,7 +101,13 @@
     [ngClass]="collapsed ? 'aside-nav-collapsed' : ''">
     <div class="logo-container d-flex align-items-center w-100">
       <button class="logo text-center bg-transparent border-0 justify-content-center align-items-center w-100 p-0"
-        [class.d-flex]="collapsed">
+        [class.w-100]="!collapsed">
+        <ng-container *ngIf="collapsed;else smLogo">
+          <img src="assets/images/logo/logo.svg" alt="logo" class="lg-logo">
+        </ng-container>
+        <ng-template #smLogo>
+          <img src="assets/images/logo/sm-logo.svg" alt="logo" class="logo-img">
+        </ng-template>
         <!-- <img class="logo-img" src="assets/images/logo/logo.png" alt="logo" (click)="toggleCollapse()" /> -->
         <!-- <ng-container *ngIf="collapsed"> -->
         <button class="arrow text-main-color border-0" (click)="toggleCollapse()">
@@ -117,7 +123,8 @@
             <div class="beautiful-radius"></div>
             <div class="beautiful-radius"></div>
             <a class="aside-nav-link position-relative d-flex align-items-center text-white-color"
-              [class.justify-content-center]="!collapsed" [id]="item?.id" (click)="handelClick(item)">
+              [class.justify-content-center]="!collapsed" [id]="item?.id" (click)="handelClick(item)"
+              (click)="!collapsed?toggleCollapse():''">
               <i class="aside-nav-link-icon mx-2 text-center fs-5 fa {{ item?.icon }}"
                 [pTooltip]="!collapsed?item?.text:''" tooltipPosition="left"></i>
               <ng-container *ngIf="collapsed">
