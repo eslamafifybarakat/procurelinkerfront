@@ -26,13 +26,18 @@ const routes: Routes = [
         }
       },
       {
+        path: 'users-management',
+        loadChildren: () => import('./modules/users-management/users-management.module')
+          .then(m => m.UsersManagementModule)
+      },
+      {
         path: '',
         redirectTo: 'welcome-dashboard',
         pathMatch: 'full',
       },
       { path: '**', redirectTo: 'error' }
     ]
-  }];
+  },];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

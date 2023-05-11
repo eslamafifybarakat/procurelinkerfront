@@ -1,3 +1,4 @@
+import { PublicService } from './../../../shared/services/public.service';
 import { SharedService } from './../../../shared/services/shared.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { keys } from './../../../shared/configs/localstorage-key';
@@ -17,35 +18,67 @@ export class AsideMenuComponent implements OnInit {
   showSideMenu: boolean = true;
   rotated: boolean = false;
   show: boolean = false;
-  menuList: any = menuList;
+  menuListItems: any = [];
 
   currentLanguage: string = 'en';
 
   @Output() onToggleSideNav: EventEmitter<any> = new EventEmitter();
+
   constructor(
     private confirmationService: ConfirmationService,
+    private publicService: PublicService,
     private sharedService: SharedService,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
+    this.menuListItems = [
+      {
+        id: 'dashboard',
+        text: this.publicService.translateTextFromJson('dashboard.sideMenu.dashboard'),
+        icon: 'fa-house',
+        routerLink: '/dashboard',
+        state: false
+      },
+      {
+        id: 'usersManagement',
+        text: this.publicService.translateTextFromJson('dashboard.sideMenu.usersManagement'),
+        icon: 'pi pi-users',
+        state: false,
+        children: [
+          {
+            text: this.publicService.translateTextFromJson('dashboard.sideMenu.usersManagementChild.users'),
+            icon: 'pi pi-users',
+            routerLink: '/dashboard/users-management/users',
+            state: false
+          },
+          {
+            text: this.publicService.translateTextFromJson('dashboard.sideMenu.usersManagementChild.rolesManagement'),
+            icon: 'layers',
+            routerLink: '/dashboard/users-management/roles-management',
+            state: false
+          }
+        ],
+      },
+    ]
     this.screenWidth = window?.innerWidth;
     this.sharedService?.showSideMenu?.subscribe((res: any) => {
       this.showSideMenu = res;
     })
 
     let itemId = window?.localStorage?.getItem(keys?.lastRoute);
-    this.menuList.forEach((ele: any) => {
+    this.menuListItems.forEach((ele: any) => {
       if (ele.id == itemId)
         ele.state = true;
       // ele.state=false
     });
+
   }
 
   handelClick(item: any) {
     console.log(item?.id);
     localStorage?.setItem(keys?.lastRoute, item.id)
-    this.menuList?.forEach((ele: any) => {
+    this.menuListItems?.forEach((ele: any) => {
       ele.state = ele.state;
       // ele.state = false
     });
