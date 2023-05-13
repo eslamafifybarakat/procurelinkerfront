@@ -105,7 +105,12 @@ hr {
 .pointer {
   cursor: pointer !important;
 }
-
+.badge-main {
+  width: 25px;
+  height: 25px;
+  color: var(--text-main-color) !important;
+  background-color: #02305828;
+}
 .global-card {
   border-radius: var(--border-radius-card);
   background-color: var(--bg-white-color);

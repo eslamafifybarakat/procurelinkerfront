@@ -340,6 +340,7 @@
     "users": {
       "allUsers": "كل المستخدمين",
       "addUser": "إضافة مستخدم",
+      "createNewAccount": "انشاء حساب جديد",
       "user": "مستخدم",
       "editUser": "تعديل مستخدم",
       "createAccount":"انشاء حساب",
