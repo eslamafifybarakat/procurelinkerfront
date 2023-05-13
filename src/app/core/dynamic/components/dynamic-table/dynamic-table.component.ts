@@ -50,6 +50,12 @@ export class DynamicTableComponent implements OnInit {
   @Input() showDelete: boolean = false;
   @Input() showEdit: boolean = false;
   @Input() showCopyAction: boolean = false;
+  @Input() showResetPassword: boolean = false;
+  @Input() showActionInMenu: boolean = false;
+  @Input() showPermissions: boolean = false;
+  @Input() showLockAccount: boolean = false;
+  @Input() showUnLockAccount: boolean = false;
+
 
   @Input() showPaginationText: boolean = false;
   @Input() pageNumber: number = 1;
@@ -110,6 +116,10 @@ export class DynamicTableComponent implements OnInit {
   @Output() reportHandler: EventEmitter<any> = new EventEmitter();
   @Output() copyHandler: EventEmitter<any> = new EventEmitter();
   @Output() colEventHandler: EventEmitter<any> = new EventEmitter();
+  @Output() resetPasswordHandler: EventEmitter<any> = new EventEmitter();
+  @Output() permissionsHandler: EventEmitter<any> = new EventEmitter();
+  @Output() lockAccountHandler: EventEmitter<any> = new EventEmitter();
+  @Output() unLockAccountHandler: EventEmitter<any> = new EventEmitter();
 
   @Output() editChildHandler: EventEmitter<any> = new EventEmitter();
   @Output() copyChildHandler: EventEmitter<any> = new EventEmitter();
@@ -271,6 +281,18 @@ export class DynamicTableComponent implements OnInit {
   }
   copyChildHandlerEmit(item: any): void {
     this.copyChildHandler.emit(item);
+  }
+  resetPasswordHandlerEmit(item: any): void {
+    this.resetPasswordHandler.emit(item);
+  }
+  permissionsHandlerEmit(item: any): void {
+    this.permissionsHandler.emit(item);
+  }
+  lockAccountHandlerEmit(item: any): void {
+    this.lockAccountHandler.emit(item);
+  }
+  unLockAccountHandlerEmit(item: any): void {
+    this.unLockAccountHandler.emit(item);
   }
   deleteHandlerEmit(item: any): void {
     if (this.enableConfirmDeleteDialog) {

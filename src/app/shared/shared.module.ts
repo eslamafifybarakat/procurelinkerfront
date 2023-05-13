@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { NotificationComponent } from './components/header/components/notification/notification.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 
 const allSharedComponents = [
@@ -29,6 +30,7 @@ const allSharedComponents = [
   UploadButtonComponent,
   UploadImageComponent,
   FileUploadComponent,
+  BreadcrumbComponent,
   CountdownComponent,
   UserInfoComponent,
   HeaderComponent,

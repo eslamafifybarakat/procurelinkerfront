@@ -4,6 +4,10 @@
     "arabic": "Arabic"
   },
   "general": {
+    "permissions":"صلاحيات",
+    "lockAccount":"قفل الحساب",
+    "unLockAccount":"فتح الحساب",
+    "resetPassword":"اعادة تعيين كلمة المرور",
     "details": "التفاصيل",
     "default": "الافتراضي",
     "notificationExam": "اختبار الإشعار",
@@ -197,7 +201,41 @@
   "dashboard": {
     "total": "المجموع",
     "tableHeader": {
-      "actions": "الإجراءات"
+      "username": "اسم المستخدم",
+      "id": "الرقم التعريفي",
+      "isWorking": "متاح للتعين",
+      "palateNo": "رقم اللوحة",
+      "actions": "الإجراءات",
+      "name": "الإسم",
+      "status": "الحالة",
+      "active": "نشط",
+      "driverStatus": "حالة السائق",
+      "tankSize": "سعة الصهريج",
+      "orderNumber": "رقم الطلب",
+      "orderOrigin": "اصل الطلب",
+      "entityType": "نوع الجهة",
+      "customerName": "اسم العميل",
+      "customerNumber": "رقم العميل",
+      "websiteLink": "رابط الموقع",
+      "supervisor": "المشرف",
+      "driver": "السائق",
+      "orderStatus": "حالة الطلب",
+      "supervisors": "المشرفين",
+      "tanks": "الصهاريج",
+      "mobilePhone": "رقم الهاتف",
+      "date": "التاريخ",
+      "propertyType": "نوع الملكية",
+      "customerMobileNumber": "رقم هاتف العميل",
+      "district": "المنطقة",
+      "locationLink": "رابط الموقع",
+      "paymentMethod": "طريقة الدفع ",
+      "paidAmount": "المبلغ المدفوع",
+      "cancellationCauses": "أسباب الإلغاء",
+      "closedAt": "مغلق عند",
+      "drivers": "السائقين",
+      "customers": "العملاء",
+      "comments": "تعليقات",
+      "userType": "نوع المستخدم"
     },
     "sideMenu": {
       "dashboard": "لوحة التحكم",
@@ -205,6 +243,23 @@
       "usersManagementChild": {
         "users": " المستخدمين",
         "rolesManagement": "إدارة الأدوار"
+      }
+    },
+    "users": {
+      "allUsers": "كل المستخدمين",
+      "addUser": "إضافة مستخدم",
+      "user": "مستخدم",
+      "editUser": "تعديل مستخدم",
+      "userTypes": {
+        "superAdmin": "مشرف فائق",
+        "admin": "مسؤل ",
+        "customerServicesSupervisor": "مشرف خدمات العملاء",
+        "customerService": "خدمة الزبائن",
+        "driversSupervisor": "مشرف السائقين",
+        "driver": "سائق",
+        "gateIn": "بوابة في",
+        "gateOut": "بوابة الخروج",
+        "accountant": "محاسب"
       }
     }
   },
@@ -268,24 +323,8 @@
       "الجمعة",
       "السبت"
     ],
-    "dayNamesShort": [
-      "Sun",
-      "Mon",
-      "Tue",
-      "Wed",
-      "Thu",
-      "Fri",
-      "Sat"
-    ],
-    "dayNamesMin": [
-      "Su",
-      "Mo",
-      "Tu",
-      "We",
-      "Th",
-      "Fr",
-      "Sa"
-    ],
+    "dayNamesShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    "dayNamesMin": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
     "monthNames": [
       "يناير",
       " فبراير",

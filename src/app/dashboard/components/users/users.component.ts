@@ -44,7 +44,7 @@ export class UsersComponent implements OnInit {
       },
       { field: 'full_name', header: this.publicService?.translateTextFromJson('dashboard.usersList.tableHeader.name'), title: this.publicService?.translateTextFromJson('dashboard.usersList.tableHeader.name'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, filter: true, type: 'text' },
       { field: 'email', header: this.publicService?.translateTextFromJson('dashboard.usersList.tableHeader.email'), title: this.publicService?.translateTextFromJson('dashboard.usersList.tableHeader.email'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, filter: true, type: 'text' },
-      { field: 'banks', header: this.publicService?.translateTextFromJson('dashboard.usersList.tableHeader.banks'), title: this.publicService?.translateTextFromJson('dashboard.usersList.tableHeader.banks'), sort: false, filter: true, type: 'filterArray', dataType: 'array', list: 'banks', placeholder: this.publicService?.translateTextFromJson('placeholder.chooseBank'), label: this.publicService?.translateTextFromJson('labels.bank') },
+      // { field: 'banks', header: this.publicService?.translateTextFromJson('dashboard.usersList.tableHeader.banks'), title: this.publicService?.translateTextFromJson('dashboard.usersList.tableHeader.banks'), sort: false, filter: true, type: 'filterArray', dataType: 'array', list: 'banks', placeholder: this.publicService?.translateTextFromJson('placeholder.chooseBank'), label: this.publicService?.translateTextFromJson('labels.bank') },
 
       { field: 'is_active', header: this.publicService?.translateTextFromJson('dashboard.usersList.tableHeader.status'), title: this.publicService?.translateTextFromJson('dashboard.usersList.tableHeader.status'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, filter: true, type: 'boolean' },
     ];
@@ -93,6 +93,9 @@ export class UsersComponent implements OnInit {
 
   }
   toggleStatus(event: any): void {
+
+  }
+  resetPassword(event: any): void {
 
   }
   addOrEditItem(item?: any, type?: any): void {

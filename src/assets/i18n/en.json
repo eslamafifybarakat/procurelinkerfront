@@ -4,6 +4,10 @@
     "arabic": "Arabic"
   },
   "general": {
+    "permissions":"Permissions",
+    "lockAccount":"Lock Account",
+    "unLockAccount":"Unlock Account",
+    "resetPassword":"Reset Password",
     "details": "Details",
     "default": "Default",
     "youtubeLink": "Video YouTube",
@@ -198,7 +202,42 @@
   "dashboard": {
     "total": "total",
     "tableHeader": {
-      "actions": "Actions"
+      "username": "Username",
+      "id": "Id",
+      "isWorking": "Is Working",
+      "palateNo": "palate No",
+      "actions": "Actions",
+      "name": "Name",
+      "active": "Active",
+      "status": "Status",
+      "driverStatus": "Driver status",
+      "tankSize": "Tank Size",
+      "email": "Email",
+      "orderNumber": "Order number",
+      "orderOrigin": "Request origin",
+      "entityType": "Entity type",
+      "customerName": "Customer name",
+      "customerNumber": "Customer number",
+      "websiteLink": "Website link",
+      "supervisor": "Supervisor",
+      "driver": "Driver",
+      "orderStatus": "Order status",
+      "tanks": "Tanks",
+      "supervisors": "Supervisors",
+      "mobilePhone": "Mobile Number",
+      "date": "Date",
+      "propertyType": "Property type",
+      "customerMobileNumber": "Customer mobile number",
+      "district": "District",
+      "locationLink": "Location link",
+      "paymentMethod": "Payment method",
+      "paidAmount": "Paid amount",
+      "cancellationCauses": "Cancellation causes",
+      "closedAt": "Closed at",
+      "drivers": "Drivers",
+      "customers": "Customers",
+      "comments": "Comments",
+      "userType": "User type"
     },
     "sideMenu": {
       "dashboard": "Dashboard",
@@ -206,6 +245,24 @@
       "usersManagementChild": {
         "users": "Users",
         "rolesManagement": "Roles Management"
+      }
+    },
+    "users": {
+      "users": "Users",
+      "allUsers": "all users",
+      "addUser": "Add User",
+      "user": "user",
+      "editUser": "Edit User",
+      "userTypes": {
+        "superAdmin": "Super admin",
+        "admin": "Admin ",
+        "customerServicesSupervisor": "Customer services supervisor",
+        "customerService": "Customer service",
+        "driversSupervisor": "Drivers supervisor",
+        "driver": "Driver",
+        "gateIn": "Gate in ",
+        "gateOut": "Gate out",
+        "accountant": "Accountant"
       }
     }
   },
@@ -269,24 +326,8 @@
       "Friday",
       "Saturday"
     ],
-    "dayNamesShort": [
-      "Sun",
-      "Mon",
-      "Tue",
-      "Wed",
-      "Thu",
-      "Fri",
-      "Sat"
-    ],
-    "dayNamesMin": [
-      "Su",
-      "Mo",
-      "Tu",
-      "We",
-      "Th",
-      "Fr",
-      "Sa"
-    ],
+    "dayNamesShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    "dayNamesMin": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
     "monthNames": [
       "January",
       "February",

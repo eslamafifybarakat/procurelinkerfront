@@ -74,7 +74,7 @@
       &.active {
         background-color: rgba(16, 113, 184, 0.1);
         position: relative;
-        color: var(--text-main-color) !important;
+        // color: var(--text-main-color) !important;
         &::before {
           content: "";
           position: absolute;
@@ -398,6 +398,6 @@
 //   transform: translateX(-18.5rem);
 // }
 
-.active {
-  color: var(--text-main-color) !important;
-}
+// .active {
+//   color: var(--text-main-color) !important;
+// }

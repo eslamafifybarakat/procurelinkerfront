@@ -26,6 +26,7 @@ import { PasswordModule } from 'primeng/password';
 import { TreeSelectModule } from 'primeng/treeselect';
 import { SliderModule } from 'primeng/slider';
 import { TooltipModule } from 'primeng/tooltip';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 const primeNgModules = [
   DynamicDialogModule,
@@ -34,6 +35,7 @@ const primeNgModules = [
   ProgressBarModule,
   InputSwitchModule,
   FileUploadModule,
+  BreadcrumbModule,
   TreeSelectModule,
   InputTextModule,
   PaginatorModule,

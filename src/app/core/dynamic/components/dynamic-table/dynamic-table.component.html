@@ -5,15 +5,15 @@
       [customSort]="true" (onSort)="customSort($event)" dataKey="id">
       <ng-template pTemplate="caption">
         <div class="caption d-flex justify-content-between align-items-center flex-wrap gap-3">
-          <div class="d-flex align-items-center gap-3 dropdown-arrow">
+          <!-- <div class="d-flex align-items-center gap-3 dropdown-arrow">
             <p-dropdown #dropdown [options]="rowsPerPageOptions" (onChange)="paginatorOption($event)"
               (onHide)="hide()"></p-dropdown>
-          </div>
+          </div> -->
           <ng-container *ngIf="showSearch">
             <span class="p-input-icon-right">
               <span class="p-input-icon-left ml-auto">
                 <i class="pi pi-search"></i>
-                <input pInputText class="search-input rounded-pill" type="text" #search
+                <input pInputText class="search-input" type="text" #search
                   (keyup.enter)="searchHandlerEmit(search?.value)" placeholder="{{'placeholder.search'|translate}}" />
               </span>
               <ng-container *ngIf="search.value && !isLoadingSearch">
@@ -108,13 +108,12 @@
                 class="btn btn-danger clear">{{'general.delete'|translate}}</button>
             </ng-container>
             <div class="d-flex flex-wrap flex-row-reverse gap-3">
-              <ng-container *ngIf="showClear">
-                <!-- label="{{'general.reset'|translate}}"  -->
-                <button pButton class="p-button-outlined p-button-secondary clear action-btn" icon="pi pi-refresh"
-                  tooltipPosition="top" pTooltip="{{'general.reset'|translate}}" (click)="clear(dt1)">
+              <ng-container *ngIf="showClear"> <button pButton label="
+                  {{'general.reset'|translate}}" class="p-button-outlined p-button-secondary clear"
+                  icon="pi pi-refresh" (click)="clear(dt1)">
                 </button>
               </ng-container>
-              <p-multiSelect #colVisible [(ngModel)]="selectedColumns" [options]="tableHeaders" optionLabel="header"
+              <!-- <p-multiSelect #colVisible [(ngModel)]="selectedColumns" [options]="tableHeaders" optionLabel="header"
                 appendTo="body" selectedItemsLabel="{0} columns selected" [style]="{'min-width': '200px'}"
                 placeholder="Choose Columns" pTooltip="Column Visibility" tooltipPosition="top"></p-multiSelect>
               <a pTooltip="print" tooltipPosition="top">
@@ -125,7 +124,7 @@
               </a>
               <a pTooltip="PDF" tooltipPosition="top">
                 <img src="assets/images/icons/pdf.svg" class="action-btn" alt="">
-              </a>
+              </a> -->
             </div>
 
           </div>
@@ -427,36 +426,106 @@
             </ng-container>
             <ng-container *ngIf="showActions">
               <td>
-                <div class="d-flex gap-2">
-                  <ng-container *ngIf="showDetails">
-                    <a class="fw-500 details" (click)="detailsHandlerEmit(item)"
-                      pTooltip="{{'general.details'|translate}}" tooltipPosition="top">
-                      <i class="far fa-eye"></i>
+                <ng-container *ngIf="showActionInMenu; else notMenu">
+                  <div class="dropdown">
+                    <a class="dropdown-toggle text-main-color px-4" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      <i class="fas fa-ellipsis-vertical"></i>
                     </a>
-                  </ng-container>
+                    <ul class="dropdown-menu global-card p-3 border-0 actionInMenu">
+                      <ng-container *ngIf="showDetails">
+                        <a class="fw-500" (click)="detailsHandlerEmit(item)" pTooltip="{{'general.details'|translate}}"
+                          tooltipPosition="top">
+                          <i class="far fa-eye"></i>
+                          <span>{{'general.details'|translate}}</span>
+                        </a>
+                      </ng-container>
+                      <ng-container *ngIf="showEdit">
+                        <a class="d-flex align-items-center
+                          gap-2" (click)="editHandlerEmit(item)">
+                          <span><i class="fas fa-pen"></i></span>
+                          <span>{{'general.edit'|translate}}</span>
+                        </a>
+                      </ng-container>
+                      <ng-container *ngIf="showCopyAction">
+                        <a class="d-flex align-items-center
+                          gap-2" (click)="copyActionHandlerEmit(item)" pTooltip="{{'general.copy'|translate}}"
+                          tooltipPosition="top">
+                          <span><i class="fas fa-copy"></i></span>
+                        </a>
+                      </ng-container>
+                      <ng-container *ngIf="showDelete">
+                        <a class="d-flex align-items-center
+                          gap-2" (click)="deleteHandlerEmit(item)">
+                          <span><i class="fas fa-trash-alt"></i></span>
+                          <span>{{'general.delete'|translate}}</span>
+                        </a>
+                      </ng-container>
+                      <ng-container *ngIf="showResetPassword">
+                        <a class="d-flex align-items-center
+                                gap-2" (click)="resetPasswordHandlerEmit(item)">
+                          <span><i class="pi pi-unlock fs-5-1"></i></span>
+                          <span>{{'general.resetPassword'|translate}}</span>
+                        </a>
+                      </ng-container>
 
-                  <ng-container *ngIf="showEdit">
-                    <a class="d-flex align-items-center
-                      gap-2" (click)="editHandlerEmit(item)" pTooltip="{{'general.edit'|translate}}"
-                      tooltipPosition="top">
-                      <span><i class="fas fa-pen edit"></i></span>
-                    </a>
-                  </ng-container>
-                  <ng-container *ngIf="showCopyAction">
-                    <a class="d-flex align-items-center
-                      gap-2" (click)="copyActionHandlerEmit(item)" pTooltip="{{'general.copy'|translate}}"
-                      tooltipPosition="top">
-                      <span><i class="fas fa-copy"></i></span>
-                    </a>
-                  </ng-container>
-                  <ng-container *ngIf="showDelete">
-                    <a class="d-flex align-items-center
-                      gap-2" (click)="deleteHandlerEmit(item)" pTooltip="{{'general.delete'|translate}}"
-                      tooltipPosition="top">
-                      <span><i class="fas fa-trash-alt remove"></i></span>
-                    </a>
-                  </ng-container>
-                </div>
+                      <ng-container *ngIf="showPermissions">
+                        <a class="d-flex align-items-center
+                                gap-2" (click)="permissionsHandlerEmit(item)">
+                          <span><i class="pi pi-key fs-5-1"></i></span>
+                          <span>{{'general.permissions'|translate}}</span>
+                        </a>
+                      </ng-container>
+
+                      <ng-container *ngIf="showLockAccount">
+                        <a class="d-flex align-items-center
+                                gap-2" (click)="lockAccountHandlerEmit(item)">
+                          <span><i class="pi pi-lock fs-5-1"></i></span>
+                          <span>{{'general.lockAccount'|translate}}</span>
+                        </a>
+                      </ng-container>
+                    </ul>
+                  </div>
+                </ng-container>
+                <ng-template #notMenu>
+                  <div class="d-flex gap-2">
+                    <ng-container *ngIf="showDetails">
+                      <a class="fw-500 details" (click)="detailsHandlerEmit(item)"
+                        pTooltip="{{'general.details'|translate}}" tooltipPosition="top">
+                        <i class="far fa-eye"></i>
+                      </a>
+                    </ng-container>
+                    <ng-container *ngIf="showEdit">
+                      <a class="d-flex align-items-center
+                        gap-2" (click)="editHandlerEmit(item)" pTooltip="{{'general.edit'|translate}}"
+                        tooltipPosition="top">
+                        <span><i class="fas fa-pen edit"></i></span>
+                      </a>
+                    </ng-container>
+                    <ng-container *ngIf="showCopyAction">
+                      <a class="d-flex align-items-center
+                        gap-2" (click)="copyActionHandlerEmit(item)" pTooltip="{{'general.copy'|translate}}"
+                        tooltipPosition="top">
+                        <span><i class="fas fa-copy"></i></span>
+                      </a>
+                    </ng-container>
+                    <ng-container *ngIf="showDelete">
+                      <a class="d-flex align-items-center
+                        gap-2" (click)="deleteHandlerEmit(item)" pTooltip="{{'general.delete'|translate}}"
+                        tooltipPosition="top">
+                        <span><i class="fas fa-trash-alt remove"></i></span>
+                      </a>
+                    </ng-container>
+                    <ng-container *ngIf="showResetPassword">
+                      <a class="d-flex align-items-center
+                              gap-2" (click)="resetPasswordHandlerEmit(item)"
+                        pTooltip="{{'form.resetPassword'|translate}}" tooltipPosition="top">
+                        <span><i class="pi pi-unlock
+                          reset-password fs-5-1"></i></span>
+                      </a>
+                    </ng-container>
+                  </div>
+                </ng-template>
               </td>
             </ng-container>
             <ng-container *ngIf="showReport">
@@ -719,6 +788,14 @@
                       gap-2" (click)="deleteHandlerEmit(item)" pTooltip="{{'general.delete'|translate}}"
                       tooltipPosition="top">
                       <span><i class="fas fa-trash-alt remove"></i></span>
+                    </a>
+                  </ng-container>
+                  <ng-container *ngIf="showResetPassword">
+                    <a class="d-flex align-items-center
+                            gap-2" (click)="resetPasswordHandlerEmit(item)"
+                      pTooltip="{{'form.resetPassword'|translate}}" tooltipPosition="top">
+                      <span><i class="pi pi-unlock
+                        reset-password fs-5-1"></i></span>
                     </a>
                   </ng-container>
                 </div>

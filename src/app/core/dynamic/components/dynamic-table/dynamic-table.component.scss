@@ -1,12 +1,38 @@
 :host::ng-deep {
   #dynamic-global-data-table {
+    .p-datatable-table {
+      border-collapse: separate;
+      border-spacing: 0 15px !important;
+    }
+    .p-datatable-thead > tr > th {
+      background-color: transparent;
+      border: none;
+      color: var(--text-desc-color);
+    }
+    .p-datatable-tbody > tr > td {
+      background-color: #02305805;
+      border-color: rgba(140, 149, 163, 0.21);
+      border-width: 1px 0 !important;
+      padding: 1rem;
+      &:first-child {
+        border-width: 1px 0px 1px 1px !important;
+        border-top-left-radius: var(--border-radius-card);
+        border-bottom-left-radius: var(--border-radius-card);
+      }
+      &:last-child {
+        border-width: 1px 1px 1px 0px !important;
+        border-top-right-radius: var(--border-radius-card);
+        border-bottom-right-radius: var(--border-radius-card);
+      }
+    }
     .search-input {
       height: 3rem !important;
       min-width: 24rem;
-      background-color: #f5f5f5;
-      border: 0;
+      background-color: #02305805;
+      // border: 0;
     }
     .clear {
+      height: 2.9rem !important;
       border-radius: var(--dashboard-border-radius);
     }
 
@@ -46,7 +72,7 @@
       .p-datatable-thead > tr > th,
       .p-datatable-tbody > tr > td {
         // padding: 0.5rem 1rem;
-        height: 50px;
+        height: 65px;
         text-align: initial;
         // width: 12% !important;
         overflow: inherit !important;
@@ -261,5 +287,8 @@
       content: "\f0d7" !important;
       font-family: "FontAwesome" !important;
     }
+  }
+  .actionInMenu a {
+    padding: 8px 5px;
   }
 }
