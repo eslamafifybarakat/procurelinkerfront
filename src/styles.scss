@@ -13,6 +13,7 @@
 @import "styles/scss/status.scss";
 @import "styles/scss/primeng/p-select.scss";
 @import "styles/scss/primeng/p-dialog.scss";
+@import "styles/scss/angular-material/stepper.scss";
 // @import "styles/scss/primeng/primeng-icon-rtl.scss";
 
 [dir="rtl"] {
@@ -75,5 +76,5 @@ body {
 }
 .cdk-overlay-pane {
   min-width: 50%;
-  min-height: 70vh;
+  // min-height: 70vh;
 }

@@ -3,6 +3,7 @@ import { PublicService } from './../../../../../shared/services/public.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription, map } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -33,7 +34,8 @@ export class UsersComponent implements OnInit {
   constructor(
     private publicService: PublicService,
     private dialogService: DialogService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -140,6 +142,7 @@ export class UsersComponent implements OnInit {
   }
   addOrEditItem(item?: any, type?: any): void {
     console.log(item);
+    type == 'edit' ? this.router.navigate(['/dashboard/users-management/add-edit-user', { id: item?.id }]) : this.router.navigate(['/dashboard/users-management/add-edit-user']);
     // const ref = this.dialogService?.open(AddEditUserComponent, {
     //   data: {
     //     item,

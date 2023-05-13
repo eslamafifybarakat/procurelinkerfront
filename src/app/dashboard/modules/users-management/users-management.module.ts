@@ -6,12 +6,14 @@ import { SharedModule } from './../../../shared/shared.module';
 import { CoreModule } from './../../../core/core.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AddEditUserComponent } from './components/users/components/add-edit-user/add-edit-user.component';
 
 @NgModule({
   declarations: [
     UsersManagementComponent,
     UsersComponent,
-    RolesManagementComponent
+    RolesManagementComponent,
+    AddEditUserComponent
   ],
   imports: [
     CommonModule,

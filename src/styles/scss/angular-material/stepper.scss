@@ -1,0 +1,268 @@
+.mat-horizontal-content-container {
+  padding: 0 !important;
+  overflow: initial !important;
+}
+
+.mat-stepper-vertical,
+.mat-stepper-horizontal,
+.mat-horizontal-stepper-header {
+  background: transparent !important;
+}
+
+.mat-stepper-label-position-bottom
+  .mat-horizontal-stepper-header
+  .mat-step-label {
+  padding: 10px 0 0 0;
+}
+
+.mat-stepper-label-position-bottom .mat-horizontal-stepper-header {
+  padding: 10px 0 !important;
+}
+
+.mat-stepper-label-position-bottom
+  .mat-horizontal-stepper-header:not(:last-child)::after {
+  right: -10px !important;
+}
+
+.mat-stepper-label-position-bottom
+  .mat-horizontal-stepper-header:not(:first-child)::before {
+  left: -10px !important;
+}
+
+.mat-stepper-label-position-bottom .mat-horizontal-stepper-header::after,
+.mat-stepper-label-position-bottom .mat-horizontal-stepper-header::before,
+.mat-stepper-label-position-bottom .mat-stepper-horizontal-line {
+  top: 28px;
+  border-width: 2px !important;
+  border-top-color: rgba(0, 0, 0, 0.12);
+}
+
+@mixin styleStepLine($index) {
+  .mat-step-header:nth-child(#{$index}):after {
+    background: var(--bg-main-color) !important;
+  }
+
+  .mat-step-header:nth-child(#{$index + 2}):before {
+    background: var(--bg-main-color) !important;
+  }
+
+  .mat-stepper-horizontal-line:nth-child(#{$index + 1}) {
+    border-top-color: var(--bg-main-color) !important;
+  }
+
+  .mat-step-header:nth-child(#{$index}) .mat-step-label.mat-step-label-active {
+    color: var(--text-main-color) !important;
+  }
+
+  .mat-step-header:nth-child(#{$index}) .mat-step-icon-state-done,
+  .mat-step-header:nth-child(#{$index}) .mat-step-icon-state-edit {
+    background: var(--bg-main-color) !important;
+    color: var(--text-white-color) !important;
+    opacity: 1 !important;
+    border-color: var(--bg-main-color) !important;
+  }
+
+  .mat-step-header:nth-child(#{$index}) .mat-step-text-label {
+    color: var(--text-main-color) !important;
+  }
+}
+
+.last-edited-step-0 {
+  @include styleStepLine(1);
+}
+
+.last-edited-step-1 {
+  @include styleStepLine(1);
+  @include styleStepLine(3);
+}
+
+.last-edited-step-2 {
+  @include styleStepLine(1);
+  @include styleStepLine(3);
+  @include styleStepLine(5);
+}
+
+.last-edited-step-3 {
+  @include styleStepLine(1);
+  @include styleStepLine(3);
+  @include styleStepLine(5);
+  @include styleStepLine(7);
+}
+
+.last-edited-step-4 {
+  @include styleStepLine(1);
+  @include styleStepLine(3);
+  @include styleStepLine(5);
+  @include styleStepLine(7);
+  @include styleStepLine(10);
+}
+
+.mat-stepper-label-position-bottom
+  .mat-horizontal-stepper-header
+  .mat-step-icon {
+  min-width: 2.3rem;
+  height: 2.3rem;
+}
+
+.mat-step-header .mat-step-icon {
+  border: 2px solid var(--text-desc-color) !important;
+  color: var(--text-desc-color) !important;
+  background-color: rgba(140, 149, 163, 0.2);
+  opacity: 0.5 !important;
+}
+
+.mat-step-header .mat-step-icon-selected {
+  background-color: transparent !important;
+  color: var(--text-main-color) !important;
+  border: 2px solid var(--text-main-color) !important;
+  opacity: 1 !important;
+}
+
+// .mat-step-header .mat-step-icon-state-done,
+// .mat-step-header .mat-step-icon-state-edit {
+//   background: var(--bg-main-color) !important;
+//   color: var(--text-white-color) !important;
+//   opacity: 1 !important;
+//   border-color: var(--bg-main-color) !important;
+// }
+// .mat-step-header:nth-child(1) .mat-step-label.mat-step-label-active {
+//   color: var(--text-main-color) !important;
+// }
+.mat-step-header .mat-step-text-label {
+  color: var(--text-desc-color);
+  font-size: 1rem;
+}
+
+.mat-step-header .mat-step-label-selected .mat-step-text-label {
+  color: var(--text-main-color) !important;
+  font-size: 1rem;
+}
+
+@media (max-width: 767px) {
+  .mat-step-header .mat-step-text-label {
+    display: none !important;
+  }
+}
+
+.fw-bold {
+  font-weight: 550 !important;
+}
+
+// main details
+.p-inputgroup button:last-child {
+  border-radius: var(--main-border-radius-shape) !important;
+}
+
+.zip-code {
+  min-width: 60px !important;
+  padding: 0;
+}
+
+.p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler {
+  display: none;
+}
+
+.p-datepicker:not(.p-datepicker-inline) {
+  border: 0 !important;
+  border-radius: var(--main-border-radius-shape);
+}
+
+.p-inputgroup {
+  &.border-red {
+    border-radius: var(--main-border-radius-shape);
+
+    .p-inputgroup-addon {
+      border: 0 !important;
+    }
+
+    .p-inputtext {
+      border: 0 !important;
+    }
+  }
+}
+
+.p-inputwrapper-filled .p-multiselect.p-multiselect-chip .p-multiselect-label {
+  line-height: 0;
+}
+
+.providers-step {
+  .p-listbox {
+    .btn {
+      padding: 0.5rem 1rem !important;
+    }
+  }
+}
+
+.services-step {
+  .p-listbox {
+    .btn {
+      padding: 0.5rem 1rem !important;
+    }
+
+    .p-listbox-item {
+      display: initial !important;
+    }
+
+    .p-listbox-list {
+      padding-right: 15px;
+    }
+
+    .price {
+      .p-inputtext {
+        height: 40px;
+        max-width: 5.5rem !important;
+        padding: 0.5rem;
+      }
+
+      .p-inputgroup-addon:first-child {
+        height: 40px;
+
+        .dollar {
+          width: 30px;
+          text-align: center;
+          border-radius: 9px;
+        }
+      }
+    }
+  }
+
+  .not-found,
+  .added-services {
+    min-height: 20rem;
+  }
+
+  .servicesPrice {
+    color: #77a13b;
+  }
+}
+
+.user-step {
+  .p-inputgroup {
+    &.border-red {
+      border-radius: var(--main-border-radius-shape);
+
+      .p-inputgroup-addon {
+        border: 0 !important;
+      }
+
+      .p-inputtext {
+        border: 0 !important;
+      }
+    }
+  }
+
+  .not-found,
+  .users {
+    min-height: 20rem;
+  }
+}
+
+#successful {
+  .successful-content {
+    min-height: calc(100vh - 301px);
+  }
+
+  .successful-img {
+    width: 55px;
+  }
+}

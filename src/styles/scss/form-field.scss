@@ -55,7 +55,6 @@ input:-webkit-autofill {
 .form-select,
 .form-select:focus,
 .form-select:focus-visible,
-.ng-select.ng-select-single .ng-select-container,
 .p-inputtext {
   box-shadow: none !important;
   outline: none !important;
@@ -68,6 +67,14 @@ input:-webkit-autofill {
   // border-color: #d7d7d799;
 }
 
+.p-dropdown,
+.p-multiselect,
+.ng-select.ng-select-single .ng-select-container {
+  background-color: #fafafa;
+  border-radius: var(--border-input-radius);
+  height: 3.4rem;
+  border-color: var(--border-color);
+}
 .form-control-left {
   border-left: 0;
 }
