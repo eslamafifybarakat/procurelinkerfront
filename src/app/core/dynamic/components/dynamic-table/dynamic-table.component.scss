@@ -12,15 +12,15 @@
     .p-datatable-tbody > tr > td {
       background-color: #02305805;
       border-color: rgba(140, 149, 163, 0.21);
-      border-width: 1px 0 !important;
+      border-width: 1px 0;
       padding: 1rem;
       &:first-child {
-        border-width: 1px 0px 1px 1px !important;
+        border-width: 1px 0px 1px 1px;
         border-top-left-radius: var(--border-radius-card);
         border-bottom-left-radius: var(--border-radius-card);
       }
       &:last-child {
-        border-width: 1px 1px 1px 0px !important;
+        border-width: 1px 1px 1px 0px;
         border-top-right-radius: var(--border-radius-card);
         border-bottom-right-radius: var(--border-radius-card);
       }

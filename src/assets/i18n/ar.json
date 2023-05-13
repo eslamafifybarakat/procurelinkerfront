@@ -235,7 +235,8 @@
       "drivers": "السائقين",
       "customers": "العملاء",
       "comments": "تعليقات",
-      "userType": "نوع المستخدم"
+      "userType": "نوع المستخدم",
+      "email":"البريد الإلكتروني"
     },
     "sideMenu": {
       "dashboard": "لوحة التحكم",

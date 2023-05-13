@@ -1,0 +1,14 @@
+.p-datatable-tbody > tr > td {
+  background-color: #02305805;
+  border-color: #8c95a336;
+  border-width: 1px 0 !important;
+  padding: 1rem;
+  &:first-child {
+    border-width: 1px 1px 1px 0px !important;
+    border-radius: 0 var(--border-radius-card) var(--border-radius-card) 0 !important;
+  }
+  &:last-child {
+    border-width: 1px 0px 1px 1px !important;
+    border-radius: var(--border-radius-card) 0 0 var(--border-radius-card) !important;
+  }
+}
