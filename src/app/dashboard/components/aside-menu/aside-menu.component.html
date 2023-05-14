@@ -1,28 +1,17 @@
-<aside class="aside-menu position-fixed" [class.toggle-aside]="showSideMenu"
+<aside class="aside-menu position-fixed py-3" [class.toggle-aside]="showSideMenu"
   [ngClass]="collapsed ? 'aside-nav-collapsed' : ''">
-  <div class="logo-container d-flex align-items-center w-100 py-3 shadow">
+  <div class="logo-container d-flex align-items-center w-100">
     <button class="logo text-center bg-transparent border-0 justify-content-center align-items-center w-100 p-0"
       [class.w-100]="!collapsed">
-      <ng-container *ngIf="collapsed;else smLogo">
-        <img src="assets/images/logo/logo.svg" alt="logo" class="lg-logo">
-      </ng-container>
-      <ng-template #smLogo>
-        <img src="assets/images/logo/sm-logo.svg" alt="logo" class="logo-img">
-      </ng-template>
-      <!-- <img class="logo-img" src="assets/images/logo/logo.png" alt="logo" (click)="toggleCollapse()" /> -->
-      <!-- <ng-container *ngIf="collapsed"> -->
       <button class="arrow text-main-color border-0" (click)="toggleCollapse()">
         <i class="fas" [ngClass]="rotated?'fa-angle-double-left':'fa-angle-double-right'"></i>
       </button>
-      <!-- </ng-container> -->
     </button>
   </div>
   <ul class="aside-nav pt-3 d-flex align-items-center flex-column">
     <ng-container *ngFor="let item of menuListItems;let i=index">
       <ng-container *ngIf="item?.children?.length > 0; else childSide">
         <li class="aside-nav-item position-relative w-100 my-2">
-          <div class="beautiful-radius"></div>
-          <div class="beautiful-radius"></div>
           <a class="aside-nav-link position-relative d-flex align-items-center text-white-color"
             [class.justify-content-center]="!collapsed" [id]="item?.id" (click)="handelClick(item)"
             (click)="!collapsed?toggleCollapse():''">
@@ -39,12 +28,12 @@
           <ng-container *ngIf="collapsed && item?.children && item?.children?.length > 0 && item?.state">
             <ul class="subnav">
               <ng-container *ngFor="let i of item?.children">
-                <li class="subnav-item ms-2 my-3 d-flex align-items-center">
+                <li class="subnav-item ms-2 my-4 d-flex align-items-center">
                   <ng-container *ngIf="collapsed && item?.children && item?.children?.length > 0">
-                    <a class="subnav-link text-white-color">
+                    <a class="subnav-link" [routerLink]="[i.routerLink]" [routerLinkActive]="['active']">
                       <i class=" fa fa-circle me-3"></i>
                       <ng-container *ngIf="collapsed">
-                        <span [routerLink]="[i.routerLink]" [routerLinkActive]="['active']">{{i.text}}</span>
+                        <span>{{i.text}}</span>
                       </ng-container>
                     </a>
                   </ng-container>
@@ -55,10 +44,8 @@
         </li>
       </ng-container>
       <ng-template #childSide>
-        <li class="aside-nav-item position-relative w-100 my-2" [routerLink]="[item.routerLink]">
-          <!-- [routerLinkActive]="['active']" -->
-          <div class="beautiful-radius"></div>
-          <div class="beautiful-radius"></div>
+        <li class="aside-nav-item position-relative w-100 my-2" [routerLink]="[item.routerLink]"
+          [routerLinkActive]="['active']">
           <a class="aside-nav-link position-relative d-flex align-items-center text-white-color" [id]="item?.id"
             [class.justify-content-center]="!collapsed" (click)="handelClick(item)">
 
@@ -75,17 +62,6 @@
       </ng-template>
     </ng-container>
   </ul>
-
-  <!-- <div class="d-flex justify-content-between">
-      <a class="aside-nav-link position-relative d-flex align-items-center text-white-color px-4 logout w-100"
-        (click)="logout()" [class.justify-content-center]="!collapsed">
-        <i class="fa-solid fa-arrow-right-from-bracket fs-5"></i>
-        <ng-container *ngIf="collapsed">
-          <span class="aside-nav-link-text ms-4 d-flex justify-content-between w-100">Logout</span>
-        </ng-container>
-      </a>
-
-    </div> -->
 </aside>
 
 <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
