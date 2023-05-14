@@ -205,7 +205,7 @@ export class UsersComponent implements OnInit {
     });
     ref.onClose.subscribe((res: any) => {
       if (res?.confirmed) {
-        item.isLockAccount = type == 'unLock' true;
+        item.isLockAccount = type == 'unLock' ? false : true;
       }
     });
   }
