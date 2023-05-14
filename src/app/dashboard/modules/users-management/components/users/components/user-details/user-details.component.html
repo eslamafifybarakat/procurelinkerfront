@@ -1,0 +1,47 @@
+<div id="modal">
+  <div class="mb-4">
+    <div class="mb-3 d-flex align-items-center justify-content-between gap-2 flex-wrap">
+      <label for="active" class="fw-bold fs-5-1">{{'labels.name'|translate}}</label>
+      <p class="fs-5-1">{{modalData?.full_name}}</p>
+    </div>
+    <div class="mb-3 d-flex align-items-center justify-content-between gap-2 flex-wrap">
+      <label for="active" class="fw-bold fs-5-1">{{'labels.userName'|translate}}</label>
+      <p class="fs-5-1">{{modalData?.username}}</p>
+    </div>
+    <div class="mb-3 d-flex align-items-center justify-content-between gap-2 flex-wrap">
+      <label for="active" class="fw-bold fs-5-1">{{'labels.email'|translate}}</label>
+      <p class="fs-5-1">{{modalData?.email}}</p>
+    </div>
+    <div class="mb-3 d-flex align-items-center justify-content-between gap-2 flex-wrap">
+      <label for="active" class="fw-bold fs-5-1">{{'labels.mobile'|translate}}</label>
+      <p class="fs-5-1">{{modalData?.mobileNumber}}</p>
+    </div>
+    <ng-container *ngIf="permissions?.length>0">
+      <div class="mb-3 d-flex gap-3 flex-column">
+        <label for="active" class="fw-bold fs-5-1">{{'labels.permissions'|translate}}</label>
+        <div class="d-flex gap-3 flex-wrap">
+          <ng-container *ngFor="let item of permissions">
+            <span class="permission">{{item?.name}}</span>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+
+  <div class="d-flex justify-content-end gap-3 flex-wrap mt-5">
+    <button type="submit" class="btn btn-solid-main d-flex align-items-center justify-content-center gap-2"
+      (click)="edit()">
+      <span>
+        {{'general.edit'|translate}}
+      </span>
+      <i class="pi pi-pencil"></i>
+    </button>
+    <button type="button" class="btn btn-outline-main d-flex align-items-center gap-2" (click)="cancel()">
+      <span>
+        {{'general.cancel'|translate}}
+      </span>
+      <i class="pi pi-times"></i>
+    </button>
+  </div>
+</div>

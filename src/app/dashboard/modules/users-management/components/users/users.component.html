@@ -5,9 +5,9 @@
   <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
     <div class="d-flex align-items-center gap-2">
       <h4 class="mb-0 text-capitalize">{{'dashboard.users.allUsers'|translate}}</h4>
-      <span class="badge badge-main d-flex justify-content-center align-items-center">
+      <!-- <span class="badge badge-main d-flex justify-content-center align-items-center">
         {{usersCount}}
-      </span>
+      </span> -->
     </div>
     <button class="btn btn-solid-main d-flex align-items-center gap-2 me-auto" (click)="addOrEditItem()">
       <i class="pi pi-plus-circle"></i>
@@ -19,10 +19,10 @@
     (searchHandler)="search($event)" [isLoadingSearch]="isLoadingSearch"
     (clearHandler)="enableSortFilter?clearTable($event):''" [tableHeaders]="tableHeaders" [tableData]="usersList$"
     [enableDateFormate]="true" [dateFormateString]="'EE | dd/MM/YYYY'" [showActions]="true" [showEdit]="true"
-    [showDelete]="true" [showDetails]="false" [showResetPassword]="true" (resetPasswordHandler)="resetPassword($event)"
-    [showPermissions]="true" [showLockAccount]="true" [showActionInMenu]="true"
-    (editHandler)="addOrEditItem($event,'edit')" (lockAccountHandler)="lockAccount($event)"
-    (customSortHandler)="enableSortFilter?sortItems($event):''"
+    [showImage]="true" [showDelete]="true" [showDetails]="true" [showResetPassword]="true"
+    (resetPasswordHandler)="resetPassword($event)" [showPermissions]="true" [showLockAccount]="true"
+    [showActionInMenu]="true" (detailsHandler)="itemDetails($event)" (editHandler)="addOrEditItem($event,'edit')"
+    (lockAccountHandler)="lockAccount($event)" (customSortHandler)="enableSortFilter?sortItems($event):''"
     (filterHandler)="enableSortFilter?filterItems($event):''" [results]="usersCount" [paginatorRows]="perPage"
     [pages]="pagesCount" (paginateHandler)="onPageChange($event)" [rowsPerPageOptions]="rowsOptions"
     [enableConfirmDeleteDialog]="true" [keyDelete]="'full_name'"

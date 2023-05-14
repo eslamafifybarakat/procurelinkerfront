@@ -178,7 +178,8 @@
 "branch":"Branch",
 "position":"Position",
 "department":"Department",
-"jobTitle":"Job Title"
+"jobTitle":"Job Title",
+"permissions":"Permissions"
   },
   "placeholder": {
     "personalNo":"Enter personal no",
@@ -212,9 +213,11 @@
 "department":"Select department",
 "jobTitle":"Select job title",
 "newPassword": "Enter new password",
-"confirmNewPassword": "Confirm new password"
+"confirmNewPassword": "Confirm new password",
+"permissions":"Select permissions"
   },
   "validations": {
+"permissions":"Permissions is required",
     "requiredNewPassword": "New password is required",
     "requiredConfirmNewPassword": "Confirm new password is required",
     "personalNo":"Personal no is reuired",
@@ -298,6 +301,7 @@
   "dashboard": {
     "total": "total",
     "tableHeader": {
+    "permissions":"Permissions",
       "username": "Username",
       "id": "Id",
       "isWorking": "Is Working",
@@ -350,6 +354,7 @@
       "createNewAccount": "Create new account",
       "user": "user",
       "editUser": "Edit User",
+      "userDetails": "User details",
       "createAccount":"Create Account",
       "assignPermissions":"Assign Permissions",
       "editAccount":"Edit Account",

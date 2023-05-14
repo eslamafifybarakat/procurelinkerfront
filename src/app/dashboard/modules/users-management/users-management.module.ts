@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { AddEditUserComponent } from './components/users/components/add-edit-user/add-edit-user.component';
 import { ResetPasswordComponent } from './components/users/components/reset-password/reset-password.component';
 import { ConfirmLockAccountComponent } from './components/users/components/confirm-lock-account/confirm-lock-account.component';
+import { UserDetailsComponent } from './components/users/components/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ConfirmLockAccountComponent } from './components/users/components/confi
     RolesManagementComponent,
     AddEditUserComponent,
     ResetPasswordComponent,
-    ConfirmLockAccountComponent
+    ConfirmLockAccountComponent,
+    UserDetailsComponent
   ],
   imports: [
     CommonModule,

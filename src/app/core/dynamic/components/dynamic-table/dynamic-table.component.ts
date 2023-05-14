@@ -45,6 +45,7 @@ export class DynamicTableComponent implements OnInit {
   @Input() showReport: boolean = false;
   @Input() showCopy: boolean = false;
 
+  @Input() showImage: boolean = false;
   @Input() showActions: boolean = false;
   @Input() showDetails: boolean = false;
   @Input() showDelete: boolean = false;
@@ -259,7 +260,7 @@ export class DynamicTableComponent implements OnInit {
     this.toggleStatusHandler?.emit(item)
   }
   detailsHandlerEmit(item: any): void {
-    this.detailsHandler.emit({ id: item?.id });
+    this.detailsHandler.emit(item);
   }
   reportHandlerEmit(item: any): void {
     this.reportHandler.emit({ item: item });

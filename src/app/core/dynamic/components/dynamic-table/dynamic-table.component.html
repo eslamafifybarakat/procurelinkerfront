@@ -107,12 +107,16 @@
               <button (click)="deleteSelectedItems()" [disabled]="!selectedItems || !selectedItems?.length"
                 class="btn btn-danger clear">{{'general.delete'|translate}}</button>
             </ng-container>
-            <div class="d-flex flex-wrap flex-row-reverse gap-3">
-              <ng-container *ngIf="showClear"> <button pButton label="
+            <div class="d-flex flex-wrap align-items-center gap-3">
+              <ng-container *ngIf="showClear">
+                <button pButton label="
                   {{'general.reset'|translate}}" class="p-button-outlined p-button-secondary clear"
                   icon="pi pi-refresh" (click)="clear(dt1)">
                 </button>
               </ng-container>
+              <span class="badge badge-main d-flex justify-content-center align-items-center">
+                {{results}}
+              </span>
               <!-- <p-multiSelect #colVisible [(ngModel)]="selectedColumns" [options]="tableHeaders" optionLabel="header"
                 appendTo="body" selectedItemsLabel="{0} columns selected" [style]="{'min-width': '200px'}"
                 placeholder="Choose Columns" pTooltip="Column Visibility" tooltipPosition="top"></p-multiSelect>
@@ -148,7 +152,9 @@
           <ng-container *ngIf="rowExpand">
             <th style="width: 2rem;"></th>
           </ng-container>
-
+          <ng-container *ngIf="showImage">
+            <th></th>
+          </ng-container>
           <ng-container *ngFor="let col of columns">
             <ng-container *ngIf="col?.sort || col?.filter  ||col?.filterTime ||col?.filterTimes; else elseWithoutSort">
               <ng-container
@@ -342,6 +348,12 @@
                 <td></td>
               </ng-template>
             </ng-container>
+            <ng-container *ngIf="showImage">
+              <td>
+                <img [src]="item?.image" onerror="src='assets/images/not-found/noUser.jpg'" alt="image"
+                  class="image rounded-circle">
+              </td>
+            </ng-container>
             <ng-container *ngFor="let col of columns">
               <ng-container *ngIf="col?.dataType=='array'; else noChild">
                 <td>
@@ -434,10 +446,10 @@
                     </a>
                     <ul class="dropdown-menu global-card p-3 border-0 actionInMenu">
                       <ng-container *ngIf="showDetails">
-                        <a class="fw-500" (click)="detailsHandlerEmit(item)" pTooltip="{{'general.details'|translate}}"
-                          tooltipPosition="top">
+                        <a class="d-flex align-items-center
+                        gap-2" (click)="detailsHandlerEmit(item)">
                           <i class="far fa-eye"></i>
-                          <span>{{'general.details'|translate}}</span>
+                          <span>{{'general.view'|translate}}</span>
                         </a>
                       </ng-container>
                       <ng-container *ngIf="showEdit">

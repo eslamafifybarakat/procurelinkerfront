@@ -65,7 +65,7 @@
     "male": "ذكر",
     "female": "أنثي",
     "actions": "الإجراءات",
-    "view": "استعراض",
+    "view": "عرض",
     "delete": "حذف",
     "update": "تحديث",
     "edit": "تعديل",
@@ -180,7 +180,8 @@
 "branch":"الفرع",
 "position":"المنصب",
 "department":"القسم",
-"jobTitle":"العنوان الوظيفي"
+"jobTitle":"العنوان الوظيفي",
+"permissions":"صلاحيات"
   },
   "placeholder": {
     "personalNo":"أدخل الرقم الشخصي",
@@ -214,9 +215,11 @@
 "department":"أختر القسم",
 "jobTitle":"أختر العنوان الوظيفي",
 "newPassword": "أدخل كلمة المرور الجديدة",
-"confirmNewPassword": "تأكيد كلمة المرور الجديدة"
+"confirmNewPassword": "تأكيد كلمة المرور الجديدة",
+"permissions":"أختر صلاحيات"
   },
   "validations": {
+    "permissions":"صلاحيات مطلوب",
     "personalNo":"الرقم الشخصي مطلوب",
     "name_length": "يجب أن يكون الحد الأدنى لطول الاسم 3",
     "length": "الحد الادني 3 حروف",
@@ -297,6 +300,7 @@
   "dashboard": {
     "total": "المجموع",
     "tableHeader": {
+    "permissions":"صلاحيات",
       "username": "اسم المستخدم",
       "id": "الرقم التعريفي",
       "isWorking": "متاح للتعين",
@@ -348,6 +352,7 @@
       "createNewAccount": "انشاء حساب جديد",
       "user": "مستخدم",
       "editUser": "تعديل مستخدم",
+      "userDetails": "تفاصيل المستخدم",
       "createAccount":"انشاء حساب",
       "assignPermissions":"تعيين صلاحيات",
       "editAccount":"تعديل الحساب",

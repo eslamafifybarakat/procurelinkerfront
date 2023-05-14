@@ -6,6 +6,7 @@ import { Observable, Subscription, map } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmLockAccountComponent } from './components/confirm-lock-account/confirm-lock-account.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 @Component({
   selector: 'app-users',
@@ -42,14 +43,10 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.tableHeaders = [
-      {
-        field: 'emo_number', header: this.publicService?.translateTextFromJson('dashboard.tableHeader.id'), title: this.publicService?.translateTextFromJson('dashboard.tableHeader.id'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false
-        , filter: true, type: 'numeric'
-      },
       { field: 'full_name', header: this.publicService?.translateTextFromJson('dashboard.tableHeader.name'), title: this.publicService?.translateTextFromJson('dashboard.tableHeader.name'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, filter: true, type: 'text' },
-      { field: 'username', header: this.publicService?.translateTextFromJson('dashboard.tableHeader.username'), title: this.publicService?.translateTextFromJson('dashboard.tableHeader.username'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, filter: true, type: 'text' },
       { field: 'email', header: this.publicService?.translateTextFromJson('dashboard.tableHeader.email'), title: this.publicService?.translateTextFromJson('dashboard.tableHeader.email'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, filter: true, type: 'text' },
       { field: 'mobileNumber', header: this.publicService?.translateTextFromJson('dashboard.tableHeader.mobilePhone'), title: this.publicService?.translateTextFromJson('dashboard.tableHeader.mobilePhone'), filter: true, type: 'text' },
+      { field: 'permissions', header: this.publicService?.translateTextFromJson('dashboard.tableHeader.permissions'), title: this.publicService?.translateTextFromJson('dashboard.tableHeader.permissions'), filter: true, type: 'filterArray', dataType: 'array', list: 'permissions', placeholder: this.publicService?.translateTextFromJson('placeholder.permission'), label: this.publicService?.translateTextFromJson('labels.permission') },
     ];
     this.getAllUsers();
   }
@@ -91,12 +88,12 @@ export class UsersComponent implements OnInit {
     this.usersCount = 20;
     let data: any = [];
     data = [
-      { id: 1, emo_number: 1, full_name: 'Ahmed mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: true },
-      { id: 1, emo_number: 1, full_name: 'Ali mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ali533@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }, { id: 3, name: 'bank3' }], is_active: false },
-      { id: 1, emo_number: 1, full_name: 'Marwan mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: false },
-      { id: 1, emo_number: 1, full_name: 'celine mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'celine33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: false },
-      { id: 1, emo_number: 1, full_name: 'nour mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: true },
-      { id: 1, emo_number: 1, full_name: 'Ahmed mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: true }
+      { id: 1, image: '../../../../../../assets/images/logo/sm-logo.svg', emo_number: 1, full_name: 'Ahmed mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', permissions: [{ id: 2, name: 'permission1' }, { id: 3, name: 'permission2' }], is_active: true },
+      { id: 1, emo_number: 1, full_name: 'Ali mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ali533@gmail.com', permissions: [], is_active: false },
+      { id: 1, emo_number: 1, full_name: 'Marwan mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', permissions: [{ id: 2, name: 'permission1' }, { id: 3, name: 'permission2' }, { id: 3, name: 'permission3' }], is_active: false },
+      { id: 1, emo_number: 1, full_name: 'celine mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'celine33@gmail.com', permissions: [{ id: 2, name: 'permission1' }], is_active: false },
+      { id: 1, emo_number: 1, full_name: 'nour mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', permissions: [{ id: 2, name: 'permission1' }, { id: 3, name: 'permission2' }, { id: 3, name: 'permission3' }, { id: 3, name: 'permission3' }, { id: 3, name: 'permission3' }, { id: 3, name: 'permission3' }], is_active: true },
+      { id: 1, emo_number: 1, full_name: 'Ahmed mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', permissions: [], is_active: true }
     ]
     this.usersList$ = data
   }
@@ -127,6 +124,20 @@ export class UsersComponent implements OnInit {
     this.publicService?.changePageSub?.next({ page: this.page });
 
   }
+
+  itemDetails(item: any): void {
+    const ref = this.dialogService?.open(UserDetailsComponent, {
+      data: item,
+      header: this.publicService?.translateTextFromJson('dashboard.users.userDetails'),
+      dismissableMask: true,
+      width: '40%',
+      styleClass: 'custom_modal'
+    });
+  }
+  addOrEditItem(item?: any, type?: any): void {
+    console.log(item);
+    type == 'edit' ? this.router.navigate(['/dashboard/users-management/add-edit-user', { id: item?.id }]) : this.router.navigate(['/dashboard/users-management/add-edit-user']);
+  }
   resetPassword(item: any): void {
     const ref = this.dialogService?.open(ResetPasswordComponent, {
       data: item,
@@ -153,10 +164,7 @@ export class UsersComponent implements OnInit {
       if (res?.confirmed) { }
     });
   }
-  addOrEditItem(item?: any, type?: any): void {
-    console.log(item);
-    type == 'edit' ? this.router.navigate(['/dashboard/users-management/add-edit-user', { id: item?.id }]) : this.router.navigate(['/dashboard/users-management/add-edit-user']);
-  }
+
   clearTable(event: any): void {
     this.searchKeyword = '';
     this.sortObj = {};
