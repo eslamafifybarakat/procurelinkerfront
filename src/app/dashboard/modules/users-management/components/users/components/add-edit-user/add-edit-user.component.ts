@@ -1,3 +1,4 @@
+import { PermissionsComponent } from './../permissions/permissions.component';
 import { AlertsService } from './../../../../../../../core/services/alerts/alerts.service';
 import { UsersService } from './../../../../../../services/user-management/users.service';
 import { CheckValidityService } from '../../../../../../../shared/services/check-validity/check-validity.service';
@@ -7,6 +8,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatStepper } from '@angular/material/stepper';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -40,6 +42,7 @@ export class AddEditUserComponent implements OnInit {
     private checkValidityService: CheckValidityService,
     private activatedRoute: ActivatedRoute,
     private alertsService: AlertsService,
+    private dialogService: DialogService,
     public publicService: PublicService,
     private usersService: UsersService,
     private cdr: ChangeDetectorRef,
@@ -372,7 +375,19 @@ export class AddEditUserComponent implements OnInit {
   submit(): void {
     let data: any = {};
     if (this.userForm?.valid) {
-      this.router.navigate(['/dashboard/users-management/users', { isAddedOrEdit: true }]);
+
+      const ref = this.dialogService?.open(PermissionsComponent, {
+        // data: res?.data,
+        header: this.publicService?.translateTextFromJson('dashboard.users.permissions'),
+        dismissableMask: true,
+        width: '40%',
+        styleClass: 'custom_modal',
+        closable: false,
+      });
+      ref.onClose.subscribe((res: any) => {
+        this.router.navigate(['/dashboard/users-management/users']);
+      });
+
       this.publicService?.show_loader?.next(true);
       data = {
         basicInfo: {
@@ -399,7 +414,17 @@ export class AddEditUserComponent implements OnInit {
       this.usersService?.addOrUpdateUser(data, this.userId ? this.userId : null)?.subscribe(
         (res: any) => {
           if (res?.status == "Success") {
-            this.router.navigate(['/dashboard/users-management/users']);
+            const ref = this.dialogService?.open(PermissionsComponent, {
+              data: res?.data,
+              header: this.publicService?.translateTextFromJson('dashboard.users.permissions'),
+              dismissableMask: true,
+              width: '40%',
+              styleClass: 'custom_modal',
+              closable: false,
+            });
+            ref.onClose.subscribe((res: any) => {
+              this.router.navigate(['/dashboard/users-management/users']);
+            });
             this.publicService?.show_loader?.next(false);
             res?.message ? this.alertsService?.openSweetAlert('success', res?.message) : '';
           } else {

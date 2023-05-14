@@ -57,10 +57,6 @@ export class UsersComponent implements OnInit {
     ];
     this.getAllUsers();
     this.isAddedOrEdit = this.activatedRoute.snapshot.params['isAddedOrEdit'];
-
-    if (this.isAddedOrEdit) {
-      this.itemPermissions();
-    }
   }
 
   getAllUsers(): any {
@@ -192,13 +188,12 @@ export class UsersComponent implements OnInit {
       header: this.publicService?.translateTextFromJson('dashboard.users.permissions'),
       dismissableMask: true,
       width: '40%',
-      styleClass: 'custom_modal'
+      styleClass: 'custom_modal',
     });
     ref.onClose.subscribe((res: any) => {
       if (res?.listChanged) {
         this.getAllUsers();
       }
-      this.isAddedOrEdit = false;
     });
   }
   lockAccount(item: any) {
