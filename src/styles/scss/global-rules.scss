@@ -101,7 +101,10 @@ hr {
 .rounded-card {
   border-radius: var(--border-radius-card);
 }
-
+.border-card {
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+}
 .pointer {
   cursor: pointer !important;
 }

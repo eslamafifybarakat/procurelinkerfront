@@ -41,7 +41,10 @@ export class UsersService {
       return this.http?.post<any[]>(`${this.baseUrl}/${roots?.dashboard?.users?.crateUser}`, data);
     }
   }
-
+  deleteUserId(id: number): Observable<any> {
+    let data: any = { id: id };
+    return this.http?.post<any>(`${this.baseUrl}/${roots?.dashboard?.users?.deleteUser}`, data);
+  }
   resetPassword(data: any): Observable<any> {
     return this.http?.post<any[]>(`${this.baseUrl}/${roots?.dashboard?.users?.resetPassword}`, data);
   }
@@ -65,5 +68,15 @@ export class UsersService {
       params = params.append("id", id);
     }
     return this.http?.get<any>(`${this.baseUrl}/${roots?.dashboard?.users?.getAccountById}`, { params: params });
+  }
+
+  getUserRoles(): Observable<any> {
+    return this.http?.get(`${this.baseUrl}/${roots?.dashboard?.users?.getUserRoles}`)
+  }
+  getUserPermissions(): Observable<any> {
+    return this.http?.get(`${this.baseUrl}/${roots?.dashboard?.users?.getUserPermissions}`)
+  }
+  addPermissions(data: any): Observable<any> {
+    return this.http?.post<any[]>(`${this.baseUrl}/${roots?.dashboard?.users?.addPermissions}`, data);
   }
 }

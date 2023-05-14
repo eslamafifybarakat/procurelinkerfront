@@ -1,0 +1,80 @@
+<div>
+  <form [formGroup]="roleForm" (ngSubmit)="submit()">
+    <div class="mb-4">
+      <label class="form-label required">
+        {{"labels.userRoles"|translate}}
+      </label>
+      <div>
+        <span class="p-input-icon-right select-loading d-block">
+          <p-treeSelect [options]="userRolesList" display="chip" [metaKeySelection]="false" [attr.maxSelectedLabels]="5"
+            [attr.selectedItemsLabel]="'{0} items selected'" selectionMode="checkbox" formControlName="userRoles"
+            display="chip" [disabled]="isLoadingUserRoles" scrollHeight="250px" appendTo="body"
+            placeholder="{{'placeholder.userRoles'|translate}}" [filter]="true"
+            [filterPlaceholder]="'placeholder.search'|translate" [filterInputAutoFocus]="true"
+            (selection)="selectedModulePermissions" (onNodeSelect)="nodeSelect(selectedModulePermissions)"
+            (onNodeUnselect)="nodeUnselect(selectedModulePermissions)"
+            [class.ng-dirty]="formControls?.userRoles?.invalid && (formControls?.userRoles?.dirty || formControls?.userRoles?.touched)"></p-treeSelect>
+
+          <ng-container *ngIf="isLoadingUserRoles">
+            <i class="pi pi-spin pi-spinner"></i>
+          </ng-container>
+        </span>
+      </div>
+      <div class="mt-2">
+        <ng-container
+          *ngIf="formControls?.userRoles?.invalid && (formControls?.userRoles?.dirty || formControls?.userRoles?.touched)">
+          <ng-container *ngIf="formControls?.userRoles?.errors?.['required']">
+            <span class="text-danger fs-8">
+              {{'validations.required_field'|translate}}
+            </span>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <div class="mb-4">
+      <label class="form-label required">
+        {{"labels.userPermissions"|translate}}
+      </label>
+      <div>
+        <span class="p-input-icon-right select-loading d-block">
+          <p-treeSelect [options]="userPermissionsList" display="chip" [metaKeySelection]="false"
+            [attr.maxSelectedLabels]="5" [attr.selectedItemsLabel]="'{0} items selected'" selectionMode="checkbox"
+            formControlName="userPermissions" display="chip" [disabled]="isLoadingUserPermissions" scrollHeight="250px"
+            appendTo="body" placeholder="{{'placeholder.userPermissions'|translate}}" [filter]="true"
+            [filterPlaceholder]="'placeholder.search'|translate" [filterInputAutoFocus]="true"
+            (selection)="selectedModulePermissions" (onNodeSelect)="nodeSelect(selectedModulePermissions)"
+            (onNodeUnselect)="nodeUnselect(selectedModulePermissions)"
+            [class.ng-dirty]="formControls?.userPermissions?.invalid && (formControls?.userPermissions?.dirty || formControls?.userPermissions?.touched)"></p-treeSelect>
+
+          <ng-container *ngIf="isLoadingUserPermissions">
+            <i class="pi pi-spin pi-spinner"></i>
+          </ng-container>
+        </span>
+      </div>
+      <div class="mt-2">
+        <ng-container
+          *ngIf="formControls?.userPermissions?.invalid && (formControls?.userPermissions?.dirty || formControls?.userPermissions?.touched)">
+          <ng-container *ngIf="formControls?.userPermissions?.errors?.['required']">
+            <span class="text-danger fs-8">
+              {{'validations.required_field'|translate}}
+            </span>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end gap-3 flex-wrap mt-5">
+      <button type="submit" class="btn btn-solid-main d-flex align-items-center justify-content-center gap-2">
+        <span>
+          {{'general.save'|translate}}
+        </span>
+        <i class="pi pi-save"></i>
+      </button>
+      <button type="button" class="btn btn-outline-main d-flex align-items-center gap-2" (click)="cancel()">
+        <span>
+          {{'general.cancel'|translate}}
+        </span>
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+  </form>
+</div>

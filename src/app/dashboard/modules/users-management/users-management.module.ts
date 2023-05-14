@@ -10,6 +10,7 @@ import { AddEditUserComponent } from './components/users/components/add-edit-use
 import { ResetPasswordComponent } from './components/users/components/reset-password/reset-password.component';
 import { ConfirmLockAccountComponent } from './components/users/components/confirm-lock-account/confirm-lock-account.component';
 import { UserDetailsComponent } from './components/users/components/user-details/user-details.component';
+import { PermissionsComponent } from './components/users/components/permissions/permissions.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { UserDetailsComponent } from './components/users/components/user-details
     AddEditUserComponent,
     ResetPasswordComponent,
     ConfirmLockAccountComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    PermissionsComponent
   ],
   imports: [
     CommonModule,

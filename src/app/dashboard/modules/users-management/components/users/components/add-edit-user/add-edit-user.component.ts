@@ -3,10 +3,10 @@ import { UsersService } from './../../../../../../services/user-management/users
 import { CheckValidityService } from '../../../../../../../shared/services/check-validity/check-validity.service';
 import { PublicService } from './../../../../../../../shared/services/public.service';
 import { patterns } from './../../../../../../../shared/configs/patternValidations';
-import { Validators, FormBuilder } from '@angular/forms';
-import { MatStepper } from '@angular/material/stepper';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatStepper } from '@angular/material/stepper';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -35,6 +35,7 @@ export class AddEditUserComponent implements OnInit {
 
   jobTitles: any = [];
   isLoadingJobTitles: boolean = false;
+
   constructor(
     private checkValidityService: CheckValidityService,
     private activatedRoute: ActivatedRoute,
@@ -364,15 +365,58 @@ export class AddEditUserComponent implements OnInit {
         phone: this.accountData?.contactInfo?.phone,
         extension: this.accountData?.contactInfo?.extension,
         mobile: this.accountData?.contactInfo?.mobile,
-      }
+      },
+
     })
   }
-  next(stepper: MatStepper): void {
+  submit(): void {
+    let data: any = {};
     if (this.userForm?.valid) {
-      stepper.next();
-
+      this.publicService?.show_loader?.next(true);
+      data = {
+        basicInfo: {
+          personalNo: this.formControls?.basicInfo?.controls?.personalNo,
+          firstName: this.formControls?.basicInfo?.controls?.firstName,
+          lastName: this.formControls?.basicInfo?.controls?.lastName,
+          userName: this.formControls?.basicInfo?.controls?.userName,
+          email: this.formControls?.basicInfo?.controls?.email,
+        },
+        contactInfo: {
+          phone: this.formControls?.contactInfo?.controls?.phone,
+          extension: this.formControls?.contactInfo?.controls?.extension,
+          mobile: this.formControls?.contactInfo?.controls?.mobile,
+        },
+        branchId: this.formControls?.professionalInfo?.controls?.branch?.id,
+        jobTitleId: this.formControls?.professionalInfo?.controls?.jobTitle?.id,
+        departmentId: this.formControls?.professionalInfo?.controls?.department?.id,
+        positionId: this.formControls?.professionalInfo?.controls?.position?.id,
+      }
+      if (this.isEdit) {
+        data['id'] = this.userId;
+      }
+      this.publicService?.show_loader?.next(true);
+      this.usersService?.addOrUpdateUser(data, this.userId ? this.userId : null)?.subscribe(
+        (res: any) => {
+          if (res?.status == "Success") {
+            this.router.navigate(['/dashboard/users-management/users', { isAddedOrEdit: true }]);
+            this.publicService?.show_loader?.next(false);
+            res?.message ? this.alertsService?.openSweetAlert('success', res?.message) : '';
+          } else {
+            res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+            this.publicService?.show_loader?.next(false);
+          }
+        },
+        (err: any) => {
+          err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+          this.publicService?.show_loader?.next(false);
+        });
     } else {
+      this.publicService?.show_loader?.next(false);
       this.checkValidityService?.validateAllFormFields(this.userForm);
     }
+    this.cdr?.detectChanges();
+  }
+  cancel(): void {
+    this.router?.navigate(['/dashboard/users-management/users']);
   }
 }

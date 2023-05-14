@@ -490,11 +490,21 @@
                       </ng-container>
 
                       <ng-container *ngIf="showLockAccount">
-                        <a class="d-flex align-items-center
-                                gap-2" (click)="lockAccountHandlerEmit(item)">
-                          <span><i class="pi pi-lock fs-5-1"></i></span>
-                          <span>{{'general.lockAccount'|translate}}</span>
-                        </a>
+                        <ng-container *ngIf="isLockAccount; else elseTemplate">
+                          <a class="d-flex align-items-center
+                                  gap-2" (click)="lockAccountHandlerEmit(item)">
+                            <span><i class="pi pi-unlock fs-5-1"></i></span>
+                            <span>{{'general.unLockAccount'|translate}}</span>
+                          </a>
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                          <a class="d-flex align-items-center
+                                  gap-2" (click)="lockAccountHandlerEmit(item)">
+                            <span><i class="pi pi-lock fs-5-1"></i></span>
+                            <span>{{'general.lockAccount'|translate}}</span>
+                          </a>
+                        </ng-template>
+
                       </ng-container>
                     </ul>
                   </div>

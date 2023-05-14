@@ -1,12 +1,14 @@
+import { AlertsService } from './../../../../../core/services/alerts/alerts.service';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { UsersService } from './../../../../services/user-management/users.service';
-import { PublicService } from './../../../../../shared/services/public.service';
-import { DialogService } from 'primeng/dynamicdialog';
-import { Observable, Subscription, map } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ConfirmLockAccountComponent } from './components/confirm-lock-account/confirm-lock-account.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { PermissionsComponent } from './components/permissions/permissions.component';
+import { UsersService } from './../../../../services/user-management/users.service';
+import { PublicService } from './../../../../../shared/services/public.service';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { DialogService } from 'primeng/dynamicdialog';
+import { Observable, Subscription, map } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -33,22 +35,32 @@ export class UsersComponent implements OnInit {
   searchKeyword: any = null;
   filtersArray: any = [];
   sortObj: any = {};
+  isLockAccount: boolean = false;
+  isAddedOrEdit: boolean = false;
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private publicService: PublicService,
     private dialogService: DialogService,
+    private alertsService: AlertsService,
     private usersService: UsersService,
-    private router: Router
+    private cdr: ChangeDetectorRef,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.tableHeaders = [
       { field: 'full_name', header: this.publicService?.translateTextFromJson('dashboard.tableHeader.name'), title: this.publicService?.translateTextFromJson('dashboard.tableHeader.name'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, filter: true, type: 'text' },
-      { field: 'email', header: this.publicService?.translateTextFromJson('dashboard.tableHeader.email'), title: this.publicService?.translateTextFromJson('dashboard.tableHeader.email'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, filter: true, type: 'text' },
+      { field: 'email', header: this.publicService?.translateTextFromJson('dashboard.tableHeader.email'), title: this.publicService?.translateTextFromJson('dashboard.tableHeader.email'), sort: false, showDefaultSort: true, showAscSort: false, showDesSort: false, filter: true, type: 'text' },
       { field: 'mobileNumber', header: this.publicService?.translateTextFromJson('dashboard.tableHeader.mobilePhone'), title: this.publicService?.translateTextFromJson('dashboard.tableHeader.mobilePhone'), filter: true, type: 'text' },
       { field: 'permissions', header: this.publicService?.translateTextFromJson('dashboard.tableHeader.permissions'), title: this.publicService?.translateTextFromJson('dashboard.tableHeader.permissions'), filter: true, type: 'filterArray', dataType: 'array', list: 'permissions', placeholder: this.publicService?.translateTextFromJson('placeholder.permission'), label: this.publicService?.translateTextFromJson('labels.permission') },
     ];
     this.getAllUsers();
+    this.isAddedOrEdit = this.activatedRoute.snapshot.params['isAddedOrEdit'];
+
+    if (this.isAddedOrEdit) {
+      this.itemPermissions();
+    }
   }
 
   getAllUsers(): any {
@@ -138,6 +150,27 @@ export class UsersComponent implements OnInit {
     console.log(item);
     type == 'edit' ? this.router.navigate(['/dashboard/users-management/add-edit-user', { id: item?.id }]) : this.router.navigate(['/dashboard/users-management/add-edit-user']);
   }
+  deleteItem(item: any): void {
+    if (item?.confirmed) {
+      this.publicService?.show_loader.next(true);
+      this.usersService?.deleteUserId(item?.item?.id)?.subscribe(
+        (res: any) => {
+          if (res?.statusCode == 200 && res?.isSuccess == true) {
+            res?.message ? this.alertsService?.openSweetAlert('success', res?.message) : '';
+            this.getAllUsers();
+            this.publicService?.show_loader?.next(false);
+          } else {
+            res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+            this.publicService?.show_loader?.next(false);
+          }
+        },
+        (err) => {
+          err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+          this.publicService?.show_loader?.next(false);
+        });
+    }
+    this.cdr.detectChanges();
+  }
   resetPassword(item: any): void {
     const ref = this.dialogService?.open(ResetPasswordComponent, {
       data: item,
@@ -153,6 +186,21 @@ export class UsersComponent implements OnInit {
       }
     });
   }
+  itemPermissions(item?: any): void {
+    const ref = this.dialogService?.open(PermissionsComponent, {
+      data: item,
+      header: this.publicService?.translateTextFromJson('dashboard.users.permissions'),
+      dismissableMask: true,
+      width: '40%',
+      styleClass: 'custom_modal'
+    });
+    ref.onClose.subscribe((res: any) => {
+      if (res?.listChanged) {
+        this.getAllUsers();
+      }
+      this.isAddedOrEdit = false;
+    });
+  }
   lockAccount(item: any) {
     const ref = this.dialogService?.open(ConfirmLockAccountComponent, {
       data: item,
@@ -161,7 +209,9 @@ export class UsersComponent implements OnInit {
       width: '35%',
     });
     ref.onClose.subscribe((res: any) => {
-      if (res?.confirmed) { }
+      if (res?.confirmed) {
+        this.isLockAccount = true;
+      }
     });
   }
 

@@ -181,7 +181,9 @@
 "position":"المنصب",
 "department":"القسم",
 "jobTitle":"العنوان الوظيفي",
-"permissions":"صلاحيات"
+"permissions":"صلاحيات",
+"userRoles":"أدوار المستخدم",
+"userPermissions":"صلاحيات المستخدم"
   },
   "placeholder": {
     "personalNo":"أدخل الرقم الشخصي",
@@ -216,7 +218,9 @@
 "jobTitle":"أختر العنوان الوظيفي",
 "newPassword": "أدخل كلمة المرور الجديدة",
 "confirmNewPassword": "تأكيد كلمة المرور الجديدة",
-"permissions":"أختر صلاحيات"
+"permissions":"أختر صلاحيات",
+"userRoles":"أختر أدوار المستخدم",
+"userPermissions":"أختر صلاحيات المستخدم"
   },
   "validations": {
     "permissions":"صلاحيات مطلوب",

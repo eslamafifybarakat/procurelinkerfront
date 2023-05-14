@@ -147,6 +147,8 @@
     "allRights": "All rights reserved 2023"
   },
   "labels": {
+    "userRoles":"User roles",
+    "userPermissions":"User permissions",
     "personalNo":"Personal no",
     "email": "Email",
     "password": "Password",
@@ -182,6 +184,8 @@
 "permissions":"Permissions"
   },
   "placeholder": {
+    "userPermissions":"Select user permissions",
+    "userRoles":"Select user roles",
     "personalNo":"Enter personal no",
     "email": "Enter email address",
     "password": "Enter password",
@@ -348,6 +352,7 @@
       }
     },
     "users": {
+"permissions":"Permissions",
       "users": "Users",
       "allUsers": "all users",
       "addUser": "Add User",
