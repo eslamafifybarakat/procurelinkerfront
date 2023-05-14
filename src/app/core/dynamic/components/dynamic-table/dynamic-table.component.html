@@ -114,9 +114,10 @@
                   icon="pi pi-refresh" (click)="clear(dt1)">
                 </button>
               </ng-container>
-              <span class="badge badge-main d-flex justify-content-center align-items-center">
-                {{results}}
-              </span>
+              <div class="d-flex align-items-center gap-3 dropdown-arrow">
+                <p-dropdown #dropdown [options]="rowsPerPageOptions" (onChange)="paginatorOption($event)"
+                  (onHide)="hide()"></p-dropdown>
+              </div>
               <!-- <p-multiSelect #colVisible [(ngModel)]="selectedColumns" [options]="tableHeaders" optionLabel="header"
                 appendTo="body" selectedItemsLabel="{0} columns selected" [style]="{'min-width': '200px'}"
                 placeholder="Choose Columns" pTooltip="Column Visibility" tooltipPosition="top"></p-multiSelect>

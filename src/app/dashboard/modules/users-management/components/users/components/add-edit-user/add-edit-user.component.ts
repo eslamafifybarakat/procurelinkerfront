@@ -372,6 +372,7 @@ export class AddEditUserComponent implements OnInit {
   submit(): void {
     let data: any = {};
     if (this.userForm?.valid) {
+      this.router.navigate(['/dashboard/users-management/users', { isAddedOrEdit: true }]);
       this.publicService?.show_loader?.next(true);
       data = {
         basicInfo: {
@@ -398,7 +399,7 @@ export class AddEditUserComponent implements OnInit {
       this.usersService?.addOrUpdateUser(data, this.userId ? this.userId : null)?.subscribe(
         (res: any) => {
           if (res?.status == "Success") {
-            this.router.navigate(['/dashboard/users-management/users', { isAddedOrEdit: true }]);
+            this.router.navigate(['/dashboard/users-management/users']);
             this.publicService?.show_loader?.next(false);
             res?.message ? this.alertsService?.openSweetAlert('success', res?.message) : '';
           } else {

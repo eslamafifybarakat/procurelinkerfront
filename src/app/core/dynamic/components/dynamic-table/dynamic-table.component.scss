@@ -103,8 +103,10 @@
 
     .p-dropdown {
       height: 40px !important;
-      background-color: #f5f5f5;
-      border: 0 !important;
+      // background-color: #f5f5f5;
+      // border: 0 !important;
+      background-color: #fff;
+      border: 1px solid #64748b !important;
       border-radius: var(--dashboard-border-radius);
       height: 3rem !important;
       // &,
