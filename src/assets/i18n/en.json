@@ -111,6 +111,7 @@
     "enter_name_correctly": "Enter name correctly",
     "confirm_delete": "Confirm Delete",
     "confirm_delete_qu": "Are you sure to delete",
+    "confirm_lock_qu": "Are you sure to lock account of",
     "confirm_delete_item": "Are sure to delete this item ?",
     "selected_items": "selected items",
     "restorePassword": "Restore password",
@@ -209,9 +210,13 @@
 "branch":"Select branch",
 "position":"Select position",
 "department":"Select department",
-"jobTitle":"Select job title"
+"jobTitle":"Select job title",
+"newPassword": "Enter new password",
+"confirmNewPassword": "Confirm new password"
   },
   "validations": {
+    "requiredNewPassword": "New password is required",
+    "requiredConfirmNewPassword": "Confirm new password is required",
     "personalNo":"Personal no is reuired",
     "required_field": "This field is reuired",
     "not_valid": "This data is not vaild",
@@ -362,6 +367,9 @@
         "gateOut": "Gate out",
         "accountant": "Accountant"
       }
+    },
+    "roleManagement":{
+      "allRole":"All Role Managements"
     }
   },
   "welcome": {

@@ -112,6 +112,7 @@
     "enter_name_correctly": "أدخل الإسم صحيحا",
     "confirm_delete": "تأكيد الحذف",
     "confirm_delete_qu": "هل حقا تريد حذف",
+    "confirm_lock_qu": "هل حقا تريد قفل حساب",
     "confirm_delete_item": "هل حقا تريد حذف هذا العنصر ؟",
     "selected_items": "العناصر المحددة",
     "restorePassword": "إستعادة كلمة المرور",
@@ -211,7 +212,9 @@
 "branch":"أختر الفرع",
 "position":"أختر المنصب",
 "department":"أختر القسم",
-"jobTitle":"أختر العنوان الوظيفي"
+"jobTitle":"أختر العنوان الوظيفي",
+"newPassword": "أدخل كلمة المرور الجديدة",
+"confirmNewPassword": "تأكيد كلمة المرور الجديدة"
   },
   "validations": {
     "personalNo":"الرقم الشخصي مطلوب",
@@ -264,7 +267,9 @@
 "branch":"الفرع",
 "position":"المنصب مطلوب",
 "department":"القسم مطلوب",
-"jobTitle":"العنوان الوظيفي مطلوب"
+"jobTitle":"العنوان الوظيفي مطلوب",
+"requiredNewPassword": "كلمة المرور الجديدة مطلوبة",
+"requiredConfirmNewPassword": "تأكيد كلمة المرور الجديدة مطلوبة"
   },
   "form": {
     "welcomeBack": "مرحبًا بعودتك",
@@ -360,6 +365,9 @@
         "gateOut": "بوابة الخروج",
         "accountant": "محاسب"
       }
+    },
+    "roleManagement":{
+      "allRole":"جميع إدارات الأدوار"
     }
   },
   "welcome": {

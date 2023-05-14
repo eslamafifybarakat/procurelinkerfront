@@ -7,13 +7,17 @@ import { CoreModule } from './../../../core/core.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AddEditUserComponent } from './components/users/components/add-edit-user/add-edit-user.component';
+import { ResetPasswordComponent } from './components/users/components/reset-password/reset-password.component';
+import { ConfirmLockAccountComponent } from './components/users/components/confirm-lock-account/confirm-lock-account.component';
 
 @NgModule({
   declarations: [
     UsersManagementComponent,
     UsersComponent,
     RolesManagementComponent,
-    AddEditUserComponent
+    AddEditUserComponent,
+    ResetPasswordComponent,
+    ConfirmLockAccountComponent
   ],
   imports: [
     CommonModule,

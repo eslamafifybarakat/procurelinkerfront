@@ -1,9 +1,11 @@
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { UsersService } from './../../../../services/user-management/users.service';
 import { PublicService } from './../../../../../shared/services/public.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription, map } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfirmLockAccountComponent } from './components/confirm-lock-account/confirm-lock-account.component';
 
 @Component({
   selector: 'app-users',
@@ -126,19 +128,30 @@ export class UsersComponent implements OnInit {
 
   }
   resetPassword(item: any): void {
-    // const ref = this.dialogService?.open(ResetPasswordComponent, {
-    //   data: item,
-    //   header: this.publicService?.translateTextFromJson('form.resetPassword'),
-    //   dismissableMask: false,
-    //   width: '50%',
-    //   styleClass: 'custom_modal'
-    // });
-    // ref.onClose.subscribe((res: any) => {
-    //   if (res?.listChanged) {
-    //     this.page = 1;
-    //     this.getAllUsers();
-    //   }
-    // });
+    const ref = this.dialogService?.open(ResetPasswordComponent, {
+      data: item,
+      header: this.publicService?.translateTextFromJson('form.resetPassword'),
+      dismissableMask: false,
+      width: '50%',
+      styleClass: 'custom_modal'
+    });
+    ref.onClose.subscribe((res: any) => {
+      if (res?.listChanged) {
+        this.page = 1;
+        this.getAllUsers();
+      }
+    });
+  }
+  lockAccount(item: any) {
+    const ref = this.dialogService?.open(ConfirmLockAccountComponent, {
+      data: item,
+      header: this.publicService?.translateTextFromJson('general.lockAccount'),
+      dismissableMask: false,
+      width: '35%',
+    });
+    ref.onClose.subscribe((res: any) => {
+      if (res?.confirmed) { }
+    });
   }
   addOrEditItem(item?: any, type?: any): void {
     console.log(item);

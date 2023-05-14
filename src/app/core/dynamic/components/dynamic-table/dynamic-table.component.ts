@@ -54,6 +54,7 @@ export class DynamicTableComponent implements OnInit {
   @Input() showActionInMenu: boolean = false;
   @Input() showPermissions: boolean = false;
   @Input() showLockAccount: boolean = false;
+  @Input() isLockAccount: boolean = false;
   @Input() showUnLockAccount: boolean = false;
 
 
