@@ -11,13 +11,15 @@ export class ConfirmLockAccountComponent implements OnInit {
   inputName: string = '';
   enableConfirm: boolean = false;
   confirmed: boolean = true;
+  type: any;
   constructor(
     public config: DynamicDialogConfig,
     public ref: DynamicDialogRef,
   ) { }
 
   ngOnInit(): void {
-    this.name = this.config?.data?.full_name;
+    this.name = this.config?.data?.item?.full_name;
+    this.type = this.config?.data?.type;
     this.enableConfirm = this?.config?.data?.enableConfirm;
   }
 

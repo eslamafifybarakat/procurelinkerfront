@@ -112,6 +112,7 @@
     "confirm_delete": "Confirm Delete",
     "confirm_delete_qu": "Are you sure to delete",
     "confirm_lock_qu": "Are you sure to lock account of",
+    "confirm_unlock_qu": "Are you sure to unLock account of",
     "confirm_delete_item": "Are sure to delete this item ?",
     "selected_items": "selected items",
     "restorePassword": "Restore password",

@@ -96,12 +96,12 @@ export class UsersComponent implements OnInit {
     this.usersCount = 20;
     let data: any = [];
     data = [
-      { id: 1, image: '../../../../../../assets/images/logo/sm-logo.svg', emo_number: 1, full_name: 'Ahmed mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', permissions: [{ id: 2, name: 'permission1' }, { id: 3, name: 'permission2' }], is_active: true },
-      { id: 1, emo_number: 1, full_name: 'Ali mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ali533@gmail.com', permissions: [], is_active: false },
-      { id: 1, emo_number: 1, full_name: 'Marwan mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', permissions: [{ id: 2, name: 'permission1' }, { id: 3, name: 'permission2' }, { id: 3, name: 'permission3' }], is_active: false },
-      { id: 1, emo_number: 1, full_name: 'celine mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'celine33@gmail.com', permissions: [{ id: 2, name: 'permission1' }], is_active: false },
-      { id: 1, emo_number: 1, full_name: 'nour mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', permissions: [{ id: 2, name: 'permission1' }, { id: 3, name: 'permission2' }, { id: 3, name: 'permission3' }, { id: 3, name: 'permission3' }, { id: 3, name: 'permission3' }, { id: 3, name: 'permission3' }], is_active: true },
-      { id: 1, emo_number: 1, full_name: 'Ahmed mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', permissions: [], is_active: true }
+      { id: 1, image: '../../../../../../assets/images/logo/sm-logo.svg', emo_number: 1, full_name: 'Ahmed mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', permissions: [{ id: 2, name: 'permission1' }, { id: 3, name: 'permission2' }], isLockAccount: false },
+      { id: 1, emo_number: 1, full_name: 'Ali mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ali533@gmail.com', permissions: [], isLockAccount: false },
+      { id: 1, emo_number: 1, full_name: 'Marwan mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', permissions: [{ id: 2, name: 'permission1' }, { id: 3, name: 'permission2' }, { id: 3, name: 'permission3' }], isLockAccount: false },
+      { id: 1, emo_number: 1, full_name: 'celine mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'celine33@gmail.com', permissions: [{ id: 2, name: 'permission1' }], isLockAccount: false },
+      { id: 1, emo_number: 1, full_name: 'nour mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', permissions: [{ id: 2, name: 'permission1' }, { id: 3, name: 'permission2' }, { id: 3, name: 'permission3' }, { id: 3, name: 'permission3' }, { id: 3, name: 'permission3' }, { id: 3, name: 'permission3' }], isLockAccount: false },
+      { id: 1, emo_number: 1, full_name: 'Ahmed mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', permissions: [], isLockAccount: false }
     ]
     this.usersList$ = data
   }
@@ -196,16 +196,16 @@ export class UsersComponent implements OnInit {
       }
     });
   }
-  lockAccount(item: any) {
+  lockAccount(item: any, type?: any) {
     const ref = this.dialogService?.open(ConfirmLockAccountComponent, {
-      data: item,
-      header: this.publicService?.translateTextFromJson('general.lockAccount'),
+      data: { item: item, type: type },
+      header: type == 'unLock' ? this.publicService?.translateTextFromJson('general.unLockAccount') : this.publicService?.translateTextFromJson('general.lockAccount'),
       dismissableMask: false,
       width: '35%',
     });
     ref.onClose.subscribe((res: any) => {
       if (res?.confirmed) {
-        this.isLockAccount = true;
+        item.isLockAccount = type == 'unLock' true;
       }
     });
   }

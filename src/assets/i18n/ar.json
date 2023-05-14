@@ -113,6 +113,7 @@
     "confirm_delete": "تأكيد الحذف",
     "confirm_delete_qu": "هل حقا تريد حذف",
     "confirm_lock_qu": "هل حقا تريد قفل حساب",
+    "confirm_unlock_qu": "هل حقا تريد فتح حساب",
     "confirm_delete_item": "هل حقا تريد حذف هذا العنصر ؟",
     "selected_items": "العناصر المحددة",
     "restorePassword": "إستعادة كلمة المرور",

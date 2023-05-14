@@ -1,7 +1,15 @@
 <div class="confirm-delete">
   <div class="d-flex align-items-center gap-2 mb-3">
     <i class="fas fa-triangle-exclamation fs-5 text-warning"></i>
-    <p class="mb-0">{{'general.confirm_lock_qu'|translate}} <span class="text-danger">{{name}}</span>
+    <p class="mb-0">
+      <ng-container *ngIf="type=='unLock'; else elseLock">
+        {{'general.confirm_unlock_qu'|translate}}
+      </ng-container>
+      <ng-template #elseLock>
+        {{'general.confirm_lock_qu'|translate}}
+      </ng-template>
+
+      <span class="text-danger">{{name}}</span>
       <span class="scaleX-rtl d-inline-block mx-1">?</span>
     </p>
   </div>
