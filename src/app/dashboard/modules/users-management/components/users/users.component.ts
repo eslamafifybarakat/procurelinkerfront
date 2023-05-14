@@ -89,12 +89,12 @@ export class UsersComponent implements OnInit {
     this.usersCount = 20;
     let data: any = [];
     data = [
-      { emo_number: 1, full_name: 'Ahmed mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: true },
-      { emo_number: 1, full_name: 'Ali mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ali533@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }, { id: 3, name: 'bank3' }], is_active: false },
-      { emo_number: 1, full_name: 'Marwan mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: false },
-      { emo_number: 1, full_name: 'celine mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'celine33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: false },
-      { emo_number: 1, full_name: 'nour mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: true },
-      { emo_number: 1, full_name: 'Ahmed mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: true }
+      { id: 1, emo_number: 1, full_name: 'Ahmed mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: true },
+      { id: 1, emo_number: 1, full_name: 'Ali mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ali533@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }, { id: 3, name: 'bank3' }], is_active: false },
+      { id: 1, emo_number: 1, full_name: 'Marwan mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: false },
+      { id: 1, emo_number: 1, full_name: 'celine mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'celine33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: false },
+      { id: 1, emo_number: 1, full_name: 'nour mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: true },
+      { id: 1, emo_number: 1, full_name: 'Ahmed mohamed', username: 'ahmed44', mobileNumber: '122222', email: 'Ahmed33@gmail.com', banks: [{ id: 2, name: 'bank1' }, { id: 3, name: 'bank2' }], is_active: true }
     ]
     this.usersList$ = data
   }
@@ -143,22 +143,6 @@ export class UsersComponent implements OnInit {
   addOrEditItem(item?: any, type?: any): void {
     console.log(item);
     type == 'edit' ? this.router.navigate(['/dashboard/users-management/add-edit-user', { id: item?.id }]) : this.router.navigate(['/dashboard/users-management/add-edit-user']);
-    // const ref = this.dialogService?.open(AddEditUserComponent, {
-    //   data: {
-    //     item,
-    //     type: type == 'edit' ? 'edit' : 'add'
-    //   },
-    //   header: type == 'edit' ? this.publicService?.translateTextFromJson('dashboard.users.editUser') : this.publicService?.translateTextFromJson('dashboard.users.addUser'),
-    //   dismissableMask: false,
-    //   width: '50%',
-    //   styleClass: 'user-modal'
-    // });
-    // ref.onClose.subscribe((res: any) => {
-    //   if (res?.listChanged) {
-    //     this.page = 1;
-    //     this.getAllUsers();
-    //   }
-    // });
   }
   clearTable(event: any): void {
     this.searchKeyword = '';

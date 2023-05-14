@@ -9,8 +9,12 @@ export const roots = {
       usersList: 'users',
       crateUser: 'Auth/CreateAsync',
       updateUser: 'Auth/UpdateAsync',
-      getUserById: 'Auth/GetByIdAsync',
       resetPassword: 'Auth/reset-password',
+      getBranches: "branches",
+      getPositions: "positions",
+      getDepartments: "departments",
+      getJobTitles: "jobTitles",
+      getAccountById: 'getAccount'
     },
   }
 }

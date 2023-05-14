@@ -21,6 +21,7 @@
   background-color: var(--bg-main-color);
   .logo-container {
     padding: 0rem 0.938rem;
+    background-color: #ffffff33;
     .logo {
       height: 4rem;
       border-radius: 0.313rem;
@@ -134,7 +135,18 @@
 .toggle-aside {
   transform: translateX(-18.5rem);
 }
-
+.subnav-link {
+  padding: 0.5rem;
+}
+.subnav-item:hover {
+  .subnav-link {
+    display: block;
+    background-color: var(--bg-white-color);
+    color: var(--text-secondary-color) !important;
+    width: 100%;
+    border-radius: 5px;
+  }
+}
 // -----------------------------FLOAT WITH BEAUTIFUL HOVER----------------------
 
 // .aside-menu {

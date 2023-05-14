@@ -97,9 +97,9 @@
 
 <!-- ---------------------------------------------------------------- -->
 <ng-container *ngIf="true">
-  <aside class="aside-menu position-fixed  py-3" [class.toggle-aside]="showSideMenu"
+  <aside class="aside-menu position-fixed" [class.toggle-aside]="showSideMenu"
     [ngClass]="collapsed ? 'aside-nav-collapsed' : ''">
-    <div class="logo-container d-flex align-items-center w-100">
+    <div class="logo-container d-flex align-items-center w-100 py-3 shadow">
       <button class="logo text-center bg-transparent border-0 justify-content-center align-items-center w-100 p-0"
         [class.w-100]="!collapsed">
         <ng-container *ngIf="collapsed;else smLogo">
@@ -138,7 +138,7 @@
             <ng-container *ngIf="collapsed && item?.children && item?.children?.length > 0 && item?.state">
               <ul class="subnav">
                 <ng-container *ngFor="let i of item?.children">
-                  <li class="subnav-item ms-2 my-4 d-flex align-items-center">
+                  <li class="subnav-item ms-2 my-3 d-flex align-items-center">
                     <ng-container *ngIf="collapsed && item?.children && item?.children?.length > 0">
                       <a class="subnav-link text-white-color">
                         <i class=" fa fa-circle me-3"></i>

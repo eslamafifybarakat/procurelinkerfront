@@ -45,4 +45,25 @@ export class UsersService {
   resetPassword(data: any): Observable<any> {
     return this.http?.post<any[]>(`${this.baseUrl}/${roots?.dashboard?.users?.resetPassword}`, data);
   }
+
+  getBranches(): Observable<any> {
+    return this.http?.get(`${this.baseUrl}/${roots?.dashboard?.users?.getBranches}`)
+  }
+  getPositions(): Observable<any> {
+    return this.http?.get(`${this.baseUrl}/${roots?.dashboard?.users?.getPositions}`)
+  }
+  getDepartments(): Observable<any> {
+    return this.http?.get(`${this.baseUrl}/${roots?.dashboard?.users?.getDepartments}`)
+  }
+  getJobTitles(): Observable<any> {
+    return this.http?.get(`${this.baseUrl}/${roots?.dashboard?.users?.getJobTitles}`)
+  }
+
+  getAccountById(id: number): Observable<any> {
+    let params = new HttpParams();
+    if (id) {
+      params = params.append("id", id);
+    }
+    return this.http?.get<any>(`${this.baseUrl}/${roots?.dashboard?.users?.getAccountById}`, { params: params });
+  }
 }
