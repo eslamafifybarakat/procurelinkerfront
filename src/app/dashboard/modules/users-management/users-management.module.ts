@@ -11,6 +11,7 @@ import { ResetPasswordComponent } from './components/users/components/reset-pass
 import { ConfirmLockAccountComponent } from './components/users/components/confirm-lock-account/confirm-lock-account.component';
 import { UserDetailsComponent } from './components/users/components/user-details/user-details.component';
 import { PermissionsComponent } from './components/users/components/permissions/permissions.component';
+import { AddEditRoleComponent } from './components/roles-management/components/add-edit-role/add-edit-role.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PermissionsComponent } from './components/users/components/permissions/
     ResetPasswordComponent,
     ConfirmLockAccountComponent,
     UserDetailsComponent,
-    PermissionsComponent
+    PermissionsComponent,
+    AddEditRoleComponent
   ],
   imports: [
     CommonModule,

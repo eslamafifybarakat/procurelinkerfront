@@ -380,7 +380,8 @@
       }
     },
     "roleManagement":{
-      "allRole":"All Role Managements"
+      "allRole":"All Role Managements",
+      "addRole":"Add role"
     }
   },
   "welcome": {

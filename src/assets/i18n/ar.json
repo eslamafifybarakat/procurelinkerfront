@@ -377,7 +377,8 @@
       }
     },
     "roleManagement":{
-      "allRole":"جميع إدارات الأدوار"
+      "allRole":"جميع إدارات الأدوار",
+      "addRole":"إضافة دور"
     }
   },
   "welcome": {
