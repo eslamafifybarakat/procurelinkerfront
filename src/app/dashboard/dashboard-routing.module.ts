@@ -31,13 +31,19 @@ const routes: Routes = [
           .then(m => m.UsersManagementModule)
       },
       {
+        path: 'settings',
+        loadChildren: () => import('./modules/settings/settings.module')
+          .then(m => m.SettingsModule)
+      },
+      {
         path: '',
         redirectTo: 'welcome-dashboard',
         pathMatch: 'full',
       },
       { path: '**', redirectTo: 'error' }
     ]
-  },];
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

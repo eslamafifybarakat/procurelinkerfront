@@ -60,6 +60,38 @@ export class AsideMenuComponent implements OnInit {
           }
         ],
       },
+      {
+        id: 'settings',
+        text: this.publicService.translateTextFromJson('dashboard.sideMenu.settings'),
+        icon: 'pi pi-cog',
+        state: false,
+        children: [
+          {
+            text: this.publicService.translateTextFromJson('dashboard.sideMenu.settingsChild.branches'),
+            icon: 'pi pi-users',
+            routerLink: '/dashboard/settings/branches',
+            state: false
+          },
+          {
+            text: this.publicService.translateTextFromJson('dashboard.sideMenu.settingsChild.departments'),
+            icon: 'layers',
+            routerLink: '/dashboard/settings/departments',
+            state: false
+          },
+          {
+            text: this.publicService.translateTextFromJson('dashboard.sideMenu.settingsChild.jobTitles'),
+            icon: 'layers',
+            routerLink: '/dashboard/settings/job-titles',
+            state: false
+          },
+          {
+            text: this.publicService.translateTextFromJson('dashboard.sideMenu.settingsChild.workPositions'),
+            icon: 'layers',
+            routerLink: '/dashboard/settings/work-positions',
+            state: false
+          }
+        ],
+      },
     ]
     this.screenWidth = window?.innerWidth;
     this.sharedService?.showSideMenu?.subscribe((res: any) => {
