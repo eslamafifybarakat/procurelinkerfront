@@ -1,1 +1,28 @@
-<p>branches works!</p>
+<div class="mb-3">
+  <!-- <app-breadcrumb></app-breadcrumb> -->
+</div>
+<div id="branches" class="branches global-card">
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+    <div class="d-flex align-items-center gap-2">
+      <h4 class="mb-0 text-capitalize">{{'dashboard.branches.allBranches'|translate}}</h4>
+      <span class="badge badge-main d-flex justify-content-center align-items-center">
+        {{branchesCount}}
+      </span>
+    </div>
+    <button class="btn btn-solid-main d-flex align-items-center gap-2 me-auto" (click)="addOrEditItem()">
+      <i class="pi pi-plus-circle"></i>
+      <span>{{'dashboard.branches.addBranch'|translate}}</span>
+    </button>
+  </div>
+  <hr>
+  <app-dynamic-table [isLoading]="loadingIndicator" [showClear]="true" [showSearch]="true"
+    (searchHandler)="search($event)" [isLoadingSearch]="isLoadingSearch"
+    (clearHandler)="enableSortFilter?clearTable($event):''" [tableHeaders]="tableHeaders" [tableData]="branchesList$"
+    [enableDateFormate]="true" [dateFormateString]="'EE | dd/MM/YYYY'" [showActions]="true" [showEdit]="true"
+    (editHandler)="addOrEditItem($event,'edit')" [showDelete]="true" (deleteHandler)="deleteItem($event)"
+    (customSortHandler)="enableSortFilter?sortItems($event):''"
+    (filterHandler)="enableSortFilter?filterItems($event):''" [results]="branchesCount" [paginatorRows]="perPage"
+    [pages]="pagesCount" (paginateHandler)="onPageChange($event)" [rowsPerPageOptions]="rowsOptions"
+    [enableConfirmDeleteDialog]="true" [keyDelete]="'name'" (paginateOptionsHandler)="onPaginatorOptionsChange($event)"
+    [isSearch]="isSearch" [arrayChildKey]="'name'"></app-dynamic-table>
+</div>

@@ -136,8 +136,9 @@ input:-webkit-autofill {
   }
 }
 
-.textarea {
-  height: 120px;
+.textarea,
+.textarea:focus {
+  height: 90px;
 }
 .required {
   &:after {

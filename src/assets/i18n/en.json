@@ -245,9 +245,11 @@
     "MinimumCharacters": "Minimum 5 characters",
     "name": "Name is required",
     "nameType": "you must write arabic name",
+    "nameEnType": "you must write english name",
     "nameAr": "Arabic name is required",
     "description": "Description is required",
     "descriptionType": "you must write arabic description",
+    "descriptionEnType": "you must write english description",
     "descriptionAr": "Arabic description is required",
     "email": "Email is required",
     "email_not_correct": "Email not correct",
@@ -313,6 +315,7 @@
       "palateNo": "palate No",
       "actions": "Actions",
       "name": "Name",
+      "desc":"Description",
       "active": "Active",
       "status": "Status",
       "driverStatus": "Driver status",
@@ -342,7 +345,10 @@
       "drivers": "Drivers",
       "customers": "Customers",
       "comments": "Comments",
-      "userType": "User type"
+      "userType": "User type",
+      "nameAr":"Arabic Name",
+      "descriptionAr":"Arabic Description",
+      "description":"Description"
     },
     "sideMenu": {
       "dashboard": "Dashboard",
@@ -358,6 +364,7 @@
         "jobTitles": "Job Titles",
         "workPositions": "Work Positions"
       }
+
     },
     "users": {
       "permissions": "Permissions",
@@ -389,6 +396,30 @@
     "roleManagement": {
       "allRole": "All Role Managements",
       "addRole": "Add role"
+    },
+    "branches":{
+      "allBranches":"All Branches",
+      "addBranch":"Add Branch",
+"editBranch":"Edit Branch",
+"addMajorUnit":"Add Major Unit",
+"editMajorUnit":"Edit Major Unit",
+"addCategory":"Add Category",
+"editCategory":"Edit Category"
+    },
+    "departments":{
+      "allDepartments":"All Departments",
+      "addDepartment":"Add Department",
+      "editDepartment":"Edit Department"
+    },
+    "jobTitles":{
+      "allJobTitles":"All Job Titles",
+      "addJobTitle":"Add Job Title",
+"editJobTitle":"Edit Job Title"
+    },
+    "positions":{
+      "allPositions":"All Positions",
+      "addPosition":"Add Position",
+      "editPosition":"Edit Position"
     }
   },
   "welcome": {

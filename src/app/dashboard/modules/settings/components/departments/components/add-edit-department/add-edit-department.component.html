@@ -1,0 +1,127 @@
+<div id="modal">
+  <ng-container *ngIf="!isFullLoading">
+    <form [formGroup]="departmentForm" (ngSubmit)="submit()">
+      <div class="mb-3">
+        <label for="name" class="form-label required">
+          {{'labels.name'|translate}}<span class="ps-1">{{"general.inEnglish"|translate}}</span>
+        </label>
+        <input type="text" id="name" class="form-control" formControlName="name"
+          placeholder="{{'placeholder.name'|translate}}"
+          [class.border-red]="(formControls?.name?.touched||formControls?.name?.dirty)&&formControls?.name?.invalid"
+          (input)="publicService?.clearValidationErrors(formControls?.name)">
+        <div class="mt-1">
+          <ng-container
+            *ngIf="formControls?.name?.invalid && (formControls?.name?.dirty || formControls?.name?.touched)">
+            <ng-container *ngIf="formControls?.name?.errors?.['required']">
+              <span class="text-danger fs-8">
+                {{'validations.name'|translate}}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="formControls?.name?.errors?.['pattern']">
+              <span class="text-danger fs-8">
+                {{'validations.nameEnType'|translate}}
+              </span>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="nameAr" class="form-label required">
+          {{'labels.name'|translate}}<span class="ps-1">{{"general.inArabic"|translate}}</span>
+        </label>
+        <input type="text" id="name" class="form-control" formControlName="nameAr"
+          placeholder="{{'placeholder.name'|translate}}"
+          [class.border-red]="(formControls?.nameAr?.touched||formControls?.nameAr?.dirty)&&formControls?.nameAr?.invalid"
+          (input)="publicService?.clearValidationErrors(formControls?.nameAr)">
+        <div class="mt-1">
+          <ng-container
+            *ngIf="formControls?.nameAr?.invalid && (formControls?.nameAr?.dirty || formControls?.nameAr?.touched)">
+            <ng-container *ngIf="formControls?.nameAr?.errors?.['required']">
+              <span class="text-danger fs-8">
+                {{'validations.name'|translate}}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="formControls?.nameAr?.errors?.['pattern']">
+              <span class="text-danger fs-8">
+                {{'validations.nameType'|translate}}
+              </span>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label required ">
+          {{'labels.description'|translate}}<span class="ps-1">{{"general.inEnglish"|translate}}</span>
+        </label>
+        <textarea type="text" id="description" class="form-control textarea" formControlName="description" placeholder="{{'placeholder.description'|translate}}
+          "
+          [class.border-red]="(formControls?.description?.touched||formControls?.description?.dirty)&&formControls?.description?.invalid"
+          (input)="publicService?.clearValidationErrors(formControls?.description)"></textarea>
+        <div class="mt-1">
+          <ng-container
+            *ngIf="formControls?.description?.invalid && (formControls?.description?.dirty || formControls?.description?.touched)">
+            <ng-container *ngIf="formControls?.description?.errors?.['required']">
+              <span class="text-danger fs-8">
+                {{'validations.description'|translate}}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="formControls?.description?.errors?.['pattern']">
+              <span class="text-danger fs-8">
+                {{'validations.descriptionEnType'|translate}}
+              </span>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="descriptionAr" class="form-label required ">
+          {{'labels.description'|translate}}<span class="ps-1">{{"general.inArabic"|translate}}</span>
+        </label>
+        <textarea type="text" id="descriptionAr" class="form-control textarea" formControlName="descriptionAr"
+          placeholder="{{'placeholder.description'|translate}}
+          "
+          [class.border-red]="(formControls?.descriptionAr?.touched||formControls?.descriptionAr?.dirty)&&formControls?.descriptionAr?.invalid"
+          (input)="publicService?.clearValidationErrors(formControls?.descriptionAr)"></textarea>
+        <div class="mt-1">
+          <ng-container
+            *ngIf="formControls?.descriptionAr?.invalid && (formControls?.descriptionAr?.dirty || formControls?.descriptionAr?.touched)">
+            <ng-container *ngIf="formControls?.descriptionAr?.errors?.['required']">
+              <span class="text-danger fs-8">
+                {{'validations.descriptionAr'|translate}}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="formControls?.descriptionAr?.errors?.['pattern']">
+              <span class="text-danger fs-8">
+                {{'validations.descriptionType'|translate}}
+              </span>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <div class="d-flex flex-wrap justify-content-end gap-3 mt-4">
+        <button type="button" class="btn btn-outline-main d-flex align-items-center justify-content-center gap-3"
+          (click)="cancel()">
+          <span>{{publicService?.translateTextFromJson('cancel')}}</span>
+          <i class="pi pi-times"></i>
+        </button>
+        <button class="btn btn-solid-main d-flex align-items-center justify-content-center gap-3" type="submit">
+          <ng-container *ngIf="!isEdit;else edit">
+            <span>{{publicService?.translateTextFromJson('save')}}</span>
+            <i class="pi pi-save"></i>
+          </ng-container>
+          <ng-template #edit>
+            <span>{{publicService?.translateTextFromJson('edit')}}</span>
+            <i class="pi pi-pencil fs-8"></i>
+          </ng-template>
+        </button>
+      </div>
+    </form>
+  </ng-container>
+  <ng-container *ngIf="isFullLoading">
+    <div class="d-flex justify-content-center align-items-center fullLoading">
+      <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    </div>
+  </ng-container>
+
+</div>

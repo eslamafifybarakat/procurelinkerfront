@@ -20,5 +20,27 @@ export const roots = {
       getUserPermissions: 'userPermissions',
       addPermissions: "addPermissions"
     },
+    settings: {
+      getBranches: 'Branch/getBranchs',
+      getBranchesById: 'Branch/getBranchById',
+      saveBranch: 'Branch/saveBranch',
+      deleteBranch: 'Branch/deleteBranch',
+
+      getDepartments: 'Department/getDepartments',
+      getDepartmentsById: 'Department/getDepartmentById',
+      saveDepartments: 'Department/saveDepartment',
+      deleteDepartments: 'Department/deleteDepartment',
+
+      getJobTitle: 'JobTitle/getJobTitles',
+      getJobTitleById: 'JobTitle/getJobTitleById',
+      saveJobTitle: 'JobTitle/saveJobTitle',
+      deleteJobTitle: 'JobTitle/deleteJobTitle',
+
+      getPositions: 'Position/getPositions',
+      getPositionById: 'Position/getPositionById',
+      savePosition: 'Position/savePosition',
+      deletePosition: 'Position/deletePosition',
+
+    }
   }
 }

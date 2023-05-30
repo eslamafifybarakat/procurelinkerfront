@@ -243,8 +243,10 @@
     "name": " الاسم مطلوب",
     "nameAr": " الاسم بالعربي مطلوب",
     "nameType": "يجب ان تكتب اسم عربي",
+    "nameEnType": "يجب ان تكتب اسم انجليزي",
     "description": " الوصف مطلوب",
     "descriptionType": "يجب ان تكتب وصف عربي",
+    "descriptionEnType": "يجب ان تكتب وصف انجليزي",
     "descriptionAr": " الوصف بالعربي مطلوب",
     "email": "البريد الالكتروني مطلوب",
     "email_not_correct": "البريد الالكتروني غير صحيح",
@@ -341,7 +343,10 @@
       "customers": "العملاء",
       "comments": "تعليقات",
       "userType": "نوع المستخدم",
-      "email": "البريد الإلكتروني"
+      "email": "البريد الإلكتروني",
+      "nameAr":" الاسم بالعربي",
+      "descriptionAr":"الوصف بالعربي",
+      "description":"الوصف "
     },
     "sideMenu": {
       "dashboard": "لوحة التحكم",
@@ -357,6 +362,7 @@
         "jobTitles": "المسميات الوظيفية",
         "workPositions": "مناصب العمل"
       }
+
     },
     "users": {
       "allUsers": "كل المستخدمين",
@@ -386,6 +392,30 @@
     "roleManagement": {
       "allRole": "جميع إدارات الأدوار",
       "addRole": "إضافة دور"
+    },
+    "branches":{
+      "allBranches":"كل الفروع",
+      "addBranch":"إضافة فرع",
+"editBranch":"تعديل فرع",
+"addMajorUnit":"إضافة وحدة أساسية",
+"editMajorUnit":"تعديل وحدة أساسية",
+"addCategory":"إضافة فئة",
+"editCategory":"تعديل فئة"
+    },
+    "departments":{
+      "allDepartments":"كل الاقسام",
+      "addDepartment":"إضافة قسم",
+"editDepartment":"تعديل قسم"
+    },
+    "jobTitles":{
+      "allJobTitles":"جميع المسميات الوظيفية",
+      "addJobTitle":"إضافة عنوان وظيفي",
+      "editJobTitle":"تعديل عنوان وظيفي"
+    },
+    "positions":{
+      "allPositions":"جميع المناصب",
+      "addPosition":"إضافة منصب",
+      "editPosition":"تعديل منصب"
     }
   },
   "welcome": {
