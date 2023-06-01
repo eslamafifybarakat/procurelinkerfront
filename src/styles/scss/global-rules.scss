@@ -202,7 +202,7 @@ hr {
     transition: all 0.2s ease-in-out;
 
     .nav-link {
-      color: #707070;
+      color: var(--dropdown-link-color);
       padding: 14px 10px;
       font-size: 15px;
 
@@ -223,3 +223,10 @@ hr {
 }
 
 /*----------END DROPDOWN----------*/
+.advanced-badge {
+  background-color: var(--bg-main-color);
+  color: var(--bg-white-color);
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}

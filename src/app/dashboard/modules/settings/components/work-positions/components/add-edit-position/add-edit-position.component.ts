@@ -72,6 +72,14 @@ export class AddEditPositionComponent implements OnInit {
         this.isFullLoading = false;
       }
     );
+    if (this.isEdit) {
+      this.positionForm?.patchValue({
+        name: this.modalData?.item?.name ? this.modalData?.item?.name : '',
+        nameAr: this.modalData?.item?.nameAr ? this.modalData?.item?.nameAr : '',
+        description: this.modalData?.item?.description ? this.modalData?.item?.description : '',
+        descriptionAr: this.modalData?.item?.descriptionAr ? this.modalData?.item?.descriptionAr : '',
+      })
+    }
   }
   submit(): void {
     if (this.positionForm?.valid) {

@@ -4,6 +4,8 @@
     "arabic": "Arabic"
   },
   "general": {
+    "advanced":"Advanced",
+    "simple":"Simple",
     "permissions": "Permissions",
     "lockAccount": "Lock Account",
     "unLockAccount": "Unlock Account",
@@ -148,8 +150,10 @@
     "allRights": "All rights reserved 2023"
   },
   "labels": {
+    "activation":"Activation",
     "userRoles": "User roles",
     "userPermissions": "User permissions",
+    "availablePermissions": "Available permissions",
     "personalNo": "Personal no",
     "email": "Email",
     "password": "Password",
@@ -186,6 +190,7 @@
   },
   "placeholder": {
     "userPermissions": "Select user permissions",
+    "availablePermissions": "Select available permissions",
     "userRoles": "Select user roles",
     "personalNo": "Enter personal no",
     "email": "Enter email address",
@@ -369,7 +374,7 @@
     "users": {
       "permissions": "Permissions",
       "users": "Users",
-      "allUsers": "all users",
+      "allUsers": "Users",
       "addUser": "Add User",
       "createNewAccount": "Create new account",
       "user": "user",
@@ -394,7 +399,7 @@
       }
     },
     "roleManagement": {
-      "allRole": "All Role Managements",
+      "allRole": "Roles Management",
       "addRole": "Add role"
     },
     "branches":{

@@ -13,6 +13,11 @@
 .scaleX-rtl {
   transform: scaleX(-1) !important;
 }
+.ps-1 {
+  padding-right: 0.25rem !important;
+  padding-left: inherit !important;
+}
+
 // =========================START DASHBOARD MODULE=======================
 .dash {
   width: calc(100% - 7.375rem);

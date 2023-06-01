@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
 
-  apiUrl: "http://144.24.208.170:8000",
-  publicUrl: "http://144.24.208.170:8000"
+  apiUrl: "http://34.77.88.166:8007/api/",
+  publicUrl: "http://34.77.88.166:8007/api/"
 };
 
 /*

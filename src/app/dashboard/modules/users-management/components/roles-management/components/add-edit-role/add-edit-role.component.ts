@@ -13,8 +13,11 @@ import { Validators, FormBuilder } from '@angular/forms';
   styleUrls: ['./add-edit-role.component.scss']
 })
 export class AddEditRoleComponent implements OnInit {
-  userRolesList: any = [];
-  isLoadingUserRoles: boolean = false;
+  availablePermissionsList: any = [];
+  isLoadingAvailablePermissions: boolean = false;
+  availablePermissions: any;
+  toggleTree: boolean = false;
+  toggleTreeTwo: boolean = false;
 
   userPermissionsList: any = [];
   isLoadingUserPermissions: boolean = false;
@@ -22,6 +25,7 @@ export class AddEditRoleComponent implements OnInit {
   selectedModulePermissions: any = [];
   ModulePermissions = [];
 
+  selectedFiles2: any;
   constructor(
     private checkValidityService: CheckValidityService,
     private alertsService: AlertsService,
@@ -38,11 +42,12 @@ export class AddEditRoleComponent implements OnInit {
   }
 
   roleForm = this.fb.group({
+    active: ['', []],
     name: ['', [Validators.required, Validators?.pattern(patterns?.english)]],
     nameAr: ['', [Validators.required, Validators?.pattern(patterns?.arabic)]],
     description: ['', [Validators.required, Validators?.pattern(patterns?.english)]],
     descriptionAr: ['', [Validators.required, Validators?.pattern(patterns?.arabic)]],
-    userRoles: [null, [Validators.required]],
+    availablePermissions: [null, [Validators.required]],
     userPermissions: [null, [Validators.required]],
   },
   );
@@ -50,7 +55,7 @@ export class AddEditRoleComponent implements OnInit {
     return this.roleForm?.controls;
   }
   getUserRoles(): any {
-    this.isLoadingUserRoles = true;
+    this.isLoadingAvailablePermissions = true;
     this.usersService?.getUserRoles()?.subscribe(
       (res: any) => {
         if (res?.code == 200) {
@@ -63,7 +68,7 @@ export class AddEditRoleComponent implements OnInit {
                 childId: item?.id ? item?.id : null
               })
             });
-            this.userRolesList.push({
+            this.availablePermissionsList.push({
               label: permission?.name ? permission?.name : '',
               id: permission?.id ? permission?.id : '',
               parentId: permission?.id ? permission?.id : '',
@@ -73,20 +78,20 @@ export class AddEditRoleComponent implements OnInit {
           // if (this.isEdit && this.usersRoleId) {
           //   this.getRoleData(this.usersRoleId);
           // }
-          this.isLoadingUserRoles = false;
+          this.isLoadingAvailablePermissions = false;
         } else {
           res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
-          this.isLoadingUserRoles = false;
+          this.isLoadingAvailablePermissions = false;
         }
       },
       (err: any) => {
         err?.message ? this.alertsService?.openSnackBar(err?.message) : '';
-        this.isLoadingUserRoles = false;
+        this.isLoadingAvailablePermissions = false;
       });
     this.cdr?.detectChanges();
 
 
-    this.userRolesList = [
+    this.availablePermissionsList = [
       // {
       //   label: 'lkkk',
       //   id: 9,
@@ -229,17 +234,39 @@ export class AddEditRoleComponent implements OnInit {
     ]
   }
   nodeSelect(event: any) {
-    this.ModulePermissions = event;
+    this.selectedModulePermissions = event;
+    console.log(event);
+    console.log(this.selectedModulePermissions);
   }
   nodeUnselect(event: any): void {
-    this.ModulePermissions = event;
+    this.selectedModulePermissions = event;
+    console.log(event);
+  }
+  nodeTreeSelect(event: any): void {
+    console.log(event);
+    // this.roleForm?.patchValue({
+    //   availablePermissions: event?.node
+    // })
+  }
+  nodeTreeUnselect(event: any): void {
+    console.log(event);
+    // this.roleForm?.patchValue({
+    //   availablePermissions: event?.node
+    // })
+  }
+  toggleTreeSelect(type?: any): void {
+    if (type == 'userPermission') {
+      this.toggleTreeTwo = !this.toggleTreeTwo;
+    } else {
+      this.toggleTree = !this.toggleTree;
+    }
   }
 
   submit(): void {
     const myObject: { [key: string]: any } = {};
     if (this.roleForm?.valid) {
       this.publicService?.show_loader?.next(true);
-      myObject['userRoles'] = this.roleForm?.value?.userRoles;
+      myObject['availablePermissions'] = this.roleForm?.value?.availablePermissions;
       myObject['userPermissions'] = this.roleForm?.value?.userPermissions;
 
       this.publicService?.show_loader?.next(true);

@@ -54,11 +54,11 @@ export class WorkPositionsComponent implements OnInit {
       { field: 'description', header: this.publicService?.translateTextFromJson('dashboard.tableHeader.description'), title: this.publicService?.translateTextFromJson('dashboard.tableHeader.description'), filter: true, type: 'text' },
       { field: 'descriptionAr', header: this.publicService?.translateTextFromJson('dashboard.tableHeader.descriptionAr'), title: this.publicService?.translateTextFromJson('dashboard.tableHeader.descriptionAr'), filter: true, type: 'text' },
     ];
-    this.getAllJobTitles();
+    this.getAllPositions();
     this.isAddedOrEdit = this.activatedRoute.snapshot.params['isAddedOrEdit'];
   }
 
-  getAllJobTitles(): any {
+  getAllPositions(): any {
     // this.loadingIndicator = true;
     // this.settingsService?.getBranches()
     //   .pipe(
@@ -95,13 +95,13 @@ export class WorkPositionsComponent implements OnInit {
     this.positionsCount = 20;
     let data: any = [];
     data = [
-      { id: 1, emo_number: 1, name: 'Ahmed mohamed', nameAr: 'احمد محمد', description: 'description', descriptionAr: "الوصف بالعربي" }, { id: 1, emo_number: 1, name: 'Ahmed mohamed', nameAr: 'احمد محمد', description: 'description', descriptionAr: "الوصف بالعربي" }, { id: 1, emo_number: 1, name: 'Ahmed mohamed', nameAr: 'احمد محمد', description: 'description', descriptionAr: "الوصف بالعربي" }, { id: 1, emo_number: 1, name: 'Ahmed mohamed', nameAr: 'احمد محمد', description: 'description', descriptionAr: "الوصف بالعربي" },
+      { id: 1, emo_number: 1, name: 'Ahmed mohamed', nameAr: 'احمد محمد', description: 'description', descriptionAr: "الوصف بالعربي" }, { id: 2, emo_number: 1, name: 'Ahmed mohamed', nameAr: 'احمد محمد', description: 'description', descriptionAr: "الوصف بالعربي" }, { id: 3, emo_number: 1, name: 'Ahmed mohamed', nameAr: 'احمد محمد', description: 'description', descriptionAr: "الوصف بالعربي" }, { id: 4, emo_number: 1, name: 'Ahmed mohamed', nameAr: 'احمد محمد', description: 'description', descriptionAr: "الوصف بالعربي" },
     ]
     this.positionsList$ = data
   }
   getUsers(): void {
     let arr: any = this.positionsList$
-    arr?.length == 0 ? this.getAllJobTitles() : '';
+    arr?.length == 0 ? this.getAllPositions() : '';
   }
 
   search(event: any): void {
@@ -112,11 +112,11 @@ export class WorkPositionsComponent implements OnInit {
     }
     this.page = 1;
     this.publicService?.changePageSub?.next({ page: this.page });
-    this.getAllJobTitles();
+    this.getAllPositions();
   }
   onPageChange(e: any): void {
     this.page = e?.page + 1;
-    this.getAllJobTitles();
+    this.getAllPositions();
   }
   onPaginatorOptionsChange(e: any): void {
     this.perPage = e?.value;
@@ -141,7 +141,7 @@ export class WorkPositionsComponent implements OnInit {
 
     ref?.onClose?.subscribe((res: any) => {
       if (res?.listChanged) {
-        this.getAllJobTitles();
+        this.getAllPositions();
       }
     });
   }
@@ -152,7 +152,7 @@ export class WorkPositionsComponent implements OnInit {
         (res: any) => {
           if (res?.statusCode == 200 && res?.isSuccess == true) {
             res?.message ? this.alertsService?.openSweetAlert('success', res?.message) : '';
-            this.getAllJobTitles();
+            this.getAllPositions();
             this.publicService?.show_loader?.next(false);
           } else {
             res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
@@ -174,7 +174,7 @@ export class WorkPositionsComponent implements OnInit {
     this.filtersArray = [];
     this.page = 1;
     this.publicService?.changePageSub?.next({ page: this.page });
-    this.getAllJobTitles();
+    this.getAllPositions();
   }
   sortItems(event: any): void {
     if (event?.order == 1) {
@@ -182,13 +182,13 @@ export class WorkPositionsComponent implements OnInit {
         column: event?.field,
         order: 'asc'
       }
-      this.getAllJobTitles();
+      this.getAllPositions();
     } else if (event?.order == -1) {
       this.sortObj = {
         column: event?.field,
         order: 'desc'
       }
-      this.getAllJobTitles();
+      this.getAllPositions();
     }
   }
   filterItems(event: any): void {
@@ -251,7 +251,7 @@ export class WorkPositionsComponent implements OnInit {
     });
     this.page = 1;
     this.publicService?.changePageSub?.next({ page: this.page });
-    this.getAllJobTitles();
+    this.getAllPositions();
   }
 
   ngOnDestroy(): void {

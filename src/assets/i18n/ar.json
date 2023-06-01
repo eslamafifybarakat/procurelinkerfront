@@ -4,6 +4,8 @@
     "arabic": "Arabic"
   },
   "general": {
+    "simple":"بسيط",
+    "advanced":"متقدم",
     "permissions": "صلاحيات",
     "lockAccount": "قفل الحساب",
     "unLockAccount": "فتح الحساب",
@@ -149,6 +151,7 @@
     "allRights": "جميع الحقوق محفوظة 2023"
   },
   "labels": {
+    "activation":"تفعيل",
     "personalNo": "الرقم الشخصي",
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور",
@@ -184,7 +187,8 @@
     "jobTitle": "العنوان الوظيفي",
     "permissions": "صلاحيات",
     "userRoles": "أدوار المستخدم",
-    "userPermissions": "صلاحيات المستخدم"
+    "userPermissions": "صلاحيات المستخدم",
+    "availablePermissions": "الصلاحيات المتاحة"
   },
   "placeholder": {
     "personalNo": "أدخل الرقم الشخصي",
@@ -221,7 +225,8 @@
     "confirmNewPassword": "تأكيد كلمة المرور الجديدة",
     "permissions": "أختر صلاحيات",
     "userRoles": "أختر أدوار المستخدم",
-    "userPermissions": "أختر صلاحيات المستخدم"
+    "userPermissions": "أختر صلاحيات المستخدم",
+    "availablePermissions": "أختر صلاحيات"
   },
   "validations": {
     "permissions": "صلاحيات مطلوب",

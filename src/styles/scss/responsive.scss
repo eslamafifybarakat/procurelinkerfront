@@ -11,6 +11,9 @@
 }
 
 @media (max-width: 991px) {
+  .p-dialog {
+    min-width: 70% !important;
+  }
   .w-md-100 {
     width: 100% !important;
   }
@@ -31,6 +34,9 @@
 }
 
 @media (max-width: 767px) {
+  .p-dialog {
+    min-width: 90% !important;
+  }
   .w-sm-100 {
     width: 100% !important;
   }
@@ -46,10 +52,8 @@
 }
 
 @media (max-width: 425px) {
-  .otp-code {
-    input {
-      width: 4rem !important;
-    }
+  .p-dialog {
+    min-width: 90% !important;
   }
   .fs-lg {
     font-size: 2.5rem !important;
@@ -60,6 +64,9 @@
 }
 
 @media (max-width: 375px) {
+  .p-dialog {
+    min-width: 95% !important;
+  }
 }
 
 @media (max-width: 320px) {

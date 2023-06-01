@@ -1,52 +1,30 @@
 <div>
   <form [formGroup]="roleForm" (ngSubmit)="submit()">
     <div class="row">
+      <div class="mb-3 d-flex align-items-center justify-content-between gap-2 flex-wrap">
+        <label for="active" class="fw-bold fs-5-1">{{'labels.activation'|translate}}</label>
+        <p-inputSwitch id="active" formControlName="active"></p-inputSwitch>
+      </div>
       <div class="col-md-6">
         <div class="mb-3">
-          <label for="name" class="mb-2 required">{{'labels.name'|translate}}</label>
-          <input type="text" class="form-control" formControlName="name" autocomplete="cc-name"
-            (input)="publicService?.clearValidationErrors(formControls?.controls?.name)"
-            [class.is-invalid]="formControls?.controls?.name?.invalid && (formControls?.controls?.name?.dirty || formControls?.controls?.name?.touched)"
-            placeholder="{{'placeholder.name'|translate}}">
-          <div class="mt-2">
+          <label for="name" class="form-label required">
+            {{'labels.name'|translate}}<span class="ps-1">{{"general.inEnglish"|translate}}</span>
+          </label>
+          <input type="text" id="name" class="form-control" formControlName="name"
+            placeholder="{{'placeholder.name'|translate}}"
+            [class.border-red]="(formControls?.name?.touched||formControls?.name?.dirty)&&formControls?.name?.invalid"
+            (input)="publicService?.clearValidationErrors(formControls?.name)">
+          <div class="mt-1">
             <ng-container
-              *ngIf="formControls?.controls?.name?.invalid && (formControls?.controls?.name?.dirty || formControls?.controls?.name?.touched)">
-              <ng-container *ngIf="formControls?.controls?.name?.errors?.['required']">
+              *ngIf="formControls?.name?.invalid && (formControls?.name?.dirty || formControls?.name?.touched)">
+              <ng-container *ngIf="formControls?.name?.errors?.['required']">
                 <span class="text-danger fs-8">
                   {{'validations.name'|translate}}
                 </span>
               </ng-container>
-            </ng-container>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="mb-4">
-          <label class="form-label required">
-            {{"labels.userRoles"|translate}}
-          </label>
-          <div>
-            <span class="p-input-icon-right select-loading d-block">
-              <p-treeSelect [options]="userRolesList" display="chip" [metaKeySelection]="false"
-                [attr.maxSelectedLabels]="5" [showClear]="true" [attr.selectedItemsLabel]="'{0} items selected'"
-                selectionMode="checkbox" formControlName="userRoles" display="chip" [disabled]="isLoadingUserRoles"
-                scrollHeight="250px" appendTo="body" placeholder="{{'placeholder.userRoles'|translate}}" [filter]="true"
-                [filterPlaceholder]="'placeholder.search'|translate" [filterInputAutoFocus]="true"
-                (selection)="selectedModulePermissions" (onNodeSelect)="nodeSelect(selectedModulePermissions)"
-                (onNodeUnselect)="nodeUnselect(selectedModulePermissions)"
-                [class.ng-dirty]="formControls?.userRoles?.invalid && (formControls?.userRoles?.dirty || formControls?.userRoles?.touched)"></p-treeSelect>
-
-              <ng-container *ngIf="isLoadingUserRoles">
-                <i class="pi pi-spin pi-spinner"></i>
-              </ng-container>
-            </span>
-          </div>
-          <div class="mt-2">
-            <ng-container
-              *ngIf="formControls?.userRoles?.invalid && (formControls?.userRoles?.dirty || formControls?.userRoles?.touched)">
-              <ng-container *ngIf="formControls?.userRoles?.errors?.['required']">
+              <ng-container *ngIf="formControls?.name?.errors?.['pattern']">
                 <span class="text-danger fs-8">
-                  {{'validations.required_field'|translate}}
+                  {{'validations.nameEnType'|translate}}
                 </span>
               </ng-container>
             </ng-container>
@@ -54,37 +32,188 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="mb-4">
-          <label class="form-label required">
-            {{"labels.userPermissions"|translate}}
+        <div class="mb-3">
+          <label for="nameAr" class="form-label required">
+            {{'labels.name'|translate}}<span class="ps-1">{{"general.inArabic"|translate}}</span>
           </label>
-          <div>
-            <span class="p-input-icon-right select-loading d-block">
-              <p-treeSelect [options]="userPermissionsList" display="chip" [metaKeySelection]="false"
-                [attr.maxSelectedLabels]="5" [attr.selectedItemsLabel]="'{0} items selected'" selectionMode="checkbox"
-                [showClear]="true" formControlName="userPermissions" display="chip"
-                [disabled]="isLoadingUserPermissions" scrollHeight="250px" appendTo="body"
-                placeholder="{{'placeholder.userPermissions'|translate}}" [filter]="true"
-                [filterPlaceholder]="'placeholder.search'|translate" [filterInputAutoFocus]="true"
-                (selection)="selectedModulePermissions" (onNodeSelect)="nodeSelect(selectedModulePermissions)"
-                (onNodeUnselect)="nodeUnselect(selectedModulePermissions)"
-                [class.ng-dirty]="formControls?.userPermissions?.invalid && (formControls?.userPermissions?.dirty || formControls?.userPermissions?.touched)"></p-treeSelect>
-
-              <ng-container *ngIf="isLoadingUserPermissions">
-                <i class="pi pi-spin pi-spinner"></i>
-              </ng-container>
-            </span>
-          </div>
-          <div class="mt-2">
+          <input type="text" id="name" class="form-control" formControlName="nameAr"
+            placeholder="{{'placeholder.name'|translate}}"
+            [class.border-red]="(formControls?.nameAr?.touched||formControls?.nameAr?.dirty)&&formControls?.nameAr?.invalid"
+            (input)="publicService?.clearValidationErrors(formControls?.nameAr)">
+          <div class="mt-1">
             <ng-container
-              *ngIf="formControls?.userPermissions?.invalid && (formControls?.userPermissions?.dirty || formControls?.userPermissions?.touched)">
-              <ng-container *ngIf="formControls?.userPermissions?.errors?.['required']">
+              *ngIf="formControls?.nameAr?.invalid && (formControls?.nameAr?.dirty || formControls?.nameAr?.touched)">
+              <ng-container *ngIf="formControls?.nameAr?.errors?.['required']">
                 <span class="text-danger fs-8">
-                  {{'validations.required_field'|translate}}
+                  {{'validations.name'|translate}}
+                </span>
+              </ng-container>
+              <ng-container *ngIf="formControls?.nameAr?.errors?.['pattern']">
+                <span class="text-danger fs-8">
+                  {{'validations.nameType'|translate}}
                 </span>
               </ng-container>
             </ng-container>
           </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="description" class="form-label required ">
+            {{'labels.description'|translate}}<span class="ps-1">{{"general.inEnglish"|translate}}</span>
+          </label>
+          <textarea type="text" id="description" class="form-control textarea" formControlName="description"
+            placeholder="{{'placeholder.description'|translate}}
+            "
+            [class.border-red]="(formControls?.description?.touched||formControls?.description?.dirty)&&formControls?.description?.invalid"
+            (input)="publicService?.clearValidationErrors(formControls?.description)"></textarea>
+          <div class="mt-1">
+            <ng-container
+              *ngIf="formControls?.description?.invalid && (formControls?.description?.dirty || formControls?.description?.touched)">
+              <ng-container *ngIf="formControls?.description?.errors?.['required']">
+                <span class="text-danger fs-8">
+                  {{'validations.description'|translate}}
+                </span>
+              </ng-container>
+              <ng-container *ngIf="formControls?.description?.errors?.['pattern']">
+                <span class="text-danger fs-8">
+                  {{'validations.descriptionEnType'|translate}}
+                </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="descriptionAr" class="form-label required ">
+            {{'labels.description'|translate}}<span class="ps-1">{{"general.inArabic"|translate}}</span>
+          </label>
+          <textarea type="text" id="descriptionAr" class="form-control textarea" formControlName="descriptionAr"
+            placeholder="{{'placeholder.description'|translate}}
+            "
+            [class.border-red]="(formControls?.descriptionAr?.touched||formControls?.descriptionAr?.dirty)&&formControls?.descriptionAr?.invalid"
+            (input)="publicService?.clearValidationErrors(formControls?.descriptionAr)"></textarea>
+          <div class="mt-1">
+            <ng-container
+              *ngIf="formControls?.descriptionAr?.invalid && (formControls?.descriptionAr?.dirty || formControls?.descriptionAr?.touched)">
+              <ng-container *ngIf="formControls?.descriptionAr?.errors?.['required']">
+                <span class="text-danger fs-8">
+                  {{'validations.descriptionAr'|translate}}
+                </span>
+              </ng-container>
+              <ng-container *ngIf="formControls?.descriptionAr?.errors?.['pattern']">
+                <span class="text-danger fs-8">
+                  {{'validations.descriptionType'|translate}}
+                </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="col-md-6">
+        <div class="mb-4">
+          <label class="form-label d-flex justify-content-between align-items-center gap-2">
+            <span class="required"> {{"labels.availablePermissions"|translate}}</span>
+            <span class="pointer advanced-badge" (click)="toggleTreeSelect()">
+              <ng-container *ngIf="toggleTree; else elseTemplate">
+                {{'general.simple'|translate}}
+              </ng-container>
+              <ng-template #elseTemplate>
+                {{'general.advanced'|translate}}
+              </ng-template>
+            </span>
+          </label>
+          <ng-container *ngIf="!toggleTree">
+            <div>
+              <span class="p-input-icon-right select-loading d-block">
+                <p-treeSelect formControlName="availablePermissions" [options]="availablePermissionsList" display="chip"
+                  [metaKeySelection]="false" [attr.maxSelectedLabels]="5" [showClear]="true"
+                  [attr.selectedItemsLabel]="'{0} items selected'" selectionMode="checkbox"
+                  formControlName="availablePermissions" display="chip" [disabled]="isLoadingAvailablePermissions"
+                  scrollHeight="250px" appendTo="body" placeholder="{{'placeholder.availablePermissions'|translate}}"
+                  [filter]="true" [filterPlaceholder]="'placeholder.search'|translate" [filterInputAutoFocus]="true"
+                  (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)"
+                  [class.ng-dirty]="formControls?.availablePermissions?.invalid && (formControls?.availablePermissions?.dirty || formControls?.availablePermissions?.touched)"></p-treeSelect>
+
+                <ng-container *ngIf="isLoadingAvailablePermissions">
+                  <i class="pi pi-spin pi-spinner"></i>
+                </ng-container>
+              </span>
+            </div>
+            <div class="mt-2">
+              <ng-container
+                *ngIf="formControls?.availablePermissions?.invalid && (formControls?.availablePermissions?.dirty || formControls?.availablePermissions?.touched)">
+                <ng-container *ngIf="formControls?.availablePermissions?.errors?.['required']">
+                  <span class="text-danger fs-8">
+                    {{'validations.required_field'|translate}}
+                  </span>
+                </ng-container>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+
+        <ng-container *ngIf="toggleTree">
+          <p-tree [value]=" availablePermissionsList" selectionMode="checkbox"
+            [(selection)]="roleForm.value.availablePermissions" (onNodeSelect)="nodeTreeSelect($event)"
+            (onNodeUnselect)="nodeTreeUnselect($event)"></p-tree>
+        </ng-container>
+
+
+      </div>
+      <div class="col-md-6">
+        <div class="mb-4">
+          <label class="form-label d-flex justify-content-between align-items-center gap-2">
+            <span class="required">{{"labels.userPermissions"|translate}}</span>
+            <span class="pointer advanced-badge" (click)="toggleTreeSelect('userPermission')">
+              <ng-container *ngIf="toggleTreeTwo; else advanced">
+                {{'general.simple'|translate}}
+              </ng-container>
+              <ng-template #advanced>
+                {{'general.advanced'|translate}}
+              </ng-template>
+            </span>
+          </label>
+          <ng-container *ngIf="!toggleTreeTwo">
+            <div>
+              <span class="p-input-icon-right select-loading d-block">
+                <p-treeSelect [options]="userPermissionsList" display="chip" [metaKeySelection]="false"
+                  [attr.maxSelectedLabels]="5" [attr.selectedItemsLabel]="'{0} items selected'" selectionMode="checkbox"
+                  [showClear]="true" formControlName="userPermissions" display="chip"
+                  [disabled]="isLoadingUserPermissions" scrollHeight="250px" appendTo="body"
+                  placeholder="{{'placeholder.userPermissions'|translate}}" [filter]="true"
+                  [filterPlaceholder]="'placeholder.search'|translate" [filterInputAutoFocus]="true"
+                  (selection)="selectedModulePermissions" (onNodeSelect)="nodeSelect(selectedModulePermissions)"
+                  (onNodeUnselect)="nodeUnselect(selectedModulePermissions)"
+                  [class.ng-dirty]="formControls?.userPermissions?.invalid && (formControls?.userPermissions?.dirty || formControls?.userPermissions?.touched)"></p-treeSelect>
+
+                <ng-container *ngIf="isLoadingUserPermissions">
+                  <i class="pi pi-spin pi-spinner"></i>
+                </ng-container>
+              </span>
+            </div>
+            <div class="mt-2">
+              <ng-container
+                *ngIf="formControls?.userPermissions?.invalid && (formControls?.userPermissions?.dirty || formControls?.userPermissions?.touched)">
+                <ng-container *ngIf="formControls?.userPermissions?.errors?.['required']">
+                  <span class="text-danger fs-8">
+                    {{'validations.required_field'|translate}}
+                  </span>
+                </ng-container>
+              </ng-container>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="toggleTreeTwo">
+            <p-tree [value]=" availablePermissionsList" selectionMode="checkbox"
+              [(selection)]="roleForm.value.availablePermissions" (onNodeSelect)="nodeTreeSelect($event)"
+              (onNodeUnselect)="nodeTreeUnselect($event)"></p-tree>
+          </ng-container>
         </div>
       </div>
     </div>
