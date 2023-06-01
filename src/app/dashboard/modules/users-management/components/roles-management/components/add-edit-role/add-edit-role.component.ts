@@ -24,6 +24,10 @@ export class AddEditRoleComponent implements OnInit {
 
   selectedModulePermissions: any = [];
   ModulePermissions = [];
+  isEditImage: boolean = false;
+  editImage: boolean = false;
+  isEdit: boolean = false;
+  ImageFile: any;
 
   selectedFiles2: any;
   constructor(
@@ -39,10 +43,16 @@ export class AddEditRoleComponent implements OnInit {
   ngOnInit(): void {
     this.getUserRoles();
     this.getUserPermissions();
+    this.publicService.emitEditPatchImagePreview.subscribe((res: any) => {
+      if (res?.imageSrc) {
+        this.isEditImage = res?.imageSrc;
+      }
+    });
   }
 
   roleForm = this.fb.group({
     active: ['', []],
+    image: ['', []],
     name: ['', [Validators.required, Validators?.pattern(patterns?.english)]],
     nameAr: ['', [Validators.required, Validators?.pattern(patterns?.arabic)]],
     description: ['', [Validators.required, Validators?.pattern(patterns?.english)]],
@@ -293,5 +303,12 @@ export class AddEditRoleComponent implements OnInit {
   }
   cancel(): void {
     this.ref?.close();
+  }
+
+  getUploadFiles(event?: any): void {
+    this.ImageFile = event?.files !== null ? event?.files[0] : null;
+    this.roleForm?.patchValue({
+      image: event?.files !== null ? event?.files[0] : null,
+    });
   }
 }

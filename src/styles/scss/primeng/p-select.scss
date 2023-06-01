@@ -135,3 +135,9 @@ input[type="checkbox"]:checked {
   .p-tree-toggler {
   color: var(--text-main-color) !important;
 }
+.p-tree {
+  max-height: 200px;
+  overflow: auto;
+  border: none;
+  max-height: 200px;
+}

@@ -1,17 +1,3 @@
-<!-- <p-fileUpload name="myfile[]" url="./upload.php" [multiple]="multiple" accept="image/*" [maxFileSize]="1000000"
-  [class.removeChoose]="showCancel" (onSelect)="onSelectEvent($event)" (onBeforeUpload)="onBeforeSend($event)"
-  [showUploadButton]="false" [files]="myFile" (onClear)="clear($event)" [showCancelButton]="true" [chooseLabel]="''"
-  [chooseIcon]="'pi pi-upload'" (onRemove)="remove($event)">
-
-  <ng-template pTemplate="content" let-files>
-    <ng-container *ngIf="!showCancel">
-      <div class="content px-3">Additional content.</div>
-    </ng-container>
-  </ng-template>
-
-</p-fileUpload> -->
-
-
 <p-fileUpload id="upload-image" url="./upload.php" [multiple]="multiple" [accept]="acceptFille"
   [maxFileSize]="maxFileSize" [chooseLabel]="''" [chooseIcon]="'pi pi-upload'" [showCancelButton]="showCancel"
   [class.removeChoose]="showCancel" (onSelect)="onSelectEvent($event)" [showUploadButton]="false"
@@ -19,14 +5,14 @@
   [invalidFileSizeMessageDetail]="'maximum upload size is'+' '+maximumSize">
   <ng-template pTemplate="content" let-files>
     <ng-container *ngIf="!showFile&&!hasError">
-      <div class="content px-2">upload</div>
+      <div class="content px-2">{{uploadText}}</div>
     </ng-container>
     <ng-container *ngIf="showFile">
       <div class="d-flex align-items-center gap-2">
         <ng-container *ngIf="enablePreview">
           <button type="button" class="btn bg-main-color text-white-color" (click)="browse()">
             <span class="d-flex align-items-center gap-2">
-              <span>browse</span>
+              <span>{{"general.browse"|translate}}</span>
               <i class="pi pi-play"></i>
             </span>
           </button>
@@ -34,8 +20,11 @@
 
         <ng-container *ngIf="type=='image'; else video">
           <ng-container *ngIf="!isLoadingImage">
-            <div>
-              <img [src]="isEdit?isEditImage:fileSrc" alt="image">
+            <div class="d-flex align-items-center gap-2">
+              <img [src]="isEdit?isEditImage:fileSrc" alt="image" onerror="src='assets/image/not-found/no-img.svg'">
+              <ng-container *ngIf="showImageName">
+                <p>{{fileName}}</p>
+              </ng-container>
             </div>
           </ng-container>
           <ng-container *ngIf="isLoadingImage">
@@ -44,7 +33,7 @@
 
         </ng-container>
         <ng-template #video>
-          <div>{{fileName}}</div>
+          <div>{{isEdit?videoName:fileName}}</div>
         </ng-template>
 
       </div>

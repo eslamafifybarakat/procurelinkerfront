@@ -112,8 +112,11 @@
         </div>
       </div>
 
-
-
+      <div class="mb-4 mt-2">
+        <app-upload-image [maxFileSize]="100000" [acceptFille]="'image/*'" [uploadText]="'general.addLogo' | translate"
+          [multiple]="false" [enablePreview]="true" [isEdit]="isEdit" (filesHandler)="getUploadFiles($event)"
+          [type]="'image'"></app-upload-image>
+      </div>
 
       <div class="col-md-6">
         <div class="mb-4">
@@ -156,13 +159,14 @@
               </ng-container>
             </div>
           </ng-container>
+          <ng-container *ngIf="toggleTree">
+            <div class="global-card p-2">
+              <p-tree [value]=" availablePermissionsList" selectionMode="checkbox"
+                [(selection)]="roleForm.value.availablePermissions" (onNodeSelect)="nodeTreeSelect($event)"
+                (onNodeUnselect)="nodeTreeUnselect($event)"></p-tree>
+            </div>
+          </ng-container>
         </div>
-
-        <ng-container *ngIf="toggleTree">
-          <p-tree [value]=" availablePermissionsList" selectionMode="checkbox"
-            [(selection)]="roleForm.value.availablePermissions" (onNodeSelect)="nodeTreeSelect($event)"
-            (onNodeUnselect)="nodeTreeUnselect($event)"></p-tree>
-        </ng-container>
 
 
       </div>
@@ -210,9 +214,11 @@
           </ng-container>
 
           <ng-container *ngIf="toggleTreeTwo">
-            <p-tree [value]=" availablePermissionsList" selectionMode="checkbox"
-              [(selection)]="roleForm.value.availablePermissions" (onNodeSelect)="nodeTreeSelect($event)"
-              (onNodeUnselect)="nodeTreeUnselect($event)"></p-tree>
+            <div class="global-card p-2">
+              <p-tree [value]=" availablePermissionsList" selectionMode="checkbox"
+                [(selection)]="roleForm.value.availablePermissions" (onNodeSelect)="nodeTreeSelect($event)"
+                (onNodeUnselect)="nodeTreeUnselect($event)"></p-tree>
+            </div>
           </ng-container>
         </div>
       </div>
