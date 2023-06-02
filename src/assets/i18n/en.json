@@ -400,7 +400,8 @@
     },
     "roleManagement": {
       "allRole": "Roles Management",
-      "addRole": "Add role"
+      "addRole": "Add role",
+      "editRole": "Edit role"
     },
     "branches":{
       "allBranches":"All Branches",

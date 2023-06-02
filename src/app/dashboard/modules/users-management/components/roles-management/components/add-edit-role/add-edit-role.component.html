@@ -112,10 +112,30 @@
         </div>
       </div>
 
-      <div class="mb-4 mt-2">
-        <app-upload-image [maxFileSize]="100000" [acceptFille]="'image/*'" [uploadText]="'general.addLogo' | translate"
-          [multiple]="false" [enablePreview]="true" [isEdit]="isEdit" (filesHandler)="getUploadFiles($event)"
-          [type]="'image'"></app-upload-image>
+      <div class="col-md-12">
+        <div class="mb-4">
+          <div class="d-block">
+            <label class="form-label required">
+              {{"general.uploadImage"|translate}}
+            </label>
+          </div>
+          <div>
+            <app-upload-image [maxFileSize]="1000000000000" [acceptFille]="'image/*'"
+              [uploadText]="'general.uploadImage' | translate" [multiple]="false" [type]="'image'"
+              [enablePreview]="true" [isEdit]="isEdit" [isEditImage]="editImage"
+              (filesHandler)="getUploadFiles($event)"></app-upload-image>
+          </div>
+          <div class="my-2">
+            <ng-container
+              *ngIf="formControls?.image?.invalid && (formControls?.image?.dirty || formControls?.image?.touched)">
+              <ng-container *ngIf="formControls?.image?.errors?.['required']">
+                <span class="text-danger fs-8">
+                  {{"validations.required_field"|translate}}
+                </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
       </div>
 
       <div class="col-md-6">
@@ -134,8 +154,9 @@
           <ng-container *ngIf="!toggleTree">
             <div>
               <span class="p-input-icon-right select-loading d-block">
-                <p-treeSelect formControlName="availablePermissions" [options]="availablePermissionsList" display="chip"
-                  [metaKeySelection]="false" [attr.maxSelectedLabels]="5" [showClear]="true"
+                <p-treeSelect [options]="availablePermissionsList" display="chip"
+                  [ngModel]="selectedAvailablePermissions" [metaKeySelection]="false" [attr.maxSelectedLabels]="5"
+                  [showClear]="true" (ngModelChange)="updateSelectedNode($event)"
                   [attr.selectedItemsLabel]="'{0} items selected'" selectionMode="checkbox"
                   formControlName="availablePermissions" display="chip" [disabled]="isLoadingAvailablePermissions"
                   scrollHeight="250px" appendTo="body" placeholder="{{'placeholder.availablePermissions'|translate}}"
@@ -160,16 +181,16 @@
             </div>
           </ng-container>
           <ng-container *ngIf="toggleTree">
-            <div class="global-card p-2">
+            <div class="global-card p-2 border">
               <p-tree [value]=" availablePermissionsList" selectionMode="checkbox"
-                [(selection)]="roleForm.value.availablePermissions" (onNodeSelect)="nodeTreeSelect($event)"
+                [(selection)]="selectedAvailablePermissions" (onNodeSelect)="nodeTreeSelect($event)"
                 (onNodeUnselect)="nodeTreeUnselect($event)"></p-tree>
             </div>
           </ng-container>
         </div>
 
-
       </div>
+
       <div class="col-md-6">
         <div class="mb-4">
           <label class="form-label d-flex justify-content-between align-items-center gap-2">
@@ -188,12 +209,13 @@
               <span class="p-input-icon-right select-loading d-block">
                 <p-treeSelect [options]="userPermissionsList" display="chip" [metaKeySelection]="false"
                   [attr.maxSelectedLabels]="5" [attr.selectedItemsLabel]="'{0} items selected'" selectionMode="checkbox"
-                  [showClear]="true" formControlName="userPermissions" display="chip"
-                  [disabled]="isLoadingUserPermissions" scrollHeight="250px" appendTo="body"
+                  [showClear]="true" [ngModel]="selectedUserPermissions"
+                  (ngModelChange)="updateSelectedNode($event,'userPermissions')" formControlName="userPermissions"
+                  display="chip" [disabled]="isLoadingUserPermissions" scrollHeight="250px" appendTo="body"
                   placeholder="{{'placeholder.userPermissions'|translate}}" [filter]="true"
                   [filterPlaceholder]="'placeholder.search'|translate" [filterInputAutoFocus]="true"
-                  (selection)="selectedModulePermissions" (onNodeSelect)="nodeSelect(selectedModulePermissions)"
-                  (onNodeUnselect)="nodeUnselect(selectedModulePermissions)"
+                  (selection)="selectedModulePermissions" (onNodeSelect)="nodeSelect($event,'userPermissions')"
+                  (onNodeUnselect)="nodeUnselect($event,'userPermissions')"
                   [class.ng-dirty]="formControls?.userPermissions?.invalid && (formControls?.userPermissions?.dirty || formControls?.userPermissions?.touched)"></p-treeSelect>
 
                 <ng-container *ngIf="isLoadingUserPermissions">
@@ -214,10 +236,10 @@
           </ng-container>
 
           <ng-container *ngIf="toggleTreeTwo">
-            <div class="global-card p-2">
-              <p-tree [value]=" availablePermissionsList" selectionMode="checkbox"
-                [(selection)]="roleForm.value.availablePermissions" (onNodeSelect)="nodeTreeSelect($event)"
-                (onNodeUnselect)="nodeTreeUnselect($event)"></p-tree>
+            <div class="global-card p-2 border pTreeTwo">
+              <p-tree [value]="userPermissionsList" selectionMode="checkbox" [(selection)]="selectedUserPermissions"
+                (onNodeSelect)="nodeTreeSelect($event,'userPermissions')"
+                (onNodeUnselect)="nodeTreeUnselect($event,'userPermissions')"></p-tree>
             </div>
           </ng-container>
         </div>

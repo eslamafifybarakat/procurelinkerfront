@@ -396,7 +396,8 @@
     },
     "roleManagement": {
       "allRole": "جميع إدارات الأدوار",
-      "addRole": "إضافة دور"
+      "addRole": "إضافة دور",
+      "editRole": "تعديل الدور"
     },
     "branches":{
       "allBranches":"كل الفروع",

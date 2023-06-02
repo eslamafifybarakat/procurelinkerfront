@@ -10,6 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RolesManagementComponent implements OnInit {
   isLoadingSearch: boolean = false;
+  roleManagementData: any = [
+    {
+      id: 1,
+      image: '../../../../../../assets/images/role/role.avif', name: 'SysAdmin', description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, commodi similique non harum impedit, quia suscipit dolores sit!'
+    },
+    {
+      id: 2,
+      image: '../../../../../../assets/images/role/role.svg', name: 'SysAdmin', description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, commodi similique non harum impedit, quia suscipit dolores sit!'
+    },
+    {
+      image: '../../../../../../assets/images/role/role.png', name: 'SysAdmin', description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, commodi similique non harum impedit, quia suscipit dolores sit!'
+    },
+    {
+      image: '../../../../../../assets/images/role/download.png', name: 'SysAdmin', description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, commodi similique non harum impedit, quia suscipit dolores sit!'
+    }
+  ]
   constructor(
     private publicService: PublicService,
     private dialogService: DialogService

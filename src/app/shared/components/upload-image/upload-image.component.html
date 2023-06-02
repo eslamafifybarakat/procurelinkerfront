@@ -9,19 +9,21 @@
     </ng-container>
     <ng-container *ngIf="showFile">
       <div class="d-flex align-items-center gap-2">
-        <ng-container *ngIf="enablePreview">
+        <!-- <ng-container *ngIf="enablePreview">
           <button type="button" class="btn bg-main-color text-white-color" (click)="browse()">
             <span class="d-flex align-items-center gap-2">
               <span>{{"general.browse"|translate}}</span>
               <i class="pi pi-play"></i>
             </span>
           </button>
-        </ng-container>
+        </ng-container> -->
 
         <ng-container *ngIf="type=='image'; else video">
           <ng-container *ngIf="!isLoadingImage">
             <div class="d-flex align-items-center gap-2">
-              <img [src]="isEdit?isEditImage:fileSrc" alt="image" onerror="src='assets/image/not-found/no-img.svg'">
+              <!-- <img [src]="isEdit?isEditImage:fileSrc" alt="image" onerror="src='assets/image/not-found/no-img.svg'"> -->
+              <p-image [src]="isEdit?isEditImage:fileSrc" [preview]="true" alt="Image" width="250" alt="image"
+                (onImageError)="onImageError($event)"></p-image>
               <ng-container *ngIf="showImageName">
                 <p>{{fileName}}</p>
               </ng-container>

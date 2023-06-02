@@ -120,5 +120,7 @@ export class UploadImageComponent implements OnInit {
     this.showCancel = false;
     this.showFile = false;
   }
-
+  onImageError(event: any): void {
+    this.isEdit ? this.isEditImage = 'assets/image/not-found/noUser.jpg' : this.fileSrc = 'assets/image/not-found/noUser.jpg';
+  }
 }

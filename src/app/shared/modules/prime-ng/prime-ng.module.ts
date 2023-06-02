@@ -27,6 +27,7 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { SliderModule } from 'primeng/slider';
 import { TooltipModule } from 'primeng/tooltip';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { ImageModule } from 'primeng/image';
 
 const primeNgModules = [
   DynamicDialogModule,
@@ -53,6 +54,7 @@ const primeNgModules = [
   DialogModule,
   AvatarModule,
   RatingModule,
+  ImageModule,
   StepsModule,
   ToastModule,
   TableModule,

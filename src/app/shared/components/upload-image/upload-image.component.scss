@@ -99,11 +99,7 @@
         .p-progressbar {
           display: none;
         }
-        img {
-          border-radius: 50%;
-          width: 2.5rem;
-          height: 2.5rem;
-        }
+
         width: 100% !important;
         .p-fileupload-row {
           & > div {
@@ -128,5 +124,16 @@
   }
   .p-fileupload.p-fileupload-advanced .p-message {
     margin-top: 15px !important;
+  }
+  .p-image-preview-container {
+    border-radius: 4px;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    overflow: hidden;
+    vertical-align: middle;
+    img {
+      width: 100%;
+      border-radius: 4px;
+    }
   }
 }

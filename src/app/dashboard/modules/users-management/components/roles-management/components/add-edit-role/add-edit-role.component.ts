@@ -4,7 +4,7 @@ import { AlertsService } from './../../../../../../../core/services/alerts/alert
 import { UsersService } from './../../../../../../services/user-management/users.service';
 import { CheckValidityService } from './../../../../../../../shared/services/check-validity/check-validity.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -15,7 +15,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 export class AddEditRoleComponent implements OnInit {
   availablePermissionsList: any = [];
   isLoadingAvailablePermissions: boolean = false;
-  availablePermissions: any;
+  // availablePermissions: any;
   toggleTree: boolean = false;
   toggleTreeTwo: boolean = false;
 
@@ -24,40 +24,45 @@ export class AddEditRoleComponent implements OnInit {
 
   selectedModulePermissions: any = [];
   ModulePermissions = [];
-  isEditImage: boolean = false;
-  editImage: boolean = false;
   isEdit: boolean = false;
-  ImageFile: any;
+  fileSrcImage: any;
+  editImage: any = null;
 
-  selectedFiles2: any;
+  selectedAvailablePermissions: any;
+  selectedUserPermissions: any;
+
+  modalData: any;
   constructor(
     private checkValidityService: CheckValidityService,
     private alertsService: AlertsService,
     public publicService: PublicService,
     private usersService: UsersService,
+    public config: DynamicDialogConfig,
     private cdr: ChangeDetectorRef,
     private ref: DynamicDialogRef,
     private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
-    this.getUserRoles();
-    this.getUserPermissions();
-    this.publicService.emitEditPatchImagePreview.subscribe((res: any) => {
-      if (res?.imageSrc) {
-        this.isEditImage = res?.imageSrc;
-      }
-    });
+    this.modalData = this.config?.data;
+    console.log(this.modalData);
+    this.isEdit = this.modalData?.type == 'edit' ? true : false;
+    if (this.isEdit) {
+      this.patchValue();
+    } else {
+      this.getUserRoles();
+      this.getUserPermissions();
+    }
   }
 
-  roleForm = this.fb.group({
-    active: ['', []],
-    image: ['', []],
-    name: ['', [Validators.required, Validators?.pattern(patterns?.english)]],
-    nameAr: ['', [Validators.required, Validators?.pattern(patterns?.arabic)]],
-    description: ['', [Validators.required, Validators?.pattern(patterns?.english)]],
-    descriptionAr: ['', [Validators.required, Validators?.pattern(patterns?.arabic)]],
-    availablePermissions: [null, [Validators.required]],
+  roleForm: any = this.fb.group({
+    active: [false, []],
+    image: ['', { validators: [Validators.required] }],
+    name: ['', { validators: [Validators.required, Validators?.pattern(patterns?.english)], updateOn: 'blur' }],
+    nameAr: ['', { validators: [Validators.required, Validators?.pattern(patterns?.arabic)], updateOn: 'blur' }],
+    description: ['', { validators: [Validators.required, Validators?.pattern(patterns?.english)], updateOn: 'blur' }],
+    descriptionAr: ['', { validators: [Validators.required, Validators?.pattern(patterns?.arabic)], updateOn: 'blur' }],
+    availablePermissions: ['', [Validators.required]],
     userPermissions: [null, [Validators.required]],
   },
   );
@@ -102,23 +107,6 @@ export class AddEditRoleComponent implements OnInit {
 
 
     this.availablePermissionsList = [
-      // {
-      //   label: 'lkkk',
-      //   id: 9,
-      //   parentId: 7,
-      //   children: [
-      //     {
-      //       label: 'hhhh',
-      //       id: 2,
-      //       childId: 2
-      //     },
-      //     {
-      //       label: 'hhhh',
-      //       id: 2,
-      //       childId: 2
-      //     }
-      //   ]
-      // }
       {
         "label": "Documents",
         "data": "Documents Folder",
@@ -160,109 +148,385 @@ export class AddEditRoleComponent implements OnInit {
           "children": [{ "label": "Goodfellas", "data": "Goodfellas Movie" }, { "label": "Untouchables", "data": "Untouchables Movie" }]
         }]
       }
-    ]
+    ];
+    if (this.isEdit) {
+      let arr: any =
+        [
+          {
+            "label": "Movies",
+            "data": "Movies Folder",
+            "children": [
+              {
+                "label": "Al Pacino",
+                "data": "Pacino Movies",
+                "children": [
+                  {
+                    "label": "Scarface",
+                    "data": "Scarface Movie",
+                    "partialSelected": false
+                  },
+                  {
+                    "label": "Serpico",
+                    "icon": "pi pi-file-video",
+                    "data": "Serpico Movie",
+                    "partialSelected": false
+                  }
+                ],
+                "partialSelected": false
+              },
+              {
+                "label": "Robert De Niro",
+                "data": "De Niro Movies",
+                "children": [
+                  {
+                    "label": "Goodfellas",
+                    "data": "Goodfellas Movie",
+                    "partialSelected": false
+                  },
+                  {
+                    "label": "Untouchables",
+                    "data": "Untouchables Movie",
+                    "partialSelected": false
+                  }
+                ],
+                "partialSelected": false
+              }
+            ],
+            "partialSelected": false
+          },
+          {
+            "label": "Al Pacino",
+            "data": "Pacino Movies",
+            "children": [
+              {
+                "label": "Scarface",
+                "data": "Scarface Movie",
+                "partialSelected": false
+              },
+              {
+                "label": "Serpico",
+                "icon": "pi pi-file-video",
+                "data": "Serpico Movie",
+                "partialSelected": false
+              }
+            ],
+            "partialSelected": false
+          },
+          {
+            "label": "Scarface",
+            "data": "Scarface Movie",
+            "partialSelected": false
+          },
+          {
+            "label": "Serpico",
+            "icon": "pi pi-file-video",
+            "data": "Serpico Movie",
+            "partialSelected": false
+          },
+          {
+            "label": "Robert De Niro",
+            "data": "De Niro Movies",
+            "children": [
+              {
+                "label": "Goodfellas",
+                "data": "Goodfellas Movie",
+                "partialSelected": false
+              },
+              {
+                "label": "Untouchables",
+                "data": "Untouchables Movie",
+                "partialSelected": false
+              }
+            ],
+            "partialSelected": false
+          },
+          {
+            "label": "Goodfellas",
+            "data": "Goodfellas Movie",
+            "partialSelected": false
+          },
+          {
+            "label": "Untouchables",
+            "data": "Untouchables Movie",
+            "partialSelected": false
+          }
+        ]
+      this.roleForm?.patchValue(
+        {
+          "availablePermissions": [
+            {
+              "label": "Pictures",
+              "data": "Pictures Folder",
+              "children": [
+                {
+                  "label": "barcelona.jpg",
+                  "data": "Barcelona Photo",
+                  "partialSelected": false
+                },
+                {
+                  "label": "logo.jpg",
+                  "data": "PrimeFaces Logo",
+                  "partialSelected": false
+                },
+                {
+                  "label": "primeui.png",
+                  "data": "PrimeUI Logo",
+                  "partialSelected": false
+                }
+              ],
+              "partialSelected": false
+            },
+            {
+              "label": "barcelona.jpg",
+              "data": "Barcelona Photo",
+              "partialSelected": false
+            },
+            {
+              "label": "logo.jpg",
+              "data": "PrimeFaces Logo",
+              "partialSelected": false
+            },
+            {
+              "label": "primeui.png",
+              "data": "PrimeUI Logo",
+              "partialSelected": false
+            }
+          ],
+
+        }
+      )
+      // this.roleForm?.patchValue({
+      //   availablePermissions: arr
+      // });
+      // this.selectedAvailablePermissions = arr;
+    }
   }
   getUserPermissions(): any {
-    this.isLoadingUserPermissions = true;
-    this.usersService?.getUserPermissions()?.subscribe(
-      (res: any) => {
-        if (res?.code == 200) {
-          res?.data?.forEach((permission: any) => {
-            let childrenItems: any = []
-            permission?.permissions.forEach((item: any) => {
-              childrenItems.push({
-                label: item?.name ? item?.name : '',
-                id: item?.id ? item?.id : null,
-                childId: item?.id ? item?.id : null
-              })
-            });
-            this.userPermissionsList.push({
-              label: permission?.name ? permission?.name : '',
-              id: permission?.id ? permission?.id : '',
-              parentId: permission?.id ? permission?.id : '',
-              children: childrenItems
-            })
-          });
-          // if (this.isEdit && this.usersRoleId) {
-          //   this.getRoleData(this.usersRoleId);
-          // }
-          this.isLoadingUserPermissions = false;
-        } else {
-          res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
-          this.isLoadingUserPermissions = false;
+    // this.isLoadingUserPermissions = true;
+    // this.usersService?.getUserPermissions()?.subscribe(
+    // (res: any) => {
+    //   if (res?.code == 200) {
+    //     res?.data?.forEach((permission: any) => {
+    //       let childrenItems: any = []
+    //       permission?.permissions.forEach((item: any) => {
+    //         childrenItems.push({
+    //           label: item?.name ? item?.name : '',
+    //           id: item?.id ? item?.id : null,
+    //           childId: item?.id ? item?.id : null
+    //         })
+    //       });
+    //       this.userPermissionsList.push({
+    //         label: permission?.name ? permission?.name : '',
+    //         id: permission?.id ? permission?.id : '',
+    //         parentId: permission?.id ? permission?.id : '',
+    //         children: childrenItems
+    //       })
+    //     });
+    //     // if (this.isEdit && this.usersRoleId) {
+    //     //   this.getRoleData(this.usersRoleId);
+    //     // }
+    //     this.isLoadingUserPermissions = false;
+    //   } else {
+    //     res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
+    //     this.isLoadingUserPermissions = false;
+    //   }
+    // },
+    // (err: any) => {
+    //   err?.message ? this.alertsService?.openSnackBar(err?.message) : '';
+    //   this.isLoadingUserPermissions = false;
+    // });
+    // this.cdr?.detectChanges();
+
+
+    this.userPermissionsList =
+      [
+        {
+          "label": "Documents",
+          "data": "Documents Folder",
+
+          "children": [{
+            "label": "Work",
+            "data": "Work Folder",
+
+
+            "children": [{ "label": "Expenses.doc", "data": "Expenses Document" }, { "label": "Resume.doc", "data": "Resume Document" }]
+          },
+          {
+            "label": "Home",
+            "data": "Home Folder",
+
+
+            "children": [{ "label": "Invoices.txt", "data": "Invoices for this month" }]
+          }]
+        },
+        {
+          "label": "Pictures",
+          "data": "Pictures Folder",
+          "children": [
+            { "label": "barcelona.jpg", "data": "Barcelona Photo" },
+            { "label": "logo.jpg", "data": "PrimeFaces Logo" },
+            { "label": "primeui.png", "data": "PrimeUI Logo" }]
+        },
+        {
+          "label": "Movies",
+          "data": "Movies Folder",
+          "children": [{
+            "label": "Al Pacino",
+            "data": "Pacino Movies",
+            "children": [{ "label": "Scarface", "data": "Scarface Movie" }, { "label": "Serpico", "icon": "pi pi-file-video", "data": "Serpico Movie" }]
+          },
+          {
+            "label": "Robert De Niro",
+            "data": "De Niro Movies",
+            "children": [{ "label": "Goodfellas", "data": "Goodfellas Movie" }, { "label": "Untouchables", "data": "Untouchables Movie" }]
+          }]
         }
-      },
-      (err: any) => {
-        err?.message ? this.alertsService?.openSnackBar(err?.message) : '';
-        this.isLoadingUserPermissions = false;
-      });
-    this.cdr?.detectChanges();
-
-
-    this.userPermissionsList = [
-      {
-        "label": "Documents",
-        "data": "Documents Folder",
-
-        "children": [{
-          "label": "Work",
-          "data": "Work Folder",
-
-
-          "children": [{ "label": "Expenses.doc", "data": "Expenses Document" }, { "label": "Resume.doc", "data": "Resume Document" }]
-        },
+      ];
+    if (this.isEdit) {
+      this.roleForm?.patchValue(
         {
-          "label": "Home",
-          "data": "Home Folder",
+          "userPermissions": [
+            {
+              "label": "Movies",
+              "data": "Movies Folder",
+              "children": [
+                {
+                  "label": "Al Pacino",
+                  "data": "Pacino Movies",
+                  "children": [
+                    {
+                      "label": "Scarface",
+                      "data": "Scarface Movie",
+                      "partialSelected": false
+                    },
+                    {
+                      "label": "Serpico",
+                      "icon": "pi pi-file-video",
+                      "data": "Serpico Movie",
+                      "partialSelected": false
+                    }
+                  ],
+                  "partialSelected": false
+                },
+                {
+                  "label": "Robert De Niro",
+                  "data": "De Niro Movies",
+                  "children": [
+                    {
+                      "label": "Goodfellas",
+                      "data": "Goodfellas Movie",
+                      "partialSelected": false
+                    },
+                    {
+                      "label": "Untouchables",
+                      "data": "Untouchables Movie",
+                      "partialSelected": false
+                    }
+                  ],
+                  "partialSelected": false
+                }
+              ],
+              "partialSelected": false
+            },
+            {
+              "label": "Al Pacino",
+              "data": "Pacino Movies",
+              "children": [
+                {
+                  "label": "Scarface",
+                  "data": "Scarface Movie",
+                  "partialSelected": false
+                },
+                {
+                  "label": "Serpico",
+                  "icon": "pi pi-file-video",
+                  "data": "Serpico Movie",
+                  "partialSelected": false
+                }
+              ],
+              "partialSelected": false
+            },
+            {
+              "label": "Scarface",
+              "data": "Scarface Movie",
+              "partialSelected": false
+            },
+            {
+              "label": "Serpico",
+              "icon": "pi pi-file-video",
+              "data": "Serpico Movie",
+              "partialSelected": false
+            },
+            {
+              "label": "Robert De Niro",
+              "data": "De Niro Movies",
+              "children": [
+                {
+                  "label": "Goodfellas",
+                  "data": "Goodfellas Movie",
+                  "partialSelected": false
+                },
+                {
+                  "label": "Untouchables",
+                  "data": "Untouchables Movie",
+                  "partialSelected": false
+                }
+              ],
+              "partialSelected": false
+            },
+            {
+              "label": "Goodfellas",
+              "data": "Goodfellas Movie",
+              "partialSelected": false
+            },
+            {
+              "label": "Untouchables",
+              "data": "Untouchables Movie",
+              "partialSelected": false
+            }
+          ]
+        }
+      )
+    }
+  }
+  updateSelectedNode(event: any, type?: any) {
+    if (type == 'userPermissions') {
+      this.selectedUserPermissions = event;
+      console.log(this.roleForm?.value);
+    } else {
+      this.selectedAvailablePermissions = event;
+      console.log(this.roleForm?.value);
 
-
-          "children": [{ "label": "Invoices.txt", "data": "Invoices for this month" }]
-        }]
-      },
-      {
-        "label": "Pictures",
-        "data": "Pictures Folder",
-        "children": [
-          { "label": "barcelona.jpg", "data": "Barcelona Photo" },
-          { "label": "logo.jpg", "data": "PrimeFaces Logo" },
-          { "label": "primeui.png", "data": "PrimeUI Logo" }]
-      },
-      {
-        "label": "Movies",
-        "data": "Movies Folder",
-        "children": [{
-          "label": "Al Pacino",
-          "data": "Pacino Movies",
-          "children": [{ "label": "Scarface", "data": "Scarface Movie" }, { "label": "Serpico", "icon": "pi pi-file-video", "data": "Serpico Movie" }]
-        },
-        {
-          "label": "Robert De Niro",
-          "data": "De Niro Movies",
-          "children": [{ "label": "Goodfellas", "data": "Goodfellas Movie" }, { "label": "Untouchables", "data": "Untouchables Movie" }]
-        }]
-      }
-    ]
+    }
   }
-  nodeSelect(event: any) {
-    this.selectedModulePermissions = event;
-    console.log(event);
-    console.log(this.selectedModulePermissions);
+  nodeSelect(event: any, type?: any) {
+    // if (type == 'userPermissions') {
+    //   this.formControls?.userPermissions?.setValue(this.selectedUserPermissions);
+    // } else {
+    //   this.formControls?.availablePermissions?.setValue(this.selectedAvailablePermissions);
+    // }
   }
-  nodeUnselect(event: any): void {
-    this.selectedModulePermissions = event;
-    console.log(event);
+  nodeUnselect(event: any, type?: any): void {
+    // if (type == 'userPermissions') {
+    //   this.formControls?.userPermissions?.setValue(this.selectedUserPermissions);
+    // } else {
+    //   this.formControls?.availablePermissions?.setValue(this.selectedAvailablePermissions);
+    // }
   }
-  nodeTreeSelect(event: any): void {
-    console.log(event);
-    // this.roleForm?.patchValue({
-    //   availablePermissions: event?.node
-    // })
+  nodeTreeSelect(event: any, type?: any): void {
+    if (type == 'userPermissions') {
+      this.formControls?.userPermissions?.setValue(this.selectedUserPermissions);
+    } else {
+      this.formControls?.availablePermissions?.setValue(this.selectedAvailablePermissions);
+    }
+    console.log(this.roleForm?.value);
   }
-  nodeTreeUnselect(event: any): void {
-    console.log(event);
-    // this.roleForm?.patchValue({
-    //   availablePermissions: event?.node
-    // })
+  nodeTreeUnselect(event: any, type?: any): void {
+    if (type == 'userPermissions') {
+      this.formControls?.userPermissions?.setValue(this.selectedUserPermissions);
+    } else {
+      this.formControls?.availablePermissions?.setValue(this.selectedAvailablePermissions);
+    }
   }
   toggleTreeSelect(type?: any): void {
     if (type == 'userPermission') {
@@ -272,7 +536,30 @@ export class AddEditRoleComponent implements OnInit {
     }
   }
 
+  patchValue(): void {
+    this.roleForm?.patchValue(
+      {
+        "active": true,
+        "image": {
+          "objectURL": {
+            "changingThisBreaksApplicationSecurity": "blob:http://localhost:4200/f33f2c9f-b25f-4d03-a0e6-eacf5e6b274a"
+          }
+        },
+        "name": "Colt Rollins",
+        "nameAr": "عربي",
+        "description": "Veritatis proident ",
+        "descriptionAr": "الوصف",
+
+      }
+    )
+    this.editImage = 'https://i.pinimg.com/236x/18/0d/ff/180dffaa23dd263c714ba4a03d7f6b34.jpg';
+    this.getUserRoles();
+    this.getUserPermissions();
+  }
+
   submit(): void {
+    console.log(this.roleForm?.value);
+
     const myObject: { [key: string]: any } = {};
     if (this.roleForm?.valid) {
       this.publicService?.show_loader?.next(true);
@@ -306,9 +593,17 @@ export class AddEditRoleComponent implements OnInit {
   }
 
   getUploadFiles(event?: any): void {
-    this.ImageFile = event?.files !== null ? event?.files[0] : null;
+    this.fileSrcImage = event?.files !== null ? event?.files[0] : null;
     this.roleForm?.patchValue({
       image: event?.files !== null ? event?.files[0] : null,
     });
+    let fileReader = new FileReader();
+    for (let file of event?.files) {
+      fileReader.readAsDataURL(file);
+      fileReader.onload = this._handleReaderLoadedImage.bind(this);
+    }
+  }
+  _handleReaderLoadedImage(e: any): void {
+    var reader = e.target;
   }
 }

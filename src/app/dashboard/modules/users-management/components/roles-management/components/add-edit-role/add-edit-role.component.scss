@@ -1,0 +1,18 @@
+:host::ng-deep {
+  .p-inputswitch .p-inputswitch-slider {
+    scale: 0.9 !important;
+  }
+  .p-tree {
+    max-height: 250px;
+    overflow: auto;
+    border: none;
+  }
+  .pTreeTwo {
+    background-image: url(../../../../../../../../assets/images/role/role2.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .p-tree {
+    background-color: #02305824 !important;
+  }
+}
