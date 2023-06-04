@@ -19,7 +19,6 @@ export class PermissionsComponent implements OnInit {
   isLoadingUserPermissions: boolean = false;
 
   selectedModulePermissions: any = [];
-  ModulePermissions = [];
 
   toggleTree: boolean = false;
   toggleTreeUser: boolean = false;
@@ -229,12 +228,7 @@ export class PermissionsComponent implements OnInit {
       }
     ]
   }
-  nodeSelect(event: any) {
-    this.ModulePermissions = event;
-  }
-  nodeUnselect(event: any): void {
-    this.ModulePermissions = event;
-  }
+
 
   updateSelectedNode(event: any, type?: any) {
     if (type == 'userPermissions') {
@@ -271,10 +265,10 @@ export class PermissionsComponent implements OnInit {
 
   submit(): void {
     const myObject: { [key: string]: any } = {};
-    if (this.roleForm?.valid) {
+    if (this.roleForm?.valid || (this.selectedUserRoles && this.selectedUserPermissions)) {
       this.publicService?.show_loader?.next(true);
-      myObject['userRoles'] = this.roleForm?.value?.userRoles;
-      myObject['userPermissions'] = this.roleForm?.value?.userPermissions;
+      myObject['userRoles'] = this.selectedUserRoles;
+      myObject['userPermissions'] = this.selectedUserPermissions;
 
       this.publicService?.show_loader?.next(true);
       this.usersService?.resetPassword(myObject)?.subscribe(

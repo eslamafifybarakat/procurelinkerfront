@@ -21,8 +21,7 @@
               formControlName="userRoles" display="chip" [disabled]="isLoadingUserRoles" scrollHeight="250px"
               appendTo="body" placeholder="{{'placeholder.userRoles'|translate}}" [filter]="true"
               [filterPlaceholder]="'placeholder.search'|translate" [filterInputAutoFocus]="true"
-              (selection)="selectedModulePermissions" (onNodeSelect)="nodeSelect(selectedModulePermissions)"
-              (onNodeUnselect)="nodeUnselect(selectedModulePermissions)"
+              (selection)="selectedModulePermissions"
               [class.ng-dirty]="formControls?.userRoles?.invalid && (formControls?.userRoles?.dirty || formControls?.userRoles?.touched)"></p-treeSelect>
 
             <ng-container *ngIf="isLoadingUserRoles">
@@ -70,8 +69,7 @@
               [showClear]="true" formControlName="userPermissions" display="chip" [disabled]="isLoadingUserPermissions"
               scrollHeight="250px" appendTo="body" placeholder="{{'placeholder.userPermissions'|translate}}"
               [filter]="true" [filterPlaceholder]="'placeholder.search'|translate" [filterInputAutoFocus]="true"
-              (selection)="selectedModulePermissions" (onNodeSelect)="nodeSelect(selectedModulePermissions)"
-              (onNodeUnselect)="nodeUnselect(selectedModulePermissions)"
+              (selection)="selectedModulePermissions"
               [class.ng-dirty]="formControls?.userPermissions?.invalid && (formControls?.userPermissions?.dirty || formControls?.userPermissions?.touched)"></p-treeSelect>
 
             <ng-container *ngIf="isLoadingUserPermissions">
