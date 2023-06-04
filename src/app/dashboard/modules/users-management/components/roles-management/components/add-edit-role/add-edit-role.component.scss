@@ -7,10 +7,8 @@
     overflow: auto;
     border: none;
   }
-  .pTreeTwo {
-    background-image: url(../../../../../../../../assets/images/role/role2.svg);
-    background-repeat: no-repeat;
-    background-position: center;
+  .p-treeselect-panel .p-treeselect-items-wrapper .p-tree {
+    background-color: transparent !important;
   }
   .p-tree {
     background-color: #02305824 !important;

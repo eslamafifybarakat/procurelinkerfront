@@ -5,7 +5,7 @@
   },
   "general": {
     "advanced":"Advanced",
-    "simple":"Simple",
+    "normal":"Normal",
     "permissions": "Permissions",
     "lockAccount": "Lock Account",
     "unLockAccount": "Unlock Account",

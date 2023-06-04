@@ -21,6 +21,12 @@ export class PermissionsComponent implements OnInit {
   selectedModulePermissions: any = [];
   ModulePermissions = [];
 
+  toggleTree: boolean = false;
+  toggleTreeUser: boolean = false;
+
+  selectedUserRoles: any;
+  selectedUserPermissions: any;
+
   constructor(
     private checkValidityService: CheckValidityService,
     private alertsService: AlertsService,
@@ -228,6 +234,39 @@ export class PermissionsComponent implements OnInit {
   }
   nodeUnselect(event: any): void {
     this.ModulePermissions = event;
+  }
+
+  updateSelectedNode(event: any, type?: any) {
+    if (type == 'userPermissions') {
+      this.selectedUserPermissions = event;
+      console.log(this.roleForm?.value);
+    } else {
+      this.selectedUserRoles = event;
+      console.log(this.roleForm?.value);
+
+    }
+  }
+  nodeTreeSelect(event: any, type?: any): void {
+    if (type == 'userPermissions') {
+      this.formControls?.userPermissions?.setValue(this.selectedUserPermissions);
+    } else {
+      this.formControls?.availablePermissions?.setValue(this.selectedUserRoles);
+    }
+    console.log(this.roleForm?.value);
+  }
+  nodeTreeUnselect(event: any, type?: any): void {
+    if (type == 'userPermissions') {
+      this.formControls?.userPermissions?.setValue(this.selectedUserPermissions);
+    } else {
+      this.formControls?.availablePermissions?.setValue(this.selectedUserRoles);
+    }
+  }
+  toggleTreeSelect(type?: any): void {
+    if (type == 'userPermission') {
+      this.toggleTreeUser = !this.toggleTreeUser;
+    } else {
+      this.toggleTree = !this.toggleTree;
+    }
   }
 
   submit(): void {

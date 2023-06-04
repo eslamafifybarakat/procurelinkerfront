@@ -144,7 +144,7 @@
             <span class="required"> {{"labels.availablePermissions"|translate}}</span>
             <span class="pointer advanced-badge" (click)="toggleTreeSelect()">
               <ng-container *ngIf="toggleTree; else elseTemplate">
-                {{'general.simple'|translate}}
+                {{'general.normal'|translate}}
               </ng-container>
               <ng-template #elseTemplate>
                 {{'general.advanced'|translate}}
@@ -197,7 +197,7 @@
             <span class="required">{{"labels.userPermissions"|translate}}</span>
             <span class="pointer advanced-badge" (click)="toggleTreeSelect('userPermission')">
               <ng-container *ngIf="toggleTreeTwo; else advanced">
-                {{'general.simple'|translate}}
+                {{'general.normal'|translate}}
               </ng-container>
               <ng-template #advanced>
                 {{'general.advanced'|translate}}
