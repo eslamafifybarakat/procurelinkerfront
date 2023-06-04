@@ -21,6 +21,7 @@ import { NgModule } from '@angular/core';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { NotificationComponent } from './components/header/components/notification/notification.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
 
 
 const allSharedComponents = [
@@ -37,7 +38,12 @@ const allSharedComponents = [
   FooterComponent,
   AvatarComponent,
   SearchComponent,
-  ThemeComponent
+  ThemeComponent,
+  BrowseImageOrVideoComponent,
+  HeaderComponent,
+  FooterComponent,
+  NotificationComponent,
+  SkeletonComponent,
 ]
 const allSharedModule = [
   ReactiveFormsModule,
@@ -51,10 +57,7 @@ const allSharedModule = [
 @NgModule({
   declarations: [
     ...allSharedComponents,
-    BrowseImageOrVideoComponent,
-    HeaderComponent,
-    FooterComponent,
-    NotificationComponent,
+
   ],
   imports: [
     CommonModule,

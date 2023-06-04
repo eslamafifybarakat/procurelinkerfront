@@ -18,7 +18,9 @@ export const roots = {
       getAccountById: 'getAccount',
       getUserRoles: 'userRoles',
       getUserPermissions: 'userPermissions',
-      addPermissions: "addPermissions"
+      addPermissions: "addPermissions",
+
+      getRolesManagement: "roles_management"
     },
     settings: {
       getBranches: 'Branch/getBranchs',

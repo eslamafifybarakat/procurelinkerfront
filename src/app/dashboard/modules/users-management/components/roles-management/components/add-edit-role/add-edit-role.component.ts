@@ -25,6 +25,7 @@ export class AddEditRoleComponent implements OnInit {
   selectedModulePermissions: any = [];
   ModulePermissions = [];
   isEdit: boolean = false;
+  roleId: any;
   fileSrcImage: any;
   editImage: any = null;
 
@@ -45,8 +46,8 @@ export class AddEditRoleComponent implements OnInit {
 
   ngOnInit(): void {
     this.modalData = this.config?.data;
-    console.log(this.modalData);
-    this.isEdit = this.modalData?.type == 'edit' ? true : false;
+    this.roleId = this.modalData?.item?.id;
+    this.isEdit = this.roleId ? true : false;
     if (this.isEdit) {
       this.patchValue();
     } else {
@@ -69,6 +70,7 @@ export class AddEditRoleComponent implements OnInit {
   get formControls(): any {
     return this.roleForm?.controls;
   }
+
   getUserRoles(): any {
     this.isLoadingAvailablePermissions = true;
     this.usersService?.getUserRoles()?.subscribe(
@@ -302,40 +304,40 @@ export class AddEditRoleComponent implements OnInit {
     }
   }
   getUserPermissions(): any {
-    // this.isLoadingUserPermissions = true;
-    // this.usersService?.getUserPermissions()?.subscribe(
-    // (res: any) => {
-    //   if (res?.code == 200) {
-    //     res?.data?.forEach((permission: any) => {
-    //       let childrenItems: any = []
-    //       permission?.permissions.forEach((item: any) => {
-    //         childrenItems.push({
-    //           label: item?.name ? item?.name : '',
-    //           id: item?.id ? item?.id : null,
-    //           childId: item?.id ? item?.id : null
-    //         })
-    //       });
-    //       this.userPermissionsList.push({
-    //         label: permission?.name ? permission?.name : '',
-    //         id: permission?.id ? permission?.id : '',
-    //         parentId: permission?.id ? permission?.id : '',
-    //         children: childrenItems
-    //       })
-    //     });
-    //     // if (this.isEdit && this.usersRoleId) {
-    //     //   this.getRoleData(this.usersRoleId);
-    //     // }
-    //     this.isLoadingUserPermissions = false;
-    //   } else {
-    //     res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
-    //     this.isLoadingUserPermissions = false;
-    //   }
-    // },
-    // (err: any) => {
-    //   err?.message ? this.alertsService?.openSnackBar(err?.message) : '';
-    //   this.isLoadingUserPermissions = false;
-    // });
-    // this.cdr?.detectChanges();
+    this.isLoadingUserPermissions = true;
+    this.usersService?.getUserPermissions()?.subscribe(
+      (res: any) => {
+        if (res?.code == 200) {
+          res?.data?.forEach((permission: any) => {
+            let childrenItems: any = []
+            permission?.permissions.forEach((item: any) => {
+              childrenItems.push({
+                label: item?.name ? item?.name : '',
+                id: item?.id ? item?.id : null,
+                childId: item?.id ? item?.id : null
+              })
+            });
+            this.userPermissionsList.push({
+              label: permission?.name ? permission?.name : '',
+              id: permission?.id ? permission?.id : '',
+              parentId: permission?.id ? permission?.id : '',
+              children: childrenItems
+            })
+          });
+          // if (this.isEdit && this.usersRoleId) {
+          //   this.getRoleData(this.usersRoleId);
+          // }
+          this.isLoadingUserPermissions = false;
+        } else {
+          res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
+          this.isLoadingUserPermissions = false;
+        }
+      },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSnackBar(err?.message) : '';
+        this.isLoadingUserPermissions = false;
+      });
+    this.cdr?.detectChanges();
 
 
     this.userPermissionsList =
@@ -558,8 +560,6 @@ export class AddEditRoleComponent implements OnInit {
   }
 
   submit(): void {
-    console.log(this.roleForm?.value);
-
     const myObject: { [key: string]: any } = {};
     if (this.roleForm?.valid) {
       this.publicService?.show_loader?.next(true);
@@ -588,6 +588,7 @@ export class AddEditRoleComponent implements OnInit {
     }
     this.cdr?.detectChanges();
   }
+
   cancel(): void {
     this.ref?.close();
   }

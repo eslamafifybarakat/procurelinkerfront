@@ -12,6 +12,7 @@ import { ConfirmLockAccountComponent } from './components/users/components/confi
 import { UserDetailsComponent } from './components/users/components/user-details/user-details.component';
 import { PermissionsComponent } from './components/users/components/permissions/permissions.component';
 import { AddEditRoleComponent } from './components/roles-management/components/add-edit-role/add-edit-role.component';
+import { RoleDetailsComponent } from './components/roles-management/components/role-details/role-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AddEditRoleComponent } from './components/roles-management/components/a
     ConfirmLockAccountComponent,
     UserDetailsComponent,
     PermissionsComponent,
-    AddEditRoleComponent
+    AddEditRoleComponent,
+    RoleDetailsComponent
   ],
   imports: [
     CommonModule,

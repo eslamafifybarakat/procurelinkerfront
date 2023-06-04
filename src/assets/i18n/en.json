@@ -401,7 +401,8 @@
     "roleManagement": {
       "allRole": "Roles Management",
       "addRole": "Add role",
-      "editRole": "Edit role"
+      "editRole": "Edit role",
+      "roleDetails": "Role details"
     },
     "branches":{
       "allBranches":"All Branches",

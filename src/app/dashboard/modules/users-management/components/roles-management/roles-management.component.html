@@ -25,209 +25,43 @@
     </div>
   </div>
   <hr>
-  <div class="row mt-4 gy-4">
-    <ng-container *ngFor="let item of roleManagementData"></ng-container>
+  <div class="row pt-2 gy-4">
+    <ng-container *ngIf="isLoadingRoleManagementData; else noLoading">
+      <app-skeleton [type]="'roles-management'"></app-skeleton>
+    </ng-container>
+    <ng-template #noLoading>
+      <ng-container *ngFor="let item of rolesManagementList">
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="global-card p-0 border h-100">
+            <div class="img-bg position-relative">
+              <img [src]="item?.image" class="w-100 role-image" alt="">
+              <!-- <h5 class="fw-bold  title">SysAdmin</h5> -->
+            </div>
+            <div class="p-3 operations position-relative text-main-color">
+              <div class="overlay-after"></div>
+              <div class="overlay-after2"></div>
+              <div class="d-flex justify-content-around flex-wrap gap-2">
+                <a class="d-flex align-items-center gap-1"><i class="pi pi-pencil fs-5-1"
+                    (click)="addOrEditRole(item,'edit')"></i>Edit</a>
+                <a class="d-flex align-items-center gap-1" (click)="itemDetails(item)"><i
+                    class="pi pi-eye fs-5-1"></i>View</a>
+                <a class="d-flex align-items-center gap-1" (click)="deleteItem(item)"><i
+                    class="pi pi-trash fs-5-1"></i>Delete</a>
+              </div>
+            </div>
+            <div class="p-3">
+              <h5 class="fw-bold  mb-2">{{item?.name}}</h5>
+              <p class="text-desc-color description">
+                {{item?.description}}
+              </p>
+              <div class="d-flex justify-content-end align-items-center gap-2 mt-3">
+                <button class="btn btn-outline-danger">Deactivate</button>
 
-    <div class="col-xl-3 col-lg-4 col-md-6">
-      <div class="global-card p-0 border h-100">
-        <img src="../../../../../../assets/images/role/role.avif" class="w-100 role-image" alt="">
-        <div class="p-3 d-flex flex-column justify-content-between">
-          <div>
-            <h5 class="fw-bold">SysAdmin</h5>
-            <p class="text-desc-color description">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, commodi
-              similique non harum impedit, quia suscipit dolores sit!
-            </p>
-          </div>
-          <div class="d-flex justify-content-between align-items-center gap-2 mt-3">
-            <button class="btn btn-outline-danger">Deactivate</button>
-            <div class="d-flex justify-content-end gap-2">
-              <a (click)="addOrEditRole(null,'edit')"><i class="pi pi-pencil fs-5-1"></i></a>
-              <a><i class="pi pi-eye fs-5-1"></i></a>
-              <a><i class="pi pi-trash fs-5-1"></i></a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-6">
-      <div class="global-card p-0 border h-100">
-        <img src="../../../../../../assets/images/role/role.svg" class="w-100 role-image" alt="">
-        <div class="p-3 d-flex flex-column justify-content-between">
-          <div>
-            <h5 class="fw-bold">SysAdmin</h5>
-            <p class="text-desc-color description">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, commodi
-              similique non harum impedit, quia suscipit dolores sit!
-            </p>
-          </div>
-          <div class="d-flex justify-content-between align-items-center gap-2 mt-3">
-            <button class="btn btn-outline-danger">Deactivate</button>
-            <div class="d-flex justify-content-end gap-2">
-              <a><i class="pi pi-pencil fs-5-1"></i></a>
-              <a><i class="pi pi-eye fs-5-1"></i></a>
-              <a><i class="pi pi-trash fs-5-1"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-6">
-      <div class="global-card p-0 border h-100">
-        <img src="../../../../../../assets/images/role/role.png" class="w-100 role-image" alt="">
-        <div class="p-3 d-flex flex-column justify-content-between">
-          <div>
-            <h5 class="fw-bold">SysAdmin</h5>
-            <p class="text-desc-color description">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, commodi!
-            </p>
-          </div>
-          <div class="d-flex justify-content-between align-items-center gap-2 mt-3">
-            <button class="btn btn-outline-danger">Deactivate</button>
-            <div class="d-flex justify-content-end gap-2">
-              <a><i class="pi pi-pencil fs-5-1"></i></a>
-              <a><i class="pi pi-eye fs-5-1"></i></a>
-              <a><i class="pi pi-trash fs-5-1"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-6">
-      <div class="global-card p-0 border h-100">
-        <img src="../../../../../../assets/images/role/download.png" class="w-100 role-image" alt="">
-        <div class="p-3">
-          <h5 class="fw-bold">SysAdmin</h5>
-          <p class="text-desc-color description">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, commodi!
-          </p>
-          <div class="d-flex justify-content-between align-items-center gap-2 mt-3">
-            <button class="btn btn-outline-danger">Deactivate</button>
-            <div class="d-flex justify-content-end gap-2">
-              <a><i class="pi pi-pencil fs-5-1"></i></a>
-              <a><i class="pi pi-eye fs-5-1"></i></a>
-              <a><i class="pi pi-trash fs-5-1"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col-xl-3 col-lg-4 col-md-6">
-      <div class="global-card p-0 border h-100">
-        <div class="img-bg position-relative">
-          <img src="../../../../../../assets/images/role/role.avif" class="w-100 role-image2" alt="">
-          <!-- <h5 class="fw-bold  title">SysAdmin</h5> -->
-        </div>
-        <div class="p-3 operations position-relative text-main-color">
-          <div class="overlay-after"></div>
-          <div class="overlay-after2"></div>
-          <div class="d-flex justify-content-around flex-wrap gap-2">
-            <a class="d-flex align-items-center gap-1"><i class="pi pi-pencil fs-5-1"></i>Edit</a>
-            <a class="d-flex align-items-center gap-1"><i class="pi pi-eye fs-5-1"></i>View</a>
-            <a class="d-flex align-items-center gap-1"><i class="pi pi-trash fs-5-1"></i>Delete</a>
-          </div>
-        </div>
-        <div class="p-3">
-          <h5 class="fw-bold  mb-2">SysAdmin</h5>
-          <p class="text-desc-color description">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, commodi
-            similique non harum impedit, quia suscipit dolores sit!
-          </p>
-          <div class="d-flex justify-content-end align-items-center gap-2 mt-3">
-            <button class="btn btn-outline-danger">Deactivate</button>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-6">
-      <div class="global-card p-0 border h-100">
-        <div class="img-bg position-relative">
-          <img src="../../../../../../assets/images/role/role.svg" class="w-100 role-image2" alt="">
-          <!-- <h5 class="fw-bold  title">SysAdmin</h5> -->
-        </div>
-        <div class="p-3 operations position-relative text-main-color">
-          <div class="overlay-after"></div>
-          <div class="overlay-after2"></div>
-          <div class="d-flex justify-content-around flex-wrap gap-2">
-            <a class="d-flex align-items-center gap-1"><i class="pi pi-pencil fs-5-1"></i>Edit</a>
-            <a class="d-flex align-items-center gap-1"><i class="pi pi-eye fs-5-1"></i>View</a>
-            <a class="d-flex align-items-center gap-1"><i class="pi pi-trash fs-5-1"></i>Delete</a>
-          </div>
-        </div>
-        <div class="p-3">
-          <h5 class="fw-bold  mb-2">SysAdmin</h5>
-
-          <p class="text-desc-color description">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, commodi
-            dolores sit!
-          </p>
-          <div class="d-flex justify-content-end align-items-center gap-2 mt-3">
-            <button class="btn btn-outline-danger">Deactivate</button>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-6">
-      <div class="global-card p-0 border h-100">
-        <div class="img-bg position-relative">
-          <img src="../../../../../../assets/images/role/role.png" class="w-100 role-image2" alt="">
-          <!-- <h5 class="fw-bold  title">SysAdmin</h5> -->
-        </div>
-        <div class="p-3 operations position-relative text-main-color">
-          <div class="overlay-after"></div>
-          <div class="overlay-after2"></div>
-          <div class="d-flex justify-content-around flex-wrap gap-2">
-            <a class="d-flex align-items-center gap-1"><i class="pi pi-pencil fs-5-1"></i>Edit</a>
-            <a class="d-flex align-items-center gap-1"><i class="pi pi-eye fs-5-1"></i>View</a>
-            <a class="d-flex align-items-center gap-1"><i class="pi pi-trash fs-5-1"></i>Delete</a>
-          </div>
-        </div>
-        <div class="p-3">
-          <h5 class="fw-bold  mb-2">SysAdmin</h5>
-
-          <p class="text-desc-color description">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, commodi
-            similique non harum impedit, quia suscipit dolores sit!
-          </p>
-          <div class="d-flex justify-content-end align-items-center gap-2 mt-3">
-            <button class="btn btn-outline-danger">Deactivate</button>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-6">
-      <div class="global-card p-0 border h-100">
-        <div class="img-bg position-relative">
-          <img src="../../../../../../assets/images/role/download.png" class="w-100 role-image2" alt="">
-          <!-- <h5 class="fw-bold  title">SysAdmin</h5> -->
-        </div>
-        <div class="p-3 operations position-relative text-main-color">
-          <div class="overlay-after"></div>
-          <div class="overlay-after2"></div>
-          <div class="d-flex justify-content-around flex-wrap gap-2">
-            <a class="d-flex align-items-center gap-1"><i class="pi pi-pencil fs-5-1"></i>Edit</a>
-            <a class="d-flex align-items-center gap-1"><i class="pi pi-eye fs-5-1"></i>View</a>
-            <a class="d-flex align-items-center gap-1"><i class="pi pi-trash fs-5-1"></i>Delete</a>
-          </div>
-        </div>
-        <div class="p-3">
-          <h5 class="fw-bold  mb-2">SysAdmin</h5>
-
-          <p class="text-desc-color description">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, commodi
-            similique non harum impedit, quia suscipit dolores sit!
-          </p>
-          <div class="d-flex justify-content-end align-items-center gap-2 mt-3">
-            <button class="btn btn-outline-danger">Deactivate</button>
-
-          </div>
-        </div>
-      </div>
-    </div>
+      </ng-container>
+    </ng-template>
   </div>
 </div>

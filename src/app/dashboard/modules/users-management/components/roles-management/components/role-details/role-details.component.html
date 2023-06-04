@@ -1,0 +1,25 @@
+<div id="modal">
+  <div class="mb-4">
+    <div class="mb-3">
+      <p-image [src]="modalData?.image" [preview]="true" alt="Image" width="150">
+      </p-image>
+    </div>
+    <div class="mb-3 d-flex align-items-center justify-content-between gap-2 flex-wrap">
+      <label for="active" class="fw-bold fs-5-1">{{'labels.name'|translate}}</label>
+      <p class="fs-5-1">{{modalData?.name}}</p>
+    </div>
+    <div class="mb-3 d-flex align-items-center justify-content-between gap-2 flex-wrap">
+      <label for="active" class="fw-bold fs-5-1">{{'labels.description'|translate}}</label>
+      <p class="fs-5-1">{{modalData?.description}}</p>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end gap-3 flex-wrap mt-5">
+    <button type="button" class="btn btn-outline-main d-flex align-items-center gap-2" (click)="cancel()">
+      <span>
+        {{'general.cancel'|translate}}
+      </span>
+      <i class="pi pi-times"></i>
+    </button>
+  </div>
+</div>
