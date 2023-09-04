@@ -75,40 +75,40 @@ export class LoginComponent implements OnInit {
         password: this.loginForm?.value?.password,
         fireBaseToken: ''
       };
-      // setTimeout(() => {
-      //   this.router?.navigateByUrl('/dashboard');
-      //   this.publicService?.show_loader?.next(false);
-      //   console.log(this.loginForm?.value);
+      setTimeout(() => {
+        this.router?.navigateByUrl('/dashboard');
+        this.publicService?.show_loader?.next(false);
+        console.log(this.loginForm?.value);
 
-      // }, 1000);
-      this.authUserService?.login(data)?.subscribe(
-        (res: any) => {
-          if (res?.success == true) {
-            this.publicService?.show_loader?.next(false);
-            this.loginForm?.reset();
-            this.authUserService?.getUserData()?.subscribe(
-              (res: any) => {
-                if (res?.success == true) {
-                  this.publicService?.show_loader?.next(false);
-                } else {
-                  this.publicService?.show_loader?.next(false);
-                  res?.error?.message ? this.alertsService?.openSweetAlert('error', res?.error?.message) : '';
-                }
-              },
-              (err: any) => {
-                err ? this.alertsService?.openSweetAlert('error', err) : '';
-                this.publicService?.show_loader?.next(false);
-              });
-          } else {
-            this.publicService?.show_loader?.next(false);
-            res?.error?.message ? this.alertsService?.openSweetAlert('error', res?.error?.message) : '';
-          }
-        },
-        (err: any) => {
-          err ? this.alertsService?.openSweetAlert('error', err) : '';
-          this.publicService?.show_loader?.next(false);
-        }
-      );
+      }, 1000);
+      // this.authUserService?.login(data)?.subscribe(
+      //   (res: any) => {
+      //     if (res?.success == true) {
+      //       this.publicService?.show_loader?.next(false);
+      //       this.loginForm?.reset();
+      //       this.authUserService?.getUserData()?.subscribe(
+      //         (res: any) => {
+      //           if (res?.success == true) {
+      //             this.publicService?.show_loader?.next(false);
+      //           } else {
+      //             this.publicService?.show_loader?.next(false);
+      //             res?.error?.message ? this.alertsService?.openSweetAlert('error', res?.error?.message) : '';
+      //           }
+      //         },
+      //         (err: any) => {
+      //           err ? this.alertsService?.openSweetAlert('error', err) : '';
+      //           this.publicService?.show_loader?.next(false);
+      //         });
+      //     } else {
+      //       this.publicService?.show_loader?.next(false);
+      //       res?.error?.message ? this.alertsService?.openSweetAlert('error', res?.error?.message) : '';
+      //     }
+      //   },
+      //   (err: any) => {
+      //     err ? this.alertsService?.openSweetAlert('error', err) : '';
+      //     this.publicService?.show_loader?.next(false);
+      //   }
+      // );
     } else {
       this.publicService?.show_loader?.next(false);
       this.checkValidityService?.validateAllFormFields(this.loginForm);
