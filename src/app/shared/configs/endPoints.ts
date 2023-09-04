@@ -1,6 +1,6 @@
 export const roots = {
   auth: {
-    login: '/api/login',
+    login: 'Account/login',
     getUserData: '/get-user-data',
     forgetPassword: '/forget-password',
   },

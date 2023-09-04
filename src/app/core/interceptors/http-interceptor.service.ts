@@ -1,7 +1,7 @@
-import { TranslateService } from '@ngx-translate/core';
 import { keys } from './../../shared/configs/localstorage-key';
-import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   HttpRequest,
   HttpHandler,
@@ -13,7 +13,11 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
   browserLang: any = '';
-  constructor(private translateService: TranslateService) { }
+
+  constructor(
+    private translateService: TranslateService
+  ) { }
+
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
@@ -30,9 +34,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
       let header: any = {};
       if (window.localStorage.getItem(keys.language)) {
-        header["lang"] = window.localStorage.getItem(
-          keys.language
-        );
+        header["lang"] = window.localStorage.getItem(keys.language);
       } else {
         this.browserLang = this.translateService.getBrowserLang();
         window.localStorage.setItem(keys.language, this.browserLang);

@@ -5,8 +5,9 @@
 export const environment = {
   production: false,
 
-  apiUrl: "http://34.77.88.166:8007/api/",
-  publicUrl: "http://34.77.88.166:8007/api/"
+  apiUrl: "http://34.77.88.166:8014/api/",
+  publicUrl: "http://34.77.88.166:8014/",
+  apiKey: 'RajhiSteedKeyV1',
 };
 
 /*
